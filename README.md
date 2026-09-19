@@ -7,9 +7,9 @@ calibration, execution and market making in **Kalshi binary prediction markets**
 > implemented is `GET`, the WebSocket client only sends `subscribe`, order-entry channels are
 > rejected, and there is no order code anywhere. Credentials live in a gitignored `.env`.
 
-Status: **Stage 5 of 12 complete** (API client, normalised data model, historical storage, a
-resumable collector, validated contract-relationship logic, a fee-exact same-event arbitrage detector, and a
-causal event-driven backtest engine). See [`docs/contract_semantics.md`](docs/contract_semantics.md) for price/contract
+Status: **Stage 6 of 12 complete** (API client, normalised data model, historical storage, a
+resumable collector, validated contract-relationship logic, a fee-exact same-event arbitrage detector, a
+causal event-driven backtest engine, and an arbitrage research study with a frozen-code confirmatory run). See [`docs/contract_semantics.md`](docs/contract_semantics.md) for price/contract
 semantics and verified API behaviour, [`docs/relationships.md`](docs/relationships.md) for the
 relationship model and its verification against 14k real settled events, and [`docs/data_architecture.md`](docs/data_architecture.md) for
 the storage design, resume guarantees and the known biases of the dataset. The full technical report
@@ -33,6 +33,7 @@ cp .env.example .env            # optional for REST; required for the WebSocket
 | `data/normalization/` | wire -> domain mapping; sequence-checked book maintenance (`fail closed`), duplicate suppression |
 | `data/schemas/`, `data/storage/` | one declarative schema -> DuckDB DDL + typed bulk ingestion; `Store` with idempotent writes, run provenance, content fingerprint, volume reconciliation |
 | `backtest/` | event-driven replay engine: information-time feeds, whitelisted `MarketInfo`, latency, taker + queue-model maker fills, exact ledger, metrics; validated by a look-ahead theorem, mutation checks and a Stage 4 <-> 5 exact-equality test |
+| `research/` | Stage 6: opportunity-episode scanner, event-clustered bootstrap, interval-censored lifetimes, latency brackets, category study, hypothesis scoring |
 | `arbitrage/` | fee-exact execution model (book walking, VWAP, per-fill fees, profit-maximising size), classified `Opportunity` records, detector with the displayed -> liquid -> fees -> slippage -> executable funnel |
 | `data/collectors/` | deterministic universe selection, resumable history collector (markets/events/trades), complete-event collector, REST book poller, WebSocket recorder, CLI |
 | `tests/` | unit / integration / property-based tests; real captured fixtures plus an in-memory fake exchange that reproduces the live API's quirks |
@@ -91,3 +92,20 @@ audit, thousands of orders per cut); a passive strategy's P&L ranges over **$74*
 assumptions and is unprofitable even under the most generous one. A run that first showed a +$983 phantom
 arbitrage exposed an engine flaw (simultaneous events applied one at a time) - see
 [`docs/backtesting.md`](docs/backtesting.md).
+
+## Arbitrage research (Stage 6)
+
+```bash
+python -m scripts.stage6_arbitrage_research --role confirmatory \
+    --db var/books_research_wide.duckdb --db var/books_research_short.duckdb \
+    --out results/stage6/confirm --engine-sweep --expect-fingerprint 663d74308d808b79
+```
+
+Experiments A-D (frequency, executability, edge decay, latency) plus a category study, with 16 hypotheses and
+the analysis code frozen *before* fresh confirmatory recordings were analysed once. On that data (~211 minutes,
+24 standing violations in 13 events): standing violations of declared/proven relations occur at
+**12.9 [5.9, 22.5] per 1,000 relation-hours**, last about **10 s**, and **1 of 24 is executable at 100
+contracts with standard fees (total profit $0.14)** - fees and size, not the structure, remove the edge
+(all 133 settled bundles paid at least what they promised). **11 of 15 scored hypotheses held; 4 failed**
+(reported as failures). 1-250 ms latencies cannot be resolved from snapshots and are reported as brackets.
+See [`docs/arbitrage_research.md`](docs/arbitrage_research.md).

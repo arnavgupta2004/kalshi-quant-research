@@ -118,16 +118,26 @@ A naive "join the best bid on both sides" quoter, 10 contracts, 53 markets, 64 m
 
 ### Arbitrage taker through the engine (Stage 4 detector, 200 ms latency)
 
-| variant | opportunities | fills | net | worst single settlement |
+| variant | opportunities | fills | net | worst single-market settlement (per-leg accounting) |
 |---|---:|---:|---:|---:|
 | baseline fees | 10 | 27 | **+$0.02** | -$4.47 |
-| fee-free (engine exercise) | 37 | 105 | +$9.69 | **-$199.45** |
-| fee-free, unverified relations included | 126 | 300 | +$159.30 | -$167.81 |
+| fee-free (engine exercise) | 37 | 105 | +$9.69 | -$199.45 |
+| fee-free, unverified relations included | 63 | 180 | +$14.50 | -$117.78 |
 
-Fees erase the edge again (consistent with Stage 4). The fee-free rows are an *engine exercise*, and they show
-what Stage 4 assumed away: with 200 ms latency a "riskless" bundle often fills only some legs, so a
-+$9.69 total hides a **-$199** single-market outcome. The last row includes relations with no evidence
-(non-exhaustive events); its profit is windfall from outcomes outside the assumed structure, not arbitrage.
+Fees erase the edge again (consistent with Stage 4). The last column is *per-market* accounting, not a
+measure of leg risk: a fully filled, hedged bundle books a large loss on the market where its NO leg loses
+and an offsetting gain on the other legs' markets (at 200 ms all 37 fee-free bundles filled completely).
+Leg risk is measured per *bundle* in Stage 6.
+
+**Two corrections to earlier versions of this section**, found in Stage 6:
+
+* The per-market column was described as leg risk from partial fills. It is not (see above).
+* The last row originally read *126 opportunities, +$159.30*. The strategy fired one bundle per relation
+  that contained a violated constraint, so identical or overlapping bundles were sent in the same instant,
+  competed for one pool of liquidity, and most were only partly filled (195 of 213 order instants had
+  several orders on the same book side) - directional exposure, not arbitrage. `ArbitrageTaker` now sends
+  at most one bundle per book side per instant (`avoid_overlap`); the DECLARED rows are unchanged and the
+  last row is the 63 opportunities above, all fully filled.
 
 ## 6. A bug only real data could expose (fixed, with regression tests)
 

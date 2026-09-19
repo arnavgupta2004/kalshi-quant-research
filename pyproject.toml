@@ -28,7 +28,7 @@ dev = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["kalshi_client", "market", "data", "arbitrage", "backtest"]
+packages = ["kalshi_client", "market", "data", "arbitrage", "backtest", "research"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
@@ -47,3 +47,4 @@ select = ["E", "F", "I", "UP", "B"]
 "data/schemas/ddl.py" = ["E501"]  # declarative table docs read better unwrapped
 "data/collectors/run.py" = ["E501"]  # CLI report strings
 "scripts/*" = ["E501"]  # research reports print wide tables
+"research/report.py" = ["E501"]  # markdown table rows

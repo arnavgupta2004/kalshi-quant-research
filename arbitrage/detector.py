@@ -33,6 +33,9 @@ class DetectorParams:
     lot: int = 100  # trade in whole contracts (centi-contracts)
     min_qty: int = 100  # smallest size worth trading: 1 contract
     target: int = 10_000  # size at which an opportunity counts as fully executable: 100 contracts
+    #: never size above this many centi-contracts (None: as deep as the books allow).  A cap at or
+    #: above ``target`` leaves every classification unchanged and only bounds the reported size/P&L.
+    max_size: int | None = None
     min_level: EvidenceLevel = EvidenceLevel.DECLARED
 
 
@@ -122,7 +125,7 @@ def _evaluate(
     top = price_bundle(con, books, params.min_qty, params.fees)  # all fills at the best prices
     fee_ok = top is not None and top.net_micro > 0
     funnel.after_fees += fee_ok
-    sized = optimize(con, books, params.fees, lot=params.lot)
+    sized = optimize(con, books, params.fees, lot=params.lot, cap=params.max_size)
     if sized is None or sized.best.net_micro <= 0:
         return build(Classification.UNPROFITABLE, top, True, fee_ok, False, 0)
     funnel.after_slippage += 1

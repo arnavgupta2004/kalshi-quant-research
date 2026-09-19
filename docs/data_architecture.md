@@ -126,6 +126,24 @@ selection), so books, trades and settlements exist for the *same* markets - the 
 engine can score end to end. Poll-log gaps are real (a 21.7-minute outage was recorded); the feed turns the
 poll log into `BookConfirm` events so book freshness reflects liveness, not the time since the last change.
 
+## Stage 6 recordings (development vs. confirmatory)
+
+| database | config | role | what |
+|---|---|---|---|
+| `books_structural` | `books_structural.yaml` | development | 100 structured events, 44 min, 5 s cycles |
+| `books_shortlived` | `books_shortlived.yaml` | development | markets expiring within 3 h, 64 min, 3 s cycles |
+| `books_research_wide` | `books_research_wide.yaml` | **confirmatory** | the structured universe again, 3 h |
+| `books_research_short` | `books_research_short.yaml` | **confirmatory** | short-horizon markets again, 3 h |
+
+The confirmatory pair was recorded after the analysis code was written and analysed once with the code frozen
+(`docs/arbitrage_research.md`). Both ran at <= 4 requests/s: an earlier attempt at 10 requests/s x 2 plus
+probing hit `HTTP 429` and connection resets from the API edge, and the recorder's retry storm made it worse.
+The collector's own backoff rides out the occasional `ConnectError` (about one per minute observed); poll gaps
+above 30 s are then recorded in `poll_log` and handled as censoring by the scanner, not hidden.
+
+After recording, `data.collectors.run refresh --config configs/refresh_research_*.yaml` adds settlements and
+the trade tape (outcomes are used only to *score* opportunities, never to detect them).
+
 ## Operational caveats
 
 * DuckDB allows one writer process and **no concurrent reader**. While a collector runs, query a

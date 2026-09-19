@@ -1,5 +1,5 @@
 {
-  "git_commit": "dce3e09f9983720624d4d1535b845cf54882b149+dirty",
+  "git_commit": "f9b052dc888fc1cd23d301933e452eace20838ca+dirty",
   "db": "var/books_shortlived.duckdb",
   "fingerprint": "dc782d40efb60a15",
   "universe": {
@@ -308,17 +308,17 @@
     },
     {
       "variant": "fee-free, any evidence",
-      "opportunities_seen": 126,
-      "orders": 332,
-      "net_usd": 159.299,
+      "opportunities_seen": 63,
+      "orders": 166,
+      "net_usd": 14.5031,
       "fees_usd": 0.0,
-      "fills": 300,
+      "fills": 180,
       "maker_fills": 0,
-      "taker_fills": 300,
-      "contracts_traded": 5620.44,
-      "order_fill_rate": 0.8614457831325302,
-      "max_drawdown_usd": 193.466181,
-      "worst_settlement_usd": -167.806181,
+      "taker_fills": 180,
+      "contracts_traded": 3587.0,
+      "order_fill_rate": 1.0,
+      "max_drawdown_usd": 129.217914,
+      "worst_settlement_usd": -117.777914,
       "settled_markets": 53
     }
   ]

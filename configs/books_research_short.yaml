@@ -1,0 +1,16 @@
+# Stage 6 CONFIRMATORY recording: markets that settle within 3 h (books + trades + outcomes for the same
+# markets), recorded fresh for 3 hours. Selection uses only scheduled expiry: no look-ahead.
+job: books
+db_path: var/books_research_short.duckdb
+mode: rest
+interval_s: 3
+duration_s: null
+heartbeat_s: 30
+metadata_refresh_s: 600
+requests_per_second: 3
+selection:
+  top_events: 60
+  max_tickers: 400
+  min_event_markets: 1
+  include_siblings: true
+  max_hours_to_expiry: 3

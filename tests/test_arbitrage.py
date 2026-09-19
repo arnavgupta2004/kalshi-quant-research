@@ -378,3 +378,17 @@ def test_the_same_trade_reached_through_several_relations_is_one_opportunity():
     assert (
         f.constraints == 2 and f.priced == 1 and f.unpriceable == 1
     )  # no YES offers in these books
+
+
+def test_a_size_cap_bounds_the_reported_size_but_never_changes_the_classification():
+    """``max_size`` (used by the research variants so a $35 edge on a 1,000-contract book is reported
+    at a size a trader would actually send) must not move an opportunity between classes."""
+    [free], _ = run(MutuallyExclusive(["A", "B"]), DEEP_ME)
+    capped_params = DetectorParams(fees=FEES, lot=100, min_qty=100, target=3000, max_size=c(100))
+    [op], _ = detect([spec(MutuallyExclusive(["A", "B"]))], DEEP_ME, capped_params, ts_ns=0)
+    assert op.classification is free.classification is Classification.EXECUTABLE
+    assert op.priced.bundles == c(100)  # capped at 100 contracts, not the 1000 the book holds
+    assert (
+        op.net_micro == 3_520_300
+    )  # exactly a tenth of the 1000-contract $35.203 (fee is linear here)
+    assert op.net_micro * 10 == free.net_micro

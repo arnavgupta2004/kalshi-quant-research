@@ -30,6 +30,10 @@ class ArbitrageTaker:
     max_book_age_ns: int | None = None
     cooldown_ns: int = 0
     size_cap: int | None = None  # centi-bundles; None = whatever the detector recommends
+    #: never send two bundles that take the same book side at the same instant: they would compete
+    #: for one pool of liquidity and the loser would show up as a 'partial fill' (a self-inflicted
+    #: leg risk that has nothing to do with latency)
+    avoid_overlap: bool = True
 
     def __post_init__(self) -> None:
         self._by_ticker: dict[str, list[RelationSpec]] = defaultdict(list)
@@ -37,6 +41,8 @@ class ArbitrageTaker:
             for t in s.relation.tickers():
                 self._by_ticker[t].append(s)
         self._last_fire: dict[int, int] = {}
+        self._used_at = -1
+        self._used: set[tuple[str, Side]] = set()
         self.opportunities_seen = 0
         self.orders_sent = 0
         self.fill_events: list[Fill] = []
@@ -72,6 +78,12 @@ class ArbitrageTaker:
                 continue
             if op.net_micro is None or op.net_micro < self.min_net_micro:
                 continue
+            sides = {(leg.contract.ticker, leg.contract.side) for leg in op.constraint.legs}
+            if self._used_at != ctx.now:
+                self._used_at, self._used = ctx.now, set()
+            if self.avoid_overlap and sides & self._used:
+                continue  # a bundle already sent this instant is taking that liquidity
+            self._used |= sides
             self.opportunities_seen += 1
             self._last_fire[key] = ctx.now
             bundles = (

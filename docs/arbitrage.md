@@ -8,7 +8,7 @@ observed book -> constraint -> displayed margin -> liquidity -> fees -> slippage
 
 This stage turns a *proven* pricing constraint (Stage 3) into a **classified, sized, fee-adjusted trade**,
 and measures how many apparent opportunities survive each filter. It deliberately stops before latency
-and lifecycle statistics (Stage 6): here the question is only what the *static* structure of the market
+and lifecycle statistics (done in Stage 6: [`arbitrage_research.md`](arbitrage_research.md)): here the question is only what the *static* structure of the market
 offers.
 
 ## 1. Fees (`market/fees.py`) - exact, per series, three rounding models

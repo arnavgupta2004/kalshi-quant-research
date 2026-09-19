@@ -244,3 +244,26 @@ def test_quoter_stays_passive_and_requotes_when_the_book_moves():
     assert [o.price for o in yes_orders] == [4000, 4100]  # followed the best bid up
     assert yes_orders[0].status == "cancelled"
     assert all(o.tif.value == "post_only" for o in res2.orders)
+
+
+def test_bundles_that_would_take_the_same_liquidity_are_not_sent_together():
+    """Two relations each own a bundle that buys NO on A: firing both at one instant makes them compete
+    for A's book, so the second would be reported as a partial fill.  One is sent, not both."""
+    from market.relationships import MutuallyExclusive as ME
+
+    spec_ab = RelationSpec(ME(["A", "B"]), EvidenceLevel.PROVEN, "EV", "KX")
+    spec_ac = RelationSpec(ME(["A", "C"]), EvidenceLevel.PROVEN, "EV", "KX")
+    feed = ListFeed(
+        [
+            bu(0, "B", yes=[(5200, c(1000))]),
+            bu(0, "C", yes=[(5200, c(1000))]),
+            bu(1, "A", yes=[(5500, c(1000))]),  # A's arrival completes BOTH violations at once
+        ]
+    )
+    infos = {t: info(t) for t in "ABC"}
+    both = ArbitrageTaker([spec_ab, spec_ac], PARAMS, avoid_overlap=False)
+    one = ArbitrageTaker([spec_ab, spec_ac], PARAMS)
+    run_backtest(feed, infos, both, cfg())
+    res = run_backtest(feed, infos, one, cfg())
+    assert both.opportunities_seen == 2 and one.opportunities_seen == 1
+    assert all(o.status == "filled" for o in res.orders)  # nothing lost to self-competition
