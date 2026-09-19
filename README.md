@@ -7,9 +7,9 @@ calibration, execution and market making in **Kalshi binary prediction markets**
 > implemented is `GET`, the WebSocket client only sends `subscribe`, order-entry channels are
 > rejected, and there is no order code anywhere. Credentials live in a gitignored `.env`.
 
-Status: **Stage 6 of 12 complete** (API client, normalised data model, historical storage, a
+Status: **Stage 7 of 12 complete** (API client, normalised data model, historical storage, a
 resumable collector, validated contract-relationship logic, a fee-exact same-event arbitrage detector, a
-causal event-driven backtest engine, and an arbitrage research study with a frozen-code confirmatory run). See [`docs/contract_semantics.md`](docs/contract_semantics.md) for price/contract
+causal event-driven backtest engine, an arbitrage research study with a frozen-code confirmatory run, and three fair-probability models). See [`docs/contract_semantics.md`](docs/contract_semantics.md) for price/contract
 semantics and verified API behaviour, [`docs/relationships.md`](docs/relationships.md) for the
 relationship model and its verification against 14k real settled events, and [`docs/data_architecture.md`](docs/data_architecture.md) for
 the storage design, resume guarantees and the known biases of the dataset. The full technical report
@@ -33,6 +33,7 @@ cp .env.example .env            # optional for REST; required for the WebSocket
 | `data/normalization/` | wire -> domain mapping; sequence-checked book maintenance (`fail closed`), duplicate suppression |
 | `data/schemas/`, `data/storage/` | one declarative schema -> DuckDB DDL + typed bulk ingestion; `Store` with idempotent writes, run provenance, content fingerprint, volume reconciliation |
 | `backtest/` | event-driven replay engine: information-time feeds, whitelisted `MarketInfo`, latency, taker + queue-model maker fills, exact ledger, metrics; validated by a look-ahead theorem, mutation checks and a Stage 4 <-> 5 exact-equality test |
+| `pricing/` | Stage 7: point-in-time microstructure features, three fair-probability models (microstructure, historical frequencies, partition renormalisation), scoring rules, event-grouped nested evaluation, a sealed holdout for Stage 8 |
 | `research/` | Stage 6: opportunity-episode scanner, event-clustered bootstrap, interval-censored lifetimes, latency brackets, category study, hypothesis scoring |
 | `arbitrage/` | fee-exact execution model (book walking, VWAP, per-fill fees, profit-maximising size), classified `Opportunity` records, detector with the displayed -> liquid -> fees -> slippage -> executable funnel |
 | `data/collectors/` | deterministic universe selection, resumable history collector (markets/events/trades), complete-event collector, REST book poller, WebSocket recorder, CLI |
@@ -109,3 +110,18 @@ contracts with standard fees (total profit $0.14)** - fees and size, not the str
 (all 133 settled bundles paid at least what they promised). **11 of 15 scored hypotheses held; 4 failed**
 (reported as failures). 1-250 ms latencies cannot be resolved from snapshots and are reported as brackets.
 See [`docs/arbitrage_research.md`](docs/arbitrage_research.md).
+
+## Fair-probability models (Stage 7)
+
+```bash
+python -m scripts.stage7_probability_models --out results/stage7
+```
+
+Three models of `P(X = 1 | information at t)`: **A** a microstructure correction to the market price (flow,
+short-term moves, imbalance, microprice, time to expiry; ridge-shrunk to the market), **B** an independent
+hierarchical historical-frequency base rate that never sees a price, **C** renormalisation of mutually exclusive
+and exhaustive outcomes. On the research period (3,430 instances, 1,478 events) **none beats the market
+reference** (log loss 0.352; constant base rate 0.681): A +0.0008 [-0.0003, 0.0019], recalibrated B no better than
+the base rate, C nothing to fix (prices already sum to 1.003). The market price is also close to calibrated. The
+calibration study proper is Stage 8, on a holdout this stage never opens (enforced in code). See
+[`docs/probability_models.md`](docs/probability_models.md).
