@@ -1,0 +1,641 @@
+{
+  "git_commit": "f521a94e8bd3236183ffb87d6c2384001df6ba8c+dirty",
+  "books_db": "var/books_structural.duckdb",
+  "cycles": 535,
+  "span_minutes": 44.4,
+  "tickers": 589,
+  "events": 100,
+  "relations": 887,
+  "fee_metadata_series": 20,
+  "target_contracts": 100,
+  "variants": {
+    "baseline": {
+      "funnel": {
+        "priced": 238398,
+        "displayed": 327,
+        "liquid": 275,
+        "after_fees": 0,
+        "after_slippage": 0,
+        "executable": 0
+      },
+      "pruned_by_prefilter": 0,
+      "by_class": {
+        "unprofitable_after_costs": 275,
+        "theoretical": 52
+      },
+      "fee_assumed_displayed": 0,
+      "best_margin_ticks_by_kind": {
+        "complement": -100,
+        "mutually_exclusive": 200,
+        "exhaustive": -700,
+        "union": -1500
+      },
+      "displayed_by_event": {
+        "KXTRUMPAPPROVE-26SEP19": 325,
+        "KXWTAMATCH-26SEP19YAOHON": 2
+      },
+      "top_margin_ticks_histogram": {
+        "<=1c": 229,
+        "1-2c": 98,
+        "2-5c": 0,
+        ">5c": 0
+      },
+      "episodes": 3,
+      "episode_median_cycles": 1,
+      "episode_classes": {
+        "theoretical": 1,
+        "unprofitable_after_costs": 2
+      },
+      "top": [
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 1.0,
+          "gross": 0.02,
+          "slippage": 0.0,
+          "fees": 0.03136,
+          "net": -0.01136,
+          "roi": -0.0014179864592278964,
+          "annualized_roi": -1.5641264086106326,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:30.481447+00:00"
+        },
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 1.0,
+          "gross": 0.02,
+          "slippage": 0.0,
+          "fees": 0.03136,
+          "net": -0.01136,
+          "roi": -0.0014179864592278964,
+          "annualized_roi": -1.5641966071504605,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:31.764497+00:00"
+        },
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 1.0,
+          "gross": 0.02,
+          "slippage": 0.0,
+          "fees": 0.03136,
+          "net": -0.01136,
+          "roi": -0.0014179864592278964,
+          "annualized_roi": -1.5644634712929975,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:36.641041+00:00"
+        },
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 1.0,
+          "gross": 0.02,
+          "slippage": 0.0,
+          "fees": 0.03136,
+          "net": -0.01136,
+          "roi": -0.0014179864592278964,
+          "annualized_roi": -1.564789273102089,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:42.592328+00:00"
+        },
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 1.0,
+          "gross": 0.02,
+          "slippage": 0.0,
+          "fees": 0.03136,
+          "net": -0.01136,
+          "roi": -0.0014179864592278964,
+          "annualized_roi": -1.5650110774129762,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:46.642518+00:00"
+        }
+      ]
+    },
+    "fee_free": {
+      "funnel": {
+        "priced": 238398,
+        "displayed": 327,
+        "liquid": 275,
+        "after_fees": 275,
+        "after_slippage": 275,
+        "executable": 54
+      },
+      "pruned_by_prefilter": 0,
+      "by_class": {
+        "executable": 54,
+        "partially_executable": 221,
+        "theoretical": 52
+      },
+      "fee_assumed_displayed": 0,
+      "best_margin_ticks_by_kind": {
+        "complement": -100,
+        "mutually_exclusive": 200,
+        "exhaustive": -700,
+        "union": -1500
+      },
+      "displayed_by_event": {
+        "KXTRUMPAPPROVE-26SEP19": 325,
+        "KXWTAMATCH-26SEP19YAOHON": 2
+      },
+      "top_margin_ticks_histogram": {
+        "<=1c": 229,
+        "1-2c": 98,
+        "2-5c": 0,
+        ">5c": 0
+      },
+      "episodes": 3,
+      "episode_median_cycles": 1,
+      "episode_classes": {
+        "theoretical": 1,
+        "executable": 1,
+        "partially_executable": 1
+      },
+      "top": [
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "executable",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 107.0,
+          "gross": 2.14,
+          "slippage": 0.89,
+          "fees": 0.0,
+          "net": 1.25,
+          "roi": 0.0014624159110851126,
+          "annualized_roi": 1.6131348307416917,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:30.481447+00:00"
+        },
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "executable",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 107.0,
+          "gross": 2.14,
+          "slippage": 0.89,
+          "fees": 0.0,
+          "net": 1.25,
+          "roi": 0.0014624159110851126,
+          "annualized_roi": 1.6132072287966317,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:31.764497+00:00"
+        },
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "executable",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 107.0,
+          "gross": 2.14,
+          "slippage": 0.89,
+          "fees": 0.0,
+          "net": 1.25,
+          "roi": 0.0014624159110851126,
+          "annualized_roi": 1.613482454533524,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:36.641041+00:00"
+        },
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "executable",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 107.0,
+          "gross": 2.14,
+          "slippage": 0.89,
+          "fees": 0.0,
+          "net": 1.25,
+          "roi": 0.0014624159110851126,
+          "annualized_roi": 1.6138184646176645,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:42.592328+00:00"
+        },
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "executable",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 107.0,
+          "gross": 2.14,
+          "slippage": 0.89,
+          "fees": 0.0,
+          "net": 1.25,
+          "roi": 0.0014624159110851126,
+          "annualized_roi": 1.614047218673303,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:46.642518+00:00"
+        }
+      ]
+    },
+    "cent_rounding": {
+      "funnel": {
+        "priced": 238398,
+        "displayed": 327,
+        "liquid": 275,
+        "after_fees": 0,
+        "after_slippage": 0,
+        "executable": 0
+      },
+      "pruned_by_prefilter": 0,
+      "by_class": {
+        "unprofitable_after_costs": 275,
+        "theoretical": 52
+      },
+      "fee_assumed_displayed": 0,
+      "best_margin_ticks_by_kind": {
+        "complement": -100,
+        "mutually_exclusive": 200,
+        "exhaustive": -700,
+        "union": -1500
+      },
+      "displayed_by_event": {
+        "KXTRUMPAPPROVE-26SEP19": 325,
+        "KXWTAMATCH-26SEP19YAOHON": 2
+      },
+      "top_margin_ticks_histogram": {
+        "<=1c": 229,
+        "1-2c": 98,
+        "2-5c": 0,
+        ">5c": 0
+      },
+      "episodes": 3,
+      "episode_median_cycles": 1,
+      "episode_classes": {
+        "theoretical": 1,
+        "unprofitable_after_costs": 2
+      },
+      "top": [
+        {
+          "event": "KXWTAMATCH-26SEP19YAOHON",
+          "relation": "mutually_exclusive",
+          "level": "DECLARED",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 100,
+          "top_qty_contracts": 1.0,
+          "size_contracts": 1.0,
+          "gross": 0.01,
+          "slippage": 0.0,
+          "fees": 0.04,
+          "net": -0.03,
+          "roi": -0.02912621359223301,
+          "annualized_roi": -0.7710922138586018,
+          "fees_known": true,
+          "at": "2026-09-19T09:26:41.002868+00:00"
+        },
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 1.0,
+          "gross": 0.02,
+          "slippage": 0.0,
+          "fees": 0.1,
+          "net": -0.08,
+          "roi": -0.009900990099009901,
+          "annualized_roi": -10.92140195308088,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:30.481447+00:00"
+        },
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 1.0,
+          "gross": 0.02,
+          "slippage": 0.0,
+          "fees": 0.1,
+          "net": -0.08,
+          "roi": -0.009900990099009901,
+          "annualized_roi": -10.921892109417197,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:31.764497+00:00"
+        },
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 1.0,
+          "gross": 0.02,
+          "slippage": 0.0,
+          "fees": 0.1,
+          "net": -0.08,
+          "roi": -0.009900990099009901,
+          "annualized_roi": -10.923755469406176,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:36.641041+00:00"
+        },
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 1.0,
+          "gross": 0.02,
+          "slippage": 0.0,
+          "fees": 0.1,
+          "net": -0.08,
+          "roi": -0.009900990099009901,
+          "annualized_roi": -10.926030357480784,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:42.592328+00:00"
+        }
+      ]
+    },
+    "fees_x2": {
+      "funnel": {
+        "priced": 238398,
+        "displayed": 327,
+        "liquid": 275,
+        "after_fees": 0,
+        "after_slippage": 0,
+        "executable": 0
+      },
+      "pruned_by_prefilter": 0,
+      "by_class": {
+        "unprofitable_after_costs": 275,
+        "theoretical": 52
+      },
+      "fee_assumed_displayed": 0,
+      "best_margin_ticks_by_kind": {
+        "complement": -100,
+        "mutually_exclusive": 200,
+        "exhaustive": -700,
+        "union": -1500
+      },
+      "displayed_by_event": {
+        "KXTRUMPAPPROVE-26SEP19": 325,
+        "KXWTAMATCH-26SEP19YAOHON": 2
+      },
+      "top_margin_ticks_histogram": {
+        "<=1c": 229,
+        "1-2c": 98,
+        "2-5c": 0,
+        ">5c": 0
+      },
+      "episodes": 3,
+      "episode_median_cycles": 1,
+      "episode_classes": {
+        "theoretical": 1,
+        "unprofitable_after_costs": 2
+      },
+      "top": [
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 1.0,
+          "gross": 0.02,
+          "slippage": 0.0,
+          "fees": 0.06272,
+          "net": -0.04272,
+          "roi": -0.005311635864483657,
+          "annualized_roi": -5.859061540747051,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:30.481447+00:00"
+        },
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 1.0,
+          "gross": 0.02,
+          "slippage": 0.0,
+          "fees": 0.06272,
+          "net": -0.04272,
+          "roi": -0.005311635864483657,
+          "annualized_roi": -5.859324497476545,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:31.764497+00:00"
+        },
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 1.0,
+          "gross": 0.02,
+          "slippage": 0.0,
+          "fees": 0.06272,
+          "net": -0.04272,
+          "roi": -0.005311635864483657,
+          "annualized_roi": -5.860324143940882,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:36.641041+00:00"
+        },
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 1.0,
+          "gross": 0.02,
+          "slippage": 0.0,
+          "fees": 0.06272,
+          "net": -0.04272,
+          "roi": -0.005311635864483657,
+          "annualized_roi": -5.861544565026444,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:42.592328+00:00"
+        },
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 1.0,
+          "gross": 0.02,
+          "slippage": 0.0,
+          "fees": 0.06272,
+          "net": -0.04272,
+          "roi": -0.005311635864483657,
+          "annualized_roi": -5.86237542185511,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:46.642518+00:00"
+        }
+      ]
+    },
+    "any_evidence": {
+      "funnel": {
+        "priced": 272242,
+        "displayed": 343,
+        "liquid": 282,
+        "after_fees": 0,
+        "after_slippage": 0,
+        "executable": 0
+      },
+      "pruned_by_prefilter": 0,
+      "by_class": {
+        "unprofitable_after_costs": 282,
+        "theoretical": 61
+      },
+      "fee_assumed_displayed": 0,
+      "best_margin_ticks_by_kind": {
+        "complement": -100,
+        "mutually_exclusive": 200,
+        "exhaustive": 200,
+        "union": -1500
+      },
+      "displayed_by_event": {
+        "KXTRUMPAPPROVE-26SEP19": 325,
+        "KXWTAMATCH-26SEP19YAOHON": 16,
+        "KXWTAMATCH-26SEP19IBRSAI": 2
+      },
+      "top_margin_ticks_histogram": {
+        "<=1c": 242,
+        "1-2c": 101,
+        "2-5c": 0,
+        ">5c": 0
+      },
+      "episodes": 18,
+      "episode_median_cycles": 1,
+      "episode_classes": {
+        "theoretical": 9,
+        "unprofitable_after_costs": 9
+      },
+      "top": [
+        {
+          "event": "KXWTAMATCH-26SEP19YAOHON",
+          "relation": "partition",
+          "level": "EMPIRICAL",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 100,
+          "top_qty_contracts": 3692.53,
+          "size_contracts": 1.0,
+          "gross": 0.01,
+          "slippage": 0.0,
+          "fees": 0.016345,
+          "net": -0.006345,
+          "roi": -0.006304994807943598,
+          "annualized_roi": -0.1669903033921094,
+          "fees_known": true,
+          "at": "2026-09-19T09:35:06.215844+00:00"
+        },
+        {
+          "event": "KXWTAMATCH-26SEP19YAOHON",
+          "relation": "partition",
+          "level": "EMPIRICAL",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 100,
+          "top_qty_contracts": 85.73,
+          "size_contracts": 1.0,
+          "gross": 0.01,
+          "slippage": 0.0,
+          "fees": 0.020209,
+          "net": -0.010209,
+          "roi": -0.010105829585758987,
+          "annualized_roi": -0.2672259995638242,
+          "fees_known": true,
+          "at": "2026-09-19T09:03:06.098895+00:00"
+        },
+        {
+          "event": "KXWTAMATCH-26SEP19YAOHON",
+          "relation": "partition",
+          "level": "EMPIRICAL",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 100,
+          "top_qty_contracts": 5.81,
+          "size_contracts": 1.0,
+          "gross": 0.01,
+          "slippage": 0.0,
+          "fees": 0.021105,
+          "net": -0.011105,
+          "roi": -0.010983033413938217,
+          "annualized_roi": -0.2909168467076117,
+          "fees_known": true,
+          "at": "2026-09-19T09:36:56.004395+00:00"
+        },
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 1.0,
+          "gross": 0.02,
+          "slippage": 0.0,
+          "fees": 0.03136,
+          "net": -0.01136,
+          "roi": -0.0014179864592278964,
+          "annualized_roi": -1.5641264086106326,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:30.481447+00:00"
+        },
+        {
+          "event": "KXTRUMPAPPROVE-26SEP19",
+          "relation": "mutually_exclusive",
+          "level": "PROVEN",
+          "class": "unprofitable_after_costs",
+          "top_margin_ticks": 200,
+          "top_qty_contracts": 18.0,
+          "size_contracts": 1.0,
+          "gross": 0.02,
+          "slippage": 0.0,
+          "fees": 0.03136,
+          "net": -0.01136,
+          "roi": -0.0014179864592278964,
+          "annualized_roi": -1.5641966071504605,
+          "fees_known": true,
+          "at": "2026-09-19T09:02:31.764497+00:00"
+        }
+      ]
+    }
+  }
+}

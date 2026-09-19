@@ -17,7 +17,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2  # v2 (additive): series_meta
 
 
 @dataclass(frozen=True)
@@ -168,6 +168,21 @@ TABLES: dict[str, Table] = {
             ),
             ("ticker", "partition"),
             "Resume checkpoint: advanced only after a partition was paginated to completion.",
+        ),
+        T(
+            "series_meta",
+            (
+                ("series_ticker", "VARCHAR"),
+                ("title", "VARCHAR"),
+                ("category", "VARCHAR"),
+                ("frequency", "VARCHAR"),
+                ("fee_type", "VARCHAR"),
+                ("fee_multiplier", "VARCHAR"),  # decimal string: exact, never a float
+                ("raw", "JSON"),
+                ("fetched_at", "TIMESTAMP"),
+            ),
+            ("series_ticker",),
+            "Per-series fee schedule (fee_type, fee_multiplier) - what a trade in that series costs.",
         ),
         T(
             "scan_state",

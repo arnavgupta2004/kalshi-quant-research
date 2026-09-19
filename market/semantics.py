@@ -177,6 +177,9 @@ _NUM = r"\$?-?\d[\d,]*(?:\.\d+)?(?:[KMB](?![A-Za-z]))?[%°]?"
 _NUM_RE = re.compile(r"[$,%°]")
 _SUFFIX = {"K": Decimal(10) ** 3, "M": Decimal(10) ** 6, "B": Decimal(10) ** 9}
 _PATTERNS: list[tuple[str, re.Pattern[str]]] = [
+    # The lookbehind keeps "is" in the template (siblings read "is below"/"is above"), and requiring
+    # it keeps "at exactly 1:00 PM" from being mistaken for a threshold.
+    ("eq", re.compile(rf"(?<=\bis )(?:exactly|equal\s+to)\s+({_NUM})", re.I)),
     ("between", re.compile(rf"between\s+({_NUM})\s*(?:-|–|—|and|to)\s*({_NUM})", re.I)),
     ("ge", re.compile(rf"(?:greater|more)\s+than\s+or\s+equal\s+to\s+({_NUM})", re.I)),
     ("le", re.compile(rf"(?:less|fewer)\s+than\s+or\s+equal\s+to\s+({_NUM})", re.I)),
@@ -201,7 +204,7 @@ def _to_dec(token: str) -> Decimal:
 @dataclass(frozen=True, slots=True)
 class ParsedRules:
     template: str  # rules text with the comparison clause masked
-    comparator: str | None  # gt | ge | lt | le | between | None (no/ambiguous numeric clause)
+    comparator: str | None  # gt | ge | lt | le | eq | between | None (no/ambiguous numeric clause)
     interval: Interval | None
 
 
@@ -226,6 +229,7 @@ def parse_rules(text: str) -> ParsedRules:
         "ge": Interval(a, True, None, False),
         "lt": Interval(None, False, a, False),
         "le": Interval(None, False, a, True),
+        "eq": Interval(a, True, a, True),
         "between": Interval(a, True, _to_dec(m.group(2)), True) if kind == "between" else None,
     }[kind]
     return ParsedRules(template, kind, iv)
@@ -340,7 +344,9 @@ class TileResult:
 
 
 def _by_lower_end(iv: Interval):
-    return (0, Decimal(0)) if iv.lo is None else (1, iv.lo)
+    """Sort key by lower end.  At an equal bound a *closed* end sorts first: the point [40, 40] must
+    precede the half-line (40, inf), or the pair looks like it has a gap at 40."""
+    return (0, Decimal(0), 0) if iv.lo is None else (1, iv.lo, 0 if iv.lo_closed else 1)
 
 
 def analyse_tiling(nms: Sequence[NumericMarket]) -> TileResult:

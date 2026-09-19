@@ -107,6 +107,8 @@ async def select_book_tickers(rest: KalshiRestClient, sel: BookSelection) -> lis
     async for m in rest.iter_markets(status="open"):
         if series_of(m.event_ticker) in sel.exclude_series:
             continue
+        if sel.include_series and series_of(m.event_ticker) not in sel.include_series:
+            continue
         by_event[m.event_ticker].append(m)
     ranked = sorted(
         (
@@ -224,6 +226,12 @@ class BookPoller:
                     self._quarantine("normalize_market", api.ticker, exc)
         self.store.upsert_markets(markets, self.run_id, partition="live")
         known = self.store.known_event_tickers()
+        stored = set(self.store.read_series_fees())
+        for series in sorted({m.event_ticker.split("-", 1)[0] for m in markets} - stored):
+            try:  # fees are per series: without them net edge cannot be computed
+                self.store.upsert_series([await self.rest.get_series(series)])
+            except (APIError, MessageValidationError) as exc:
+                log.warning("series %s: %s", series, exc)
         for et in sorted({m.event_ticker for m in markets} - known):
             try:
                 self.store.upsert_events(
@@ -255,13 +263,30 @@ class BookPoller:
         n_changed = n_missing = 0
         t0 = self._mono()
         last_recv = 0
-        for i in range(0, len(self.tickers), cfg.batch_size):
-            chunk = self.tickers[i : i + cfg.batch_size]
+
+        async def fetch(chunk: list[str]):
             req_ns = self._clock_ns()
             apis: dict[str, ApiOrderbook] = await self.rest.get_orderbooks(
                 chunk, batch_size=len(chunk)
             )
-            recv_ns = last_recv = self._clock_ns()
+            return chunk, req_ns, self._clock_ns(), apis
+
+        # Chunks are fetched CONCURRENTLY (the client's rate limiter still paces them): sequential
+        # chunks would skew the timestamps of markets in one event by seconds, and cross-market
+        # relations are only meaningful if their books are observed close together in time.
+        chunks = [
+            self.tickers[i : i + cfg.batch_size]
+            for i in range(0, len(self.tickers), cfg.batch_size)
+        ]
+        try:
+            async with asyncio.TaskGroup() as tg:
+                tasks = [tg.create_task(fetch(c)) for c in chunks]
+        except ExceptionGroup as group:
+            # TaskGroup wraps errors; the run loop's handlers expect the original exception types
+            raise group.exceptions[0] from None
+        for task in tasks:
+            chunk, req_ns, recv_ns, apis = task.result()
+            last_recv = max(last_recv, recv_ns)
             for t in chunk:
                 if t not in apis:
                     n_missing += 1

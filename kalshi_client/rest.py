@@ -35,7 +35,14 @@ from kalshi_client.exceptions import (
     ServerError,
     TransportError,
 )
-from kalshi_client.models import ApiEvent, ApiMarket, ApiOrderbook, ApiTrade, validate_rest
+from kalshi_client.models import (
+    ApiEvent,
+    ApiMarket,
+    ApiOrderbook,
+    ApiSeries,
+    ApiTrade,
+    validate_rest,
+)
 
 log = logging.getLogger(__name__)
 
@@ -271,6 +278,10 @@ class KalshiRestClient:
             start_cursor=start_cursor,
             on_page=on_page,
         )
+
+    async def get_series(self, series_ticker: str) -> ApiSeries:
+        data = await self._get(f"/series/{series_ticker}")
+        return validate_rest(ApiSeries, data.get("series", data), what=f"series {series_ticker}")
 
     # ------------------------------------------------------------------ events
     async def get_event(self, event_ticker: str, *, with_nested_markets: bool = True) -> ApiEvent:

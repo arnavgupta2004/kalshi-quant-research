@@ -32,7 +32,7 @@ def test_schema_is_idempotent_and_versioned(tmp_path):
         s.insert_trades([trade(1)], source="rest_live", run_id="r")
     with Store(p) as s:  # reopen: no re-creation errors, data intact
         assert s.counts()["trades"] == 1
-        assert s.query("SELECT version FROM schema_version") == [(1,)]
+        assert s.query("SELECT max(version) FROM schema_version") == [(2,)]
 
 
 def test_trade_insert_dedupes_on_trade_id_and_reports_new_rows(store):
@@ -198,3 +198,78 @@ def test_orphaned_bulk_temp_files_from_a_hard_kill_are_removed_but_foreign_files
             tmp_path.glob("kalshi_bulk_*")
         )  # own orphan gone, and none leaked by ingest
     assert (tmp_path / "someones_notes.ndjson").exists()
+
+
+def test_older_schema_is_migrated_additively_without_losing_data(tmp_path):
+    """A v1 file (no series_meta table, version row = 1) must open, gain the new table, keep its rows."""
+    p = tmp_path / "old.duckdb"
+    with Store(p) as s:
+        s.insert_trades([trade(1), trade(2)], source="s", run_id="r")
+        s.con.execute("DROP TABLE series_meta")
+        s.con.execute("DELETE FROM schema_version")
+        s.con.execute("INSERT INTO schema_version VALUES (1, TIMESTAMP '2026-09-01 00:00:00')")
+    with Store(p) as s:
+        assert s.counts()["trades"] == 2 and s.counts()["series_meta"] == 0
+        assert s.query("SELECT max(version) FROM schema_version") == [(2,)]
+    with Store(p) as s:  # and reopening after migration is a no-op
+        assert s.query("SELECT count(*) FROM schema_version") == [(2,)]
+
+
+def test_series_fee_metadata_roundtrips_exactly(store):
+    from kalshi_client.models import ApiSeries
+
+    store.upsert_series(
+        [
+            ApiSeries.model_validate(
+                {"ticker": "KXA", "fee_type": "quadratic", "fee_multiplier": 1}
+            ),
+            ApiSeries.model_validate(
+                {"ticker": "KXB", "fee_type": "quadratic_with_maker_fees", "fee_multiplier": 0.5}
+            ),
+            ApiSeries.model_validate({"ticker": "KXC"}),
+        ]
+    )
+    assert store.read_series_fees() == {
+        "KXA": ("quadratic", "1"),
+        "KXB": ("quadratic_with_maker_fees", "0.5"),
+        "KXC": (None, None),
+    }
+
+
+def test_older_schema_file_can_be_read_read_only_and_fingerprints_the_same_after_migration(
+    tmp_path,
+):
+    """A read-only connection cannot migrate; reading (counts, fingerprint, fees) must still work, and
+    migrating the file later must not change its content fingerprint."""
+    p = tmp_path / "old.duckdb"
+    with Store(p) as s:
+        s.insert_trades([trade(1), trade(2)], source="s", run_id="r")
+        s.con.execute("DROP TABLE series_meta")
+        s.con.execute("DELETE FROM schema_version")
+        s.con.execute("INSERT INTO schema_version VALUES (1, TIMESTAMP '2026-09-01 00:00:00')")
+    with Store(p, read_only=True) as s:
+        assert s.counts()["series_meta"] == 0 and s.counts()["trades"] == 2
+        assert s.read_series_fees() == {}
+        before = s.fingerprint()["fingerprint"]
+    with Store(p) as s:  # migrates
+        assert s.existing_tables() >= {"series_meta"}
+    with Store(p, read_only=True) as s:
+        assert s.fingerprint()["fingerprint"] == before
+
+
+def test_fingerprint_ignores_process_bookkeeping(store):
+    store.insert_trades([trade(1)], source="s", run_id="r")
+    before = store.fingerprint()["fingerprint"]
+    store.start_run("history", {}, "abc")  # run log
+    store.set_scan_state(
+        "k",
+        "live",
+        cursor="c",
+        n_scanned=1,
+        passed=1,
+        first_ticker="A",
+        items=[],
+        done=False,
+        run_id="r",
+    )
+    assert store.fingerprint()["fingerprint"] == before

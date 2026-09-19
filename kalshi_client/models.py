@@ -107,6 +107,23 @@ class ApiMarket(_Wire):
     notional_value_dollars: OptPx = None
 
 
+class ApiSeries(_Wire):
+    """``GET /series/{ticker}``: carries the fee schedule that applies to the series' markets."""
+
+    ticker: str
+    title: str = ""
+    category: str | None = None
+    frequency: str | None = None
+    fee_type: str | None = None  # quadratic | quadratic_with_maker_fees | ...
+    fee_multiplier: Annotated[
+        Decimal | None,
+        BeforeValidator(
+            lambda v: None if v is None else Decimal(repr(v) if isinstance(v, float) else str(v))
+        ),
+    ] = None
+    tags: list[str] | None = None
+
+
 class ApiSettlementSource(_Wire):
     name: str
     url: str | None = None
@@ -342,6 +359,7 @@ __all__ = [
     "ApiOrderbook",
     "ApiOrderbookFp",
     "ApiPriceRange",
+    "ApiSeries",
     "ApiSettlementSource",
     "ApiTrade",
     "WsError",

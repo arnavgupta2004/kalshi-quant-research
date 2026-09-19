@@ -371,3 +371,29 @@ def test_shipped_configs_parse():
 
     for name in ("history.yaml", "books.yaml"):
         assert load_config(Path(__file__).parents[1] / "configs" / name)
+
+
+async def test_a_failing_chunk_surfaces_as_the_original_error_type_not_an_exception_group(ex):
+    """The run loop retries APIError/TransportError; a wrapped ExceptionGroup would kill the recorder."""
+    import httpx
+
+    from kalshi_client.exceptions import ServerError
+
+    store = Store()
+    p, _ = poller(
+        ex, store, ["EVT-1-A", "EVT-1-B"], batch_size=1
+    )  # two chunks -> concurrent fetches
+    orig = ex.handler
+
+    def flaky(request):
+        if request.url.path.endswith(
+            "/markets/orderbooks"
+        ) and "EVT-1-B" in request.url.params.get_list("tickers"):
+            return httpx.Response(500, json={"error": "boom"})
+        return orig(request)
+
+    ex.handler = flaky
+    async with ex.rest() as rest:
+        p.rest, p.run_id = rest, store.start_run("books", {})
+        with pytest.raises(ServerError):
+            await p.poll_once()

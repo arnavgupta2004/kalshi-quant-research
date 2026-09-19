@@ -329,6 +329,37 @@ class Chain:
             for c in Implies(a, b).constraints()
         )
 
+    def n_constraints(self) -> int:
+        k = len(self.markets)
+        return k * (k - 1) // 2
+
+    def candidate_constraints(self, ask: AskFn) -> tuple[Constraint, ...]:
+        """Exactly the constraints that *can* be violated at these quotes (a lossless pre-filter).
+
+        Pair (i, j) is violated iff ``ask_NO(i) + ask_YES(j) < $1``.  A running minimum of the NO
+        asks means a whole ladder is scanned in O(k) unless something is actually violated - a
+        188-rung ladder has 17,578 pairs, and pricing them all every cycle would dominate a replay.
+        Equivalence with the full scan is tested."""
+        out: list[Constraint] = []
+        no_asks: list[Price | None] = []
+        cheapest_no: Price | None = None
+        for j, tj in enumerate(self.markets):
+            yes = ask(ContractRef(tj, Side.YES))
+            if (
+                yes is not None
+                and cheapest_no is not None
+                and cheapest_no + yes.price < PRICE_SCALE
+            ):
+                for i in range(j):
+                    n = no_asks[i]
+                    if n is not None and n + yes.price < PRICE_SCALE:
+                        out.extend(Implies(self.markets[i], tj).constraints())
+            no = ask(ContractRef(tj, Side.NO))
+            no_asks.append(None if no is None else no.price)
+            if no is not None and (cheapest_no is None or no.price < cheapest_no):
+                cheapest_no = no.price
+        return tuple(out)
+
     def admissible(self, world: World) -> bool:
         vals = [world[t] for t in self.markets]
         return all(vals[i] <= vals[i + 1] for i in range(len(vals) - 1))

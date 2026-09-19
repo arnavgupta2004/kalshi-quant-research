@@ -45,6 +45,7 @@ from market.contracts import (
 from market.timeutil import utcnow
 
 TMP_PREFIX = "kalshi_bulk_"
+FINGERPRINT_EXCLUDED = frozenset({"collection_runs", "scan_state"})
 
 
 def _naive_utc(dt: datetime) -> str:
@@ -106,13 +107,13 @@ class Store:
         current = row[0] if row else None
         if current is not None and current > SCHEMA_VERSION:
             raise RuntimeError(f"database schema v{current} is newer than code v{SCHEMA_VERSION}")
-        if current is not None and current < SCHEMA_VERSION:
-            raise RuntimeError(f"database schema v{current} needs migration to v{SCHEMA_VERSION}")
+        # Every schema change so far is additive (new tables, CREATE IF NOT EXISTS), so migrating an
+        # older file is just creating what is missing and recording the new version.
         for t in TABLES.values():
             self.con.execute(t.ddl())
         for ddl in VIEWS.values():
             self.con.execute(ddl)
-        if current is None:
+        if current is None or current < SCHEMA_VERSION:
             self.con.execute(
                 "INSERT INTO schema_version VALUES (?, ?)",
                 [SCHEMA_VERSION, _naive_utc(utcnow())],
@@ -383,6 +384,33 @@ class Store:
             upsert=True,
         )
 
+    # ------------------------------------------------------------------ series fee metadata
+    def upsert_series(self, series: Iterable[Any], *, now: datetime | None = None) -> int:
+        now = now or utcnow()
+        rows = [
+            {
+                "series_ticker": s.ticker,
+                "title": s.title,
+                "category": s.category,
+                "frequency": s.frequency,
+                "fee_type": s.fee_type,
+                "fee_multiplier": None if s.fee_multiplier is None else str(s.fee_multiplier),
+                "raw": s.model_dump(mode="json"),
+                "fetched_at": now,
+            }
+            for s in series
+        ]
+        return self._bulk("series_meta", rows, upsert=True)
+
+    def read_series_fees(self) -> dict[str, tuple[str | None, str | None]]:
+        """``{series: (fee_type, fee_multiplier_as_decimal_string)}``."""
+        if "series_meta" not in self.existing_tables():
+            return {}
+        return {
+            r[0]: (r[1], r[2])
+            for r in self.query("SELECT series_ticker, fee_type, fee_multiplier FROM series_meta")
+        }
+
     # ------------------------------------------------------------------ scan state
     def get_scan_state(self, scan_key: str, partition: str) -> dict[str, Any] | None:
         row = self.con.execute(
@@ -574,8 +602,16 @@ class Store:
             ],
         }
 
+    def existing_tables(self) -> set[str]:
+        return {r[0] for r in self.query("SELECT table_name FROM information_schema.tables")}
+
     def counts(self) -> dict[str, int]:
-        return {t: self.query(f"SELECT count(*) FROM {t}")[0][0] for t in TABLES}
+        """Row count per table; tables an older-schema file does not have yet report 0 (a read-only
+        connection cannot migrate, but reading such a file must still work)."""
+        have = self.existing_tables()
+        return {
+            t: (self.query(f"SELECT count(*) FROM {t}")[0][0] if t in have else 0) for t in TABLES
+        }
 
     def fingerprint(self) -> dict[str, Any]:
         """Compact, deterministic description of the dataset contents.
@@ -583,9 +619,12 @@ class Store:
         Recorded with every experiment so a result can be tied to the exact data it saw.
         Stable across re-ingestion of identical data (depends on content, not run ids)."""
         q = self.query
+        # Content only: no schema version (adding a table must not change every old fingerprint),
+        # no empty tables, and no process bookkeeping (run log, scan checkpoints).
         info = {
-            "schema_version": SCHEMA_VERSION,
-            "counts": {k: v for k, v in self.counts().items() if k not in ("collection_runs",)},
+            "counts": {
+                k: v for k, v in self.counts().items() if v and k not in FINGERPRINT_EXCLUDED
+            },
             "trades_time_range": [
                 str(x) for x in q("SELECT min(created_time), max(created_time) FROM trades")[0]
             ],

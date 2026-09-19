@@ -7,8 +7,8 @@ calibration, execution and market making in **Kalshi binary prediction markets**
 > implemented is `GET`, the WebSocket client only sends `subscribe`, order-entry channels are
 > rejected, and there is no order code anywhere. Credentials live in a gitignored `.env`.
 
-Status: **Stage 3 of 12 complete** (API client, normalised data model, historical storage, a
-resumable collector, and validated contract-relationship logic). See [`docs/contract_semantics.md`](docs/contract_semantics.md) for price/contract
+Status: **Stage 4 of 12 complete** (API client, normalised data model, historical storage, a
+resumable collector, validated contract-relationship logic, and a fee-exact same-event arbitrage detector). See [`docs/contract_semantics.md`](docs/contract_semantics.md) for price/contract
 semantics and verified API behaviour, [`docs/relationships.md`](docs/relationships.md) for the
 relationship model and its verification against 14k real settled events, and [`docs/data_architecture.md`](docs/data_architecture.md) for
 the storage design, resume guarantees and the known biases of the dataset. The full technical report
@@ -27,10 +27,11 @@ cp .env.example .env            # optional for REST; required for the WebSocket
 
 | Package | Role |
 |---|---|
-| `market/` | pure domain core, no I/O: exact units, UTC time, `OrderBook`, contracts (`Market`, `Event`, `ContractRef`, `Trade`), **`relationships`** (relations -> buy-only no-arbitrage constraints), **`semantics`** (which relations really hold, with evidence levels), `evidence` (settled-history support with exact confidence bounds) |
+| `market/` | pure domain core (+ `fees`: exact per-series Kalshi fee model in µ$), no I/O: exact units, UTC time, `OrderBook`, contracts (`Market`, `Event`, `ContractRef`, `Trade`), **`relationships`** (relations -> buy-only no-arbitrage constraints), **`semantics`** (which relations really hold, with evidence levels), `evidence` (settled-history support with exact confidence bounds) |
 | `kalshi_client/` | adapter: RSA-PSS auth, async REST (rate limit, retry, pagination), resilient WebSocket, strict wire models |
 | `data/normalization/` | wire -> domain mapping; sequence-checked book maintenance (`fail closed`), duplicate suppression |
 | `data/schemas/`, `data/storage/` | one declarative schema -> DuckDB DDL + typed bulk ingestion; `Store` with idempotent writes, run provenance, content fingerprint, volume reconciliation |
+| `arbitrage/` | fee-exact execution model (book walking, VWAP, per-fill fees, profit-maximising size), classified `Opportunity` records, detector with the displayed -> liquid -> fees -> slippage -> executable funnel |
 | `data/collectors/` | deterministic universe selection, resumable history collector (markets/events/trades), complete-event collector, REST book poller, WebSocket recorder, CLI |
 | `tests/` | unit / integration / property-based tests; real captured fixtures plus an in-memory fake exchange that reproduces the live API's quirks |
 
@@ -59,8 +60,19 @@ exchange's reported volume. See [`docs/data_architecture.md`](docs/data_architec
 .venv/bin/python -m scripts.stage3_relationship_study study                       # replay relations vs real outcomes
 ```
 
-Headline: every structurally inferred relation (7.5k chains, 596 exclusivity claims, 513 bucket
+Headline: every structurally inferred relation (7.5k chains, 596 exclusivity claims, 546 bucket
 partitions, 10.9k ladder-equals-sum-of-buckets unions) survived 14,383 real settled events with **0
-violations**, and the evidence levels are calibrated by outcome (UNVERIFIED 4.4% violated, EMPIRICAL 0.11%,
+violations**, and the evidence levels are calibrated by outcome (UNVERIFIED 4.6% violated, EMPIRICAL 0.11%,
 DECLARED/structural 0%). Same-market YES/NO arbitrage cannot exist in a bids-only book - see
 [`docs/relationships.md`](docs/relationships.md).
+
+## Same-event arbitrage (Stage 4)
+
+```bash
+.venv/bin/python -m scripts.stage4_arbitrage_demo worked      # book -> constraint -> fees -> net, step by step
+.venv/bin/python -m scripts.stage4_arbitrage_demo replay --books-db var/books_structural.duckdb
+```
+
+Headline (535 cycles, 44 min, 100 structured events): **327 displayed violations, 0 survive fees**;
+fee-free, 54 would be executable. 325 of the 327 are one artefact - a 1c minimum-tick overround on illiquid
+tails of an approval-rating event. Details, the fee model and the bugs found: [`docs/arbitrage.md`](docs/arbitrage.md).

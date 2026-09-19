@@ -80,7 +80,7 @@ held (`event.market_tickers` fully covered).
 | | Assumption | Corroborated by |
 |---|---|---|
 | A1 | Every market resolves normally; void/scalar settlement can break relations | quantified in s.4 |
-| A2 | `between a and b` includes both endpoints | 513 lattice partitions, 0 violations |
+| A2 | `between a and b` includes both endpoints | 546 lattice partitions, 0 violations |
 | A3 | Half-integer strikes (x.5) describe an **integer-valued** variable (Kalshi uses them on counts to avoid ties) | count-prop chains, 0 violations |
 | A4 | Otherwise the variable is quantised at the strike grid (10^-d for the most decimals used) | 10,893 cross-event unions, 0 violations |
 | A5 | Identical rules template + close time + `custom_strike` => same variable at the same instant | zero cross-family false links in tests |
@@ -108,7 +108,7 @@ a two-outcome event (`Partition`), implications, unions.
 
 `python -m scripts.stage3_relationship_study study` replays every inferred relation against the realised
 settlement values (fractional values included) of **14,383 settled events / 142,709 markets from 713
-series** (`data/collectors/events.py` -> `var/relations.duckdb`, fingerprint `0e18e27863ceaaf4`).
+series** (`data/collectors/events.py` -> `var/relations.duckdb`, fingerprint `1306fa87faf2a24c`).
 Empirical evidence is leave-one-out: an event is never judged by its own outcome.
 
 | relation | level | instances | violated | rate |
@@ -116,17 +116,17 @@ Empirical evidence is leave-one-out: an event is never judged by its own outcome
 | chain | PROVEN | 5,246 | **0** | 0% |
 | chain | LATTICE (count props, index encodings) | 2,273 | **0** | 0% |
 | mutually_exclusive | PROVEN | 596 | **0** | 0% |
-| partition | LATTICE (buckets on the grid) | 513 | **0** | 0% |
+| partition | LATTICE (buckets on the grid) | 546 | **0** | 0% |
 | union (ladder = sum of buckets) | LATTICE | 10,893 | **0** | 0% |
-| mutually_exclusive | DECLARED | 9,027 | **0** | 0% |
+| mutually_exclusive | DECLARED | 8,994 | **0** | 0% |
 | partition / exhaustive | EMPIRICAL | 8,051 | 9 | 0.11% (6 of 7,837 clean; 3 of 214 with a void) |
-| partition / exhaustive | UNVERIFIED | 976 | 43 | 4.4% |
+| partition / exhaustive | UNVERIFIED | 943 | 43 | 4.6% |
 
 Reading the table:
 
-* **Every structural claim survived reality** (0 of ~19,500 violated), including the lattice and
+* **Every structural claim survived reality** (0 of ~19,550 violated), including the lattice and
   inclusive-endpoint assumptions A2-A4 across two independent event families.
-* **The evidence levels are calibrated**: violation rate falls monotonically UNVERIFIED (4.4%) ->
+* **The evidence levels are calibrated**: violation rate falls monotonically UNVERIFIED (4.6%) ->
   EMPIRICAL (0.11%) -> DECLARED/structural (0%).
 * **The exchange flag is reliable for exclusivity** (0 events with two YES) but says nothing about
   exhaustiveness: 49 flagged events (0.5%) had *no* YES. Series such as `KXKLEAGUESPREAD` resolved with no
@@ -171,3 +171,8 @@ window) - it demonstrates the machinery, nothing more.
 .venv/bin/python -m data.collectors.run books --config configs/books.yaml --db var/books_stage3.duckdb --duration 300
 .venv/bin/python -m scripts.stage3_relationship_study scan --books-db var/books_stage3.duckdb
 ```
+
+> **Addendum (Stage 4).** Replaying real order books exposed two more semantic gaps, both fixed: an `is exactly N`
+> comparator (approval-rating exact-value markets) and a tie-break when a closed point interval and an open
+> half-line share a lower bound. Partition instances rose 513 -> 546 (33 more events now *proven* instead of
+> merely exchange-declared) with 0 violations. See `docs/arbitrage.md` s.7.

@@ -87,6 +87,7 @@ class BookSelection:
     min_event_markets: int = 1  # e.g. 2 to keep only multi-outcome events
     include_siblings: bool = True  # all markets of a chosen event (needed for exhaustive arb)
     exclude_series: list[str] = field(default_factory=list)
+    include_series: list[str] = field(default_factory=list)  # if set, ONLY these series
 
 
 @dataclass

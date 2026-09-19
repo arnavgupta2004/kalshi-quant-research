@@ -1,7 +1,7 @@
 {
-  "git_commit": "bf7c2a118b78314c1b3604f923d90393635b3996+dirty",
+  "git_commit": "f521a94e8bd3236183ffb87d6c2384001df6ba8c+dirty",
   "source_db": "var/relations.duckdb",
-  "dataset_fingerprint": "0e18e27863ceaaf4",
+  "dataset_fingerprint": "1306fa87faf2a24c",
   "settled_events": 14383,
   "settled_markets": 142709,
   "relations_by_kind_level": [
@@ -51,7 +51,7 @@
       "kind": "exhaustive",
       "level": "UNVERIFIED",
       "scalar_involved": false,
-      "instances": 966,
+      "instances": 933,
       "violated": 43
     },
     {
@@ -65,7 +65,7 @@
       "kind": "mutually_exclusive",
       "level": "DECLARED",
       "scalar_involved": false,
-      "instances": 8803,
+      "instances": 8770,
       "violated": 0
     },
     {
@@ -100,14 +100,14 @@
       "kind": "partition",
       "level": "LATTICE",
       "scalar_involved": false,
-      "instances": 513,
+      "instances": 546,
       "violated": 0
     },
     {
       "kind": "partition",
       "level": "UNVERIFIED",
       "scalar_involved": false,
-      "instances": 966,
+      "instances": 933,
       "violated": 43
     },
     {

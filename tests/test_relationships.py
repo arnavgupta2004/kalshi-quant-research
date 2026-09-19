@@ -325,3 +325,29 @@ def test_oracle_is_numerically_robust():
         prices = {t: int(e) for t, e in exp.items()}
         assert lp_feasible(rel, prices, prices), (rel.statement(), prices)
         assert not violated(rel, prices, prices)
+
+
+@settings(max_examples=150, deadline=None)
+@given(st.data())
+def test_chain_prefilter_is_lossless(data):
+    """The O(k) candidate filter must return exactly the violated constraints of the full O(k^2) scan."""
+    n = data.draw(st.integers(2, 7))
+    tickers = [f"M{i}" for i in range(n)]
+    books = {}
+    for t in tickers:
+        yes = data.draw(st.one_of(st.none(), st.integers(100, 9000)))
+        no = data.draw(st.one_of(st.none(), st.integers(100, 9800)))
+        if yes is not None and no is not None and yes + no >= S:
+            no = None
+        b = OrderBook(t)
+        b.apply_snapshot([(yes, 100)] if yes else [], [(no, 100)] if no else [])
+        books[t] = b
+    ask = asks_from_books(books)
+    chain = Chain(tickers)
+    full = {c.name for c in chain.constraints() if (k := c.check(ask)) and k.violated}
+    fast = {c.name for c in chain.candidate_constraints(ask) if (k := c.check(ask)) and k.violated}
+    assert fast == full
+    assert set(c.name for c in chain.candidate_constraints(ask)) <= {
+        c.name for c in chain.constraints()
+    }
+    assert chain.n_constraints() == len(chain.constraints())

@@ -175,3 +175,113 @@ def test_exact_ladders_remain_proven(fx):
         x for x in analyze_event(ev, ms).assessments if x.relation.kind is RelationKind.CHAIN
     ]
     assert chain.level is EvidenceLevel.PROVEN
+
+
+def test_exact_value_markets_are_point_intervals_and_the_time_of_day_is_not_a_threshold(fx):
+    """Real KXTRUMPAPPROVE rules: 'is exactly 39.4% at exactly 1:00 PM ET' has ONE numeric clause."""
+    p = parse_rules(
+        "If Trump's RCP approval average is exactly 39.4% at exactly 1:00 PM ET on Sep 19, 2026, then Yes."
+    )
+    assert p.comparator == "eq" and p.interval == Interval(D("39.4"), True, D("39.4"), True)
+    assert "1:00 PM" in p.template  # the time of day stays part of the identity of the variable
+    below = parse_rules(
+        "If Trump's RCP approval average is below 39.4% at exactly 1:00 PM ET on Sep 19, 2026, then Yes."
+    )
+    assert below.template == p.template  # same variable, same instant -> comparable
+
+
+def test_approval_rating_event_becomes_a_proven_partition_on_the_tenth_of_a_point_grid(fx):
+    def m(sfx, rules, st, floor=None, cap=None):
+        return mk(
+            fx,
+            f"KXTRUMPAPPROVE-26SEP19-{sfx}",
+            rules,
+            st,
+            floor=floor,
+            cap=cap,
+            event="KXTRUMPAPPROVE-26SEP19",
+        )
+
+    head = "If Trump's RCP approval average is {} at exactly 1:00 PM ET on Sep 19, 2026, then the market resolves to Yes."
+    ms = [m("U39.4", head.format("below 39.4%"), "less", cap=39.4)]
+    ms += [
+        m(f"E{v}", head.format(f"exactly {v}%"), "between", floor=v, cap=v)
+        for v in (39.4, 39.5, 39.6)
+    ]
+    ms += [
+        m("E40.0", head.format("exactly 40.0%"), "between", floor=40.0, cap=40.0),
+        m("A40.0", head.format("above 40.0%"), "greater", floor=40.0),
+    ]
+    ms += [
+        m(f"E{v}", head.format(f"exactly {v}%"), "between", floor=v, cap=v)
+        for v in (39.7, 39.8, 39.9)
+    ]
+    ev = Event(
+        "KXTRUMPAPPROVE-26SEP19",
+        "KXTRUMPAPPROVE",
+        "approval",
+        "",
+        "Politics",
+        True,
+        market_tickers=tuple(x.ticker for x in ms),
+    )
+    a = analyze_event(ev, ms)
+    [part] = [x for x in a.assessments if x.relation.kind is RelationKind.PARTITION]
+    assert part.level is EvidenceLevel.LATTICE and len(part.relation.markets) == 9
+    assert any("step 0.1" in s for s in part.assumptions) and not a.conflicts
+
+
+def test_analysis_does_not_depend_on_the_order_markets_arrive_in(fx):
+    """Regression: two markets sharing a lower bound ([40,40] and (40,inf)) were tiled in ticker order,
+    which sometimes looked like a gap.  Every permutation must give the identical relations."""
+    import itertools
+    import random
+
+    def m(sfx, rules, st, floor=None, cap=None):
+        return mk(
+            fx,
+            f"KXTRUMPAPPROVE-26SEP19-{sfx}",
+            rules,
+            st,
+            floor=floor,
+            cap=cap,
+            event="KXTRUMPAPPROVE-26SEP19",
+        )
+
+    head = "If Trump's RCP approval average is {} at exactly 1:00 PM ET on Sep 19, 2026, then the market resolves to Yes."
+    ms = [
+        m("U39.4", head.format("below 39.4%"), "less", cap=39.4),
+        m("A40.0", head.format("above 40.0%"), "greater", floor=40.0),
+    ]
+    ms += [
+        m(f"E{v}", head.format(f"exactly {v}%"), "between", floor=v, cap=v)
+        for v in (39.4, 39.5, 39.6, 39.7, 39.8, 39.9, 40.0)
+    ]
+    ev = Event(
+        "KXTRUMPAPPROVE-26SEP19",
+        "KXTRUMPAPPROVE",
+        "approval",
+        "",
+        "Politics",
+        True,
+        market_tickers=tuple(x.ticker for x in ms),
+    )
+
+    def signature(markets):
+        a = analyze_event(ev, markets)
+        return sorted(
+            (x.relation.kind.value, x.level.name, tuple(sorted(x.relation.tickers())))
+            for x in a.assessments
+        )
+
+    base = signature(ms)
+    assert ("partition", "LATTICE", tuple(sorted(x.ticker for x in ms))) in base
+    rng = random.Random(3)
+    for _ in range(40):
+        shuffled = ms[:]
+        rng.shuffle(shuffled)
+        assert signature(shuffled) == base
+    for pair in itertools.permutations([ms[1], ms[8]]):  # the two markets that tie at 40.0
+        assert ("partition", "LATTICE", tuple(sorted(x.ticker for x in ms))) in signature(
+            [*pair, *ms[2:8], ms[0]]
+        )

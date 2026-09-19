@@ -1,13 +1,11 @@
 """Relation inference, tested on complete REAL Kalshi events captured from the live API."""
 
-import json
 from decimal import Decimal
 from pathlib import Path
 
 import pytest
 
-from data.normalization.normalizer import normalize_event, normalize_market
-from kalshi_client.models import ApiEvent, validate_rest
+from data.normalization.fixtures import load_event_fixture
 from market.contracts import Event, Market
 from market.evidence import StatsBook
 from market.relationships import (
@@ -33,12 +31,7 @@ D = Decimal
 
 
 def load(name: str) -> tuple[Event, list[Market]]:
-    d = json.loads((FIX / f"{name}.json").read_text())
-    ev_raw = dict(d["event"])
-    ev_raw["markets"] = d["markets"]
-    api = validate_rest(ApiEvent, ev_raw)
-    event = normalize_event(api)
-    return event, [normalize_market(m, event=event) for m in api.markets]
+    return load_event_fixture(name)
 
 
 def by_kind(analysis, kind):

@@ -128,7 +128,7 @@ rebuilds domain objects (round-trip equality is tested). 14,383 settled events /
 
 ## First collected dataset (2026-09-19)
 
-`configs/history.yaml` -> `var/kalshi.duckdb`, content fingerprint `f4ce5fa182bafc49`.
+`configs/history.yaml` -> `var/kalshi.duckdb`, content fingerprint `2257819296b9ca2a` (the fingerprint definition became schema- and bookkeeping-independent in Stage 4, so it differs from the value first reported).
 
 | | |
 |---|---|
