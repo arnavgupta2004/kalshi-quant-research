@@ -1,0 +1,65 @@
+{
+ "cursor": "EhIKEAciWc2XQZpaipQdLEMyebcaDAjo3rjVBhCQmIOCAQ",
+ "trades": [
+  {
+   "count_fp": "52.53",
+   "created_time": "2026-09-19T06:44:56.373752Z",
+   "is_block_trade": false,
+   "no_price_dollars": "0.8200",
+   "taker_book_side": "bid",
+   "taker_outcome_side": "yes",
+   "taker_side": "yes",
+   "ticker": "KXLALIGAGAME-26SEP19ATHALA-ALA",
+   "trade_id": "0722559d-69b9-ae21-c4e5-281313920dab",
+   "yes_price_dollars": "0.1800"
+  },
+  {
+   "count_fp": "54.30",
+   "created_time": "2026-09-19T06:44:56.302362Z",
+   "is_block_trade": false,
+   "no_price_dollars": "0.8500",
+   "taker_book_side": "bid",
+   "taker_outcome_side": "yes",
+   "taker_side": "yes",
+   "ticker": "KXBTCD-26SEP1903-T81099.99",
+   "trade_id": "072259cd-9f71-a524-1f9b-4796b33baacc",
+   "yes_price_dollars": "0.1500"
+  },
+  {
+   "count_fp": "467.28",
+   "created_time": "2026-09-19T06:44:56.276428Z",
+   "is_block_trade": false,
+   "no_price_dollars": "0.9800",
+   "taker_book_side": "bid",
+   "taker_outcome_side": "yes",
+   "taker_side": "yes",
+   "ticker": "KXMVECROSSCATEGORY-S2026258B2D6A646-62C6A24EFE5",
+   "trade_id": "072259cd-9741-8994-5096-b4032581a499",
+   "yes_price_dollars": "0.0200"
+  },
+  {
+   "count_fp": "117.09",
+   "created_time": "2026-09-19T06:44:56.274273Z",
+   "is_block_trade": false,
+   "no_price_dollars": "0.9600",
+   "taker_book_side": "bid",
+   "taker_outcome_side": "yes",
+   "taker_side": "yes",
+   "ticker": "KXMVECROSSCATEGORY-S2026DDC4ACED908-94BF97D23C4",
+   "trade_id": "072259cd-9741-913a-b176-93e7b0859740",
+   "yes_price_dollars": "0.0400"
+  },
+  {
+   "count_fp": "1162.79",
+   "created_time": "2026-09-19T06:44:56.272682Z",
+   "is_block_trade": false,
+   "no_price_dollars": "0.9840",
+   "taker_book_side": "bid",
+   "taker_outcome_side": "yes",
+   "taker_side": "yes",
+   "ticker": "KXMVECROSSCATEGORY0-S202667B88B9C635-F3CEAFC6560",
+   "trade_id": "072259cd-9741-9a5a-8a94-1d2c433279b7",
+   "yes_price_dollars": "0.0160"
+  }
+ ]
+}
