@@ -88,6 +88,10 @@ class BookSelection:
     include_siblings: bool = True  # all markets of a chosen event (needed for exhaustive arb)
     exclude_series: list[str] = field(default_factory=list)
     include_series: list[str] = field(default_factory=list)  # if set, ONLY these series
+    #: if set, only markets scheduled to expire within this many hours of selection time.  Uses only
+    #: ex-ante information (the schedule of a still-open market) and yields books whose settlements
+    #: arrive soon enough to be backtested.
+    max_hours_to_expiry: float | None = None
 
 
 @dataclass
@@ -125,7 +129,22 @@ class EventsConfig:
     backoff_max_s: float = 30.0
 
 
-def load_config(path: str | Path) -> HistoryConfig | BooksConfig | EventsConfig:
+@dataclass
+class RefreshConfig:
+    """Bring a recorded-books database up to date: current market state (settlements) + trades."""
+
+    job: str = "refresh"
+    db_path: str = "var/books.duckdb"
+    tickers: list[str] = field(default_factory=list)  # empty = every market already in the database
+    requests_per_second: float = 10.0
+    concurrency: int = 6
+    trade_page_size: int = 1000
+    overlap_s: int = 120
+    max_retries: int = 10
+    backoff_max_s: float = 30.0
+
+
+def load_config(path: str | Path) -> HistoryConfig | BooksConfig | EventsConfig | RefreshConfig:
     data = yaml.safe_load(Path(path).read_text()) or {}
     job = data.get("job")
     if job == "history":
@@ -142,7 +161,9 @@ def load_config(path: str | Path) -> HistoryConfig | BooksConfig | EventsConfig:
         )
     if job == "events":
         return _strict(EventsConfig, data, "events")
-    raise ConfigError(f"config needs `job: history|books|events`, got {job!r}")
+    if job == "refresh":
+        return _strict(RefreshConfig, data, "refresh")
+    raise ConfigError(f"config needs `job: history|books|events|refresh`, got {job!r}")
 
 
 def to_plain(obj: Any) -> Any:

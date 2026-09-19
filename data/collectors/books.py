@@ -57,7 +57,7 @@ from kalshi_client.rest import KalshiRestClient
 from kalshi_client.websocket import Connected, Disconnected, KalshiWebSocket, Malformed
 from market.contracts import Side
 from market.order_book import OrderBook, OrderBookInconsistency
-from market.timeutil import from_epoch_ns, now_ns
+from market.timeutil import from_epoch_ns, now_ns, utcnow
 from market.units import parse_price
 
 log = logging.getLogger(__name__)
@@ -109,6 +109,10 @@ async def select_book_tickers(rest: KalshiRestClient, sel: BookSelection) -> lis
             continue
         if sel.include_series and series_of(m.event_ticker) not in sel.include_series:
             continue
+        if sel.max_hours_to_expiry is not None:
+            due = m.expected_expiration_time or m.close_time
+            if due is None or (due - utcnow()).total_seconds() > sel.max_hours_to_expiry * 3600:
+                continue
         by_event[m.event_ticker].append(m)
     ranked = sorted(
         (

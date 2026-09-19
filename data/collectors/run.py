@@ -3,6 +3,7 @@
     python -m data.collectors.run history --config configs/history.yaml
     python -m data.collectors.run books   --config configs/books.yaml [--duration 600]
     python -m data.collectors.run events  --config configs/events.yaml   # complete settled events
+    python -m data.collectors.run refresh --config configs/refresh.yaml  # settlements + trades for recorded books
     python -m data.collectors.run status  [--db var/kalshi.duckdb]
     python -m data.collectors.run verify  [--db var/kalshi.duckdb]   # trade completeness check
     python -m data.collectors.run export  --db var/kalshi.duckdb --out var/export
@@ -25,10 +26,12 @@ from data.collectors.config import (
     ConfigError,
     EventsConfig,
     HistoryConfig,
+    RefreshConfig,
     load_config,
 )
 from data.collectors.events import EventCollector
 from data.collectors.history import HistoryCollector
+from data.collectors.refresh import RefreshCollector
 from data.schemas.ddl import TABLES
 from data.storage.duckdb_store import Store
 from data.storage.provenance import git_commit
@@ -110,6 +113,22 @@ async def cmd_events(cfg: EventsConfig) -> int:
     return 1 if s.failures else 0
 
 
+async def cmd_refresh(cfg: RefreshConfig) -> int:
+    with Store(cfg.db_path) as store:
+        async with KalshiRestClient(
+            KalshiConfig.from_env(),
+            requests_per_second=cfg.requests_per_second,
+            max_retries=cfg.max_retries,
+            backoff_max=cfg.backoff_max_s,
+        ) as rest:
+            s = await RefreshCollector(store, rest, cfg, git_commit=git_commit()).run()
+    print(
+        f"run {s.run_id}: {s.markets} markets refreshed, {s.settled_now} settled "
+        f"({s.newly_settled} newly), {s.trades_inserted} new trades, {len(s.failures)} failures"
+    )
+    return 1 if s.failures else 0
+
+
 def cmd_status(db: str) -> int:
     try:
         store = Store(db, read_only=True)
@@ -181,7 +200,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     ap.add_argument("-v", "--verbose", action="store_true")
     sub = ap.add_subparsers(dest="cmd", required=True)
-    for name in ("history", "books", "events"):
+    for name in ("history", "books", "events", "refresh"):
         p = sub.add_parser(name)
         p.add_argument("--config", required=True)
         p.add_argument("--db", help="override db_path from the config")
@@ -218,6 +237,10 @@ def main(argv: list[str] | None = None) -> int:
             if not isinstance(cfg, HistoryConfig):
                 sys.exit(f"{args.config} is not a history config")
             return asyncio.run(cmd_history(cfg))
+        if args.cmd == "refresh":
+            if not isinstance(cfg, RefreshConfig):
+                sys.exit(f"{args.config} is not a refresh config")
+            return asyncio.run(cmd_refresh(cfg))
         if args.cmd == "events":
             if not isinstance(cfg, EventsConfig):
                 sys.exit(f"{args.config} is not an events config")

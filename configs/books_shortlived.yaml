@@ -1,0 +1,17 @@
+# Books for markets that SETTLE SOON (hourly/15-minute crypto and index markets, games about to end).
+# Purpose: a dataset with books + trades + settlements for the same markets, to backtest on.
+# Selection uses only the scheduled expiry of markets that are still open: no look-ahead.
+job: books
+db_path: var/books_shortlived.duckdb
+mode: rest
+interval_s: 3
+duration_s: null
+heartbeat_s: 30
+metadata_refresh_s: 600
+requests_per_second: 10
+selection:
+  top_events: 60
+  max_tickers: 400
+  min_event_markets: 1
+  include_siblings: true
+  max_hours_to_expiry: 3

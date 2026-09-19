@@ -7,8 +7,9 @@ calibration, execution and market making in **Kalshi binary prediction markets**
 > implemented is `GET`, the WebSocket client only sends `subscribe`, order-entry channels are
 > rejected, and there is no order code anywhere. Credentials live in a gitignored `.env`.
 
-Status: **Stage 4 of 12 complete** (API client, normalised data model, historical storage, a
-resumable collector, validated contract-relationship logic, and a fee-exact same-event arbitrage detector). See [`docs/contract_semantics.md`](docs/contract_semantics.md) for price/contract
+Status: **Stage 5 of 12 complete** (API client, normalised data model, historical storage, a
+resumable collector, validated contract-relationship logic, a fee-exact same-event arbitrage detector, and a
+causal event-driven backtest engine). See [`docs/contract_semantics.md`](docs/contract_semantics.md) for price/contract
 semantics and verified API behaviour, [`docs/relationships.md`](docs/relationships.md) for the
 relationship model and its verification against 14k real settled events, and [`docs/data_architecture.md`](docs/data_architecture.md) for
 the storage design, resume guarantees and the known biases of the dataset. The full technical report
@@ -31,6 +32,7 @@ cp .env.example .env            # optional for REST; required for the WebSocket
 | `kalshi_client/` | adapter: RSA-PSS auth, async REST (rate limit, retry, pagination), resilient WebSocket, strict wire models |
 | `data/normalization/` | wire -> domain mapping; sequence-checked book maintenance (`fail closed`), duplicate suppression |
 | `data/schemas/`, `data/storage/` | one declarative schema -> DuckDB DDL + typed bulk ingestion; `Store` with idempotent writes, run provenance, content fingerprint, volume reconciliation |
+| `backtest/` | event-driven replay engine: information-time feeds, whitelisted `MarketInfo`, latency, taker + queue-model maker fills, exact ledger, metrics; validated by a look-ahead theorem, mutation checks and a Stage 4 <-> 5 exact-equality test |
 | `arbitrage/` | fee-exact execution model (book walking, VWAP, per-fill fees, profit-maximising size), classified `Opportunity` records, detector with the displayed -> liquid -> fees -> slippage -> executable funnel |
 | `data/collectors/` | deterministic universe selection, resumable history collector (markets/events/trades), complete-event collector, REST book poller, WebSocket recorder, CLI |
 | `tests/` | unit / integration / property-based tests; real captured fixtures plus an in-memory fake exchange that reproduces the live API's quirks |
@@ -76,3 +78,16 @@ DECLARED/structural 0%). Same-market YES/NO arbitrage cannot exist in a bids-onl
 Headline (535 cycles, 44 min, 100 structured events): **327 displayed violations, 0 survive fees**;
 fee-free, 54 would be executable. 325 of the 327 are one artefact - a 1c minimum-tick overround on illiquid
 tails of an approval-rating event. Details, the fee model and the bugs found: [`docs/arbitrage.md`](docs/arbitrage.md).
+
+## Backtesting (Stage 5)
+
+```bash
+.venv/bin/python -m data.collectors.run refresh --config configs/refresh.yaml   # settlements + trades for recorded books
+.venv/bin/python -m scripts.stage5_backtest_demo --db var/books_shortlived.duckdb
+```
+
+Headline: decisions before random cuts of the real feed are identical to the untruncated run (look-ahead
+audit, thousands of orders per cut); a passive strategy's P&L ranges over **$74** across queue-position
+assumptions and is unprofitable even under the most generous one. A run that first showed a +$983 phantom
+arbitrage exposed an engine flaw (simultaneous events applied one at a time) - see
+[`docs/backtesting.md`](docs/backtesting.md).

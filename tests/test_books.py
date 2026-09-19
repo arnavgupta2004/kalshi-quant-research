@@ -397,3 +397,32 @@ async def test_a_failing_chunk_surfaces_as_the_original_error_type_not_an_except
         p.rest, p.run_id = rest, store.start_run("books", {})
         with pytest.raises(ServerError):
             await p.poll_once()
+
+
+async def test_expiry_horizon_selects_only_markets_that_settle_soon(fx):
+    from datetime import timedelta
+
+    from market.timeutil import utcnow
+
+    now = utcnow()
+    live = []
+    for name, hours in (("SOON", 1), ("LATER", 30)):
+        for i in range(2):
+            m = make_market(
+                fx, f"{name}-{i}", event=name, close=now + timedelta(hours=hours), status="active"
+            )
+            m["expected_expiration_time"] = m["close_time"]
+            m["volume_24h_fp"] = "5.00"
+            live.append(m)
+    ex = FakeExchange(fx, live=live)
+    async with ex.rest() as rest:
+        got = await select_book_tickers(
+            rest, BookSelection(top_events=5, min_event_markets=2, max_hours_to_expiry=3)
+        )
+        every = await select_book_tickers(rest, BookSelection(top_events=5, min_event_markets=2))
+    assert got == ["SOON-0", "SOON-1"] and sorted(every) == [
+        "LATER-0",
+        "LATER-1",
+        "SOON-0",
+        "SOON-1",
+    ]

@@ -1,0 +1,6 @@
+# Complete a recorded-books database with what happened next: settlements and the trade tape.
+# Re-run as more of the recorded markets settle; only new trades are fetched.
+job: refresh
+db_path: var/books_shortlived.duckdb
+requests_per_second: 10
+concurrency: 6

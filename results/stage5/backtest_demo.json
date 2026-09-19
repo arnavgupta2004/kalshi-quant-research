@@ -1,0 +1,325 @@
+{
+  "git_commit": "dce3e09f9983720624d4d1535b845cf54882b149+dirty",
+  "db": "var/books_shortlived.duckdb",
+  "fingerprint": "dc782d40efb60a15",
+  "universe": {
+    "tickers": 53,
+    "selection": "point-in-time: scheduled expiry <= 3h at recording start; then filtered on realised book/trade coverage (post-hoc, disclosed)"
+  },
+  "data_quality": {
+    "poll_cycles": 715,
+    "median_gap_s": 2.999769,
+    "max_gap_s": 1300.089419,
+    "gaps_over_30s": 5,
+    "seconds_in_gaps_over_30s": 1679,
+    "universe_markets": 53,
+    "events_replayed": 47303,
+    "settled_in_universe": 53
+  },
+  "audit": {
+    "cuts": [
+      {
+        "at": "10:21:56",
+        "orders_before_cut": 3452,
+        "fills_before_cut": 872,
+        "identical": true,
+        "vacuous": false
+      },
+      {
+        "at": "10:40:29",
+        "orders_before_cut": 6915,
+        "fills_before_cut": 1674,
+        "identical": true,
+        "vacuous": false
+      },
+      {
+        "at": "11:12:30",
+        "orders_before_cut": 7731,
+        "fills_before_cut": 1959,
+        "identical": true,
+        "vacuous": false
+      },
+      {
+        "at": "11:09:36",
+        "orders_before_cut": 7684,
+        "fills_before_cut": 1946,
+        "identical": true,
+        "vacuous": false
+      },
+      {
+        "at": "10:39:33",
+        "orders_before_cut": 6915,
+        "fills_before_cut": 1671,
+        "identical": true,
+        "vacuous": false
+      }
+    ],
+    "passed": true,
+    "full_orders": 7731,
+    "full_fills": 1965,
+    "market_info_fields": [
+      "category",
+      "event_ticker",
+      "no_sub_title",
+      "open_time",
+      "price_ranges",
+      "rules",
+      "scheduled_end",
+      "series_ticker",
+      "strike",
+      "ticker",
+      "title",
+      "yes_sub_title"
+    ],
+    "forbidden_fields_present": []
+  },
+  "passive_sweep": [
+    {
+      "model": "pessimistic",
+      "latency_ms": 200,
+      "net_usd": -74.478222,
+      "fees_usd": 0.578222,
+      "orders": 7655,
+      "fills": 1488,
+      "maker_fills": 1488,
+      "taker_fills": 0,
+      "contracts_traded": 14880.0,
+      "order_fill_rate": 0.19438275636838667,
+      "max_drawdown_usd": 107.453743,
+      "worst_settlement_usd": -13.368,
+      "settled_markets": 53,
+      "markout_ticks": {
+        "30": -184.2,
+        "300": -23.6
+      }
+    },
+    {
+      "model": "queue(a=1,c=0)",
+      "latency_ms": 200,
+      "net_usd": -48.613362,
+      "fees_usd": 0.619962,
+      "orders": 7706,
+      "fills": 1814,
+      "maker_fills": 1814,
+      "taker_fills": 0,
+      "contracts_traded": 16627.41,
+      "order_fill_rate": 0.21736309369322607,
+      "max_drawdown_usd": 98.38062,
+      "worst_settlement_usd": -14.0,
+      "settled_markets": 53,
+      "markout_ticks": {
+        "30": -131.3,
+        "300": 41.3
+      }
+    },
+    {
+      "model": "queue(a=1,c=.5)",
+      "latency_ms": 200,
+      "net_usd": -44.690285,
+      "fees_usd": 0.736685,
+      "orders": 7731,
+      "fills": 1965,
+      "maker_fills": 1965,
+      "taker_fills": 0,
+      "contracts_traded": 17286.59,
+      "order_fill_rate": 0.22623205277454406,
+      "max_drawdown_usd": 98.066854,
+      "worst_settlement_usd": -14.0,
+      "settled_markets": 53,
+      "markout_ticks": {
+        "30": -111.3,
+        "300": 47.7
+      }
+    },
+    {
+      "model": "queue(a=.5,c=.5)",
+      "latency_ms": 200,
+      "net_usd": -39.992656,
+      "fees_usd": 0.861356,
+      "orders": 7828,
+      "fills": 2486,
+      "maker_fills": 2486,
+      "taker_fills": 0,
+      "contracts_traded": 19136.03,
+      "order_fill_rate": 0.251021972406745,
+      "max_drawdown_usd": 122.445616,
+      "worst_settlement_usd": -14.0,
+      "settled_markets": 53,
+      "markout_ticks": {
+        "30": -79.9,
+        "300": 64.9
+      }
+    },
+    {
+      "model": "optimistic",
+      "latency_ms": 200,
+      "net_usd": -0.267759,
+      "fees_usd": 1.562359,
+      "orders": 8330,
+      "fills": 3689,
+      "maker_fills": 3689,
+      "taker_fills": 0,
+      "contracts_traded": 27128.89,
+      "order_fill_rate": 0.3375750300120048,
+      "max_drawdown_usd": 88.12536,
+      "worst_settlement_usd": -15.6,
+      "settled_markets": 53,
+      "markout_ticks": {
+        "30": -12.6,
+        "300": 77.5
+      }
+    },
+    {
+      "model": "pessimistic",
+      "latency_ms": 1000,
+      "net_usd": -110.186465,
+      "fees_usd": 0.586465,
+      "orders": 7704,
+      "fills": 1490,
+      "maker_fills": 1490,
+      "taker_fills": 0,
+      "contracts_traded": 14900.0,
+      "order_fill_rate": 0.1934060228452752,
+      "max_drawdown_usd": 146.830221,
+      "worst_settlement_usd": -15.816,
+      "settled_markets": 53,
+      "markout_ticks": {
+        "30": -191.7,
+        "300": -29.0
+      }
+    },
+    {
+      "model": "queue(a=1,c=0)",
+      "latency_ms": 1000,
+      "net_usd": -73.310885,
+      "fees_usd": 0.621485,
+      "orders": 7734,
+      "fills": 1801,
+      "maker_fills": 1801,
+      "taker_fills": 0,
+      "contracts_traded": 16553.53,
+      "order_fill_rate": 0.2152831652443755,
+      "max_drawdown_usd": 126.114671,
+      "worst_settlement_usd": -14.7,
+      "settled_markets": 53,
+      "markout_ticks": {
+        "30": -138.5,
+        "300": 31.7
+      }
+    },
+    {
+      "model": "queue(a=1,c=.5)",
+      "latency_ms": 1000,
+      "net_usd": -66.272678,
+      "fees_usd": 0.748078,
+      "orders": 7773,
+      "fills": 1950,
+      "maker_fills": 1950,
+      "taker_fills": 0,
+      "contracts_traded": 17210.21,
+      "order_fill_rate": 0.22372314421716197,
+      "max_drawdown_usd": 120.767114,
+      "worst_settlement_usd": -14.750315,
+      "settled_markets": 53,
+      "markout_ticks": {
+        "30": -116.9,
+        "300": 39.0
+      }
+    },
+    {
+      "model": "queue(a=.5,c=.5)",
+      "latency_ms": 1000,
+      "net_usd": -72.433056,
+      "fees_usd": 0.861356,
+      "orders": 7835,
+      "fills": 2430,
+      "maker_fills": 2430,
+      "taker_fills": 0,
+      "contracts_traded": 18989.23,
+      "order_fill_rate": 0.2482450542437779,
+      "max_drawdown_usd": 130.706498,
+      "worst_settlement_usd": -14.7,
+      "settled_markets": 53,
+      "markout_ticks": {
+        "30": -90.7,
+        "300": 50.4
+      }
+    },
+    {
+      "model": "optimistic",
+      "latency_ms": 1000,
+      "net_usd": -29.742158,
+      "fees_usd": 1.551558,
+      "orders": 8325,
+      "fills": 3542,
+      "maker_fills": 3542,
+      "taker_fills": 0,
+      "contracts_traded": 26401.99,
+      "order_fill_rate": 0.3279279279279279,
+      "max_drawdown_usd": 87.908488,
+      "worst_settlement_usd": -15.6,
+      "settled_markets": 53,
+      "markout_ticks": {
+        "30": -25.4,
+        "300": 76.6
+      }
+    }
+  ],
+  "passive_range_usd": {
+    "200": [
+      -74.478222,
+      -0.267759
+    ],
+    "1000": [
+      -110.186465,
+      -29.742158
+    ]
+  },
+  "arbitrage": [
+    {
+      "variant": "baseline fees",
+      "opportunities_seen": 10,
+      "orders": 26,
+      "net_usd": 0.018839,
+      "fees_usd": 0.789961,
+      "fills": 27,
+      "maker_fills": 0,
+      "taker_fills": 27,
+      "contracts_traded": 227.0,
+      "order_fill_rate": 1.0,
+      "max_drawdown_usd": 3.4912,
+      "worst_settlement_usd": -4.4712,
+      "settled_markets": 53
+    },
+    {
+      "variant": "fee-free (engine exercise)",
+      "opportunities_seen": 37,
+      "orders": 96,
+      "net_usd": 9.6884,
+      "fees_usd": 0.0,
+      "fills": 105,
+      "maker_fills": 0,
+      "taker_fills": 105,
+      "contracts_traded": 2307.0,
+      "order_fill_rate": 1.0,
+      "max_drawdown_usd": 195.59,
+      "worst_settlement_usd": -199.45,
+      "settled_markets": 53
+    },
+    {
+      "variant": "fee-free, any evidence",
+      "opportunities_seen": 126,
+      "orders": 332,
+      "net_usd": 159.299,
+      "fees_usd": 0.0,
+      "fills": 300,
+      "maker_fills": 0,
+      "taker_fills": 300,
+      "contracts_traded": 5620.44,
+      "order_fill_rate": 0.8614457831325302,
+      "max_drawdown_usd": 193.466181,
+      "worst_settlement_usd": -167.806181,
+      "settled_markets": 53
+    }
+  ]
+}

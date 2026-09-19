@@ -117,6 +117,15 @@ history dataset's definition and fingerprint are untouched. `Store.read_events_w
 rebuilds domain objects (round-trip equality is tested). 14,383 settled events / 142,709 markets from
 713 series (12 most recent per series; 60 for series whose exclusivity is only exchange-declared).
 
+## Completing a books database (Stage 5)
+
+`python -m data.collectors.run refresh` re-fetches the current state of every market in a books DB (many will
+have settled) and backfills their trades with the same resumable per-(ticker, partition) sync as the history
+collector. `configs/books_shortlived.yaml` records markets scheduled to expire within 3 hours (an ex-ante
+selection), so books, trades and settlements exist for the *same* markets - the only dataset the backtest
+engine can score end to end. Poll-log gaps are real (a 21.7-minute outage was recorded); the feed turns the
+poll log into `BookConfirm` events so book freshness reflects liveness, not the time since the last change.
+
 ## Operational caveats
 
 * DuckDB allows one writer process and **no concurrent reader**. While a collector runs, query a

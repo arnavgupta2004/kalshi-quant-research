@@ -71,6 +71,44 @@ def _sql_str(s: str) -> str:
     return "'" + s.replace("'", "''") + "'"
 
 
+def _market_from_row(r: Sequence[Any], series_ticker: str | None, category: str | None) -> Market:
+    """Rebuild a domain ``Market`` from a row of ``Store._MARKET_COLS``."""
+    return Market(
+        ticker=r[0],
+        event_ticker=r[1],
+        series_ticker=series_ticker,
+        category=category,
+        title=r[2] or "",
+        yes_sub_title=r[3] or "",
+        no_sub_title=r[4] or "",
+        market_type=r[5] or "binary",
+        status=MarketStatus.parse(r[6]),
+        result=SettlementResult.parse(r[7]),
+        settlement_value=r[8],
+        strike=Strike(
+            strike_type=r[9],
+            floor=r[10],
+            cap=r[11],
+            functional=r[12],
+            custom=json.loads(r[13]) if r[13] else None,
+        ),
+        rules=Rules(r[14] or "", r[15] or "", r[16], bool(r[17])),
+        open_time=as_utc(r[18]),
+        close_time=as_utc(r[19]),
+        expected_expiration_time=as_utc(r[20]),
+        expiration_time=as_utc(r[21]),
+        settlement_ts=as_utc(r[22]),
+        price_level_structure=r[23],
+        price_ranges=tuple(
+            PriceRange(x["start"], x["end"], x["step"]) for x in json.loads(r[24] or "[]")
+        ),
+        exchange_index=r[25],
+        is_multivariate=bool(r[26]),
+        volume=r[27],
+        open_interest=r[28],
+    )
+
+
 class Store:
     def __init__(self, path: str | os.PathLike = ":memory:", *, read_only: bool = False) -> None:
         self.path = str(path)
@@ -533,44 +571,22 @@ class Store:
         )
         for r in m_rows:
             ev = events[r[1]]
-            by_event[r[1]].append(
-                Market(
-                    ticker=r[0],
-                    event_ticker=r[1],
-                    series_ticker=ev.series_ticker,
-                    category=ev.category,
-                    title=r[2] or "",
-                    yes_sub_title=r[3] or "",
-                    no_sub_title=r[4] or "",
-                    market_type=r[5] or "binary",
-                    status=MarketStatus.parse(r[6]),
-                    result=SettlementResult.parse(r[7]),
-                    settlement_value=r[8],
-                    strike=Strike(
-                        strike_type=r[9],
-                        floor=r[10],
-                        cap=r[11],
-                        functional=r[12],
-                        custom=json.loads(r[13]) if r[13] else None,
-                    ),
-                    rules=Rules(r[14] or "", r[15] or "", r[16], bool(r[17])),
-                    open_time=as_utc(r[18]),
-                    close_time=as_utc(r[19]),
-                    expected_expiration_time=as_utc(r[20]),
-                    expiration_time=as_utc(r[21]),
-                    settlement_ts=as_utc(r[22]),
-                    price_level_structure=r[23],
-                    price_ranges=tuple(
-                        PriceRange(x["start"], x["end"], x["step"])
-                        for x in json.loads(r[24] or "[]")
-                    ),
-                    exchange_index=r[25],
-                    is_multivariate=bool(r[26]),
-                    volume=r[27],
-                    open_interest=r[28],
-                )
-            )
+            by_event[r[1]].append(_market_from_row(r, ev.series_ticker, ev.category))
         return [(events[t], by_event[t]) for t in events]
+
+    def read_markets(self, tickers: Sequence[str] | None = None) -> list[Market]:
+        """Stored markets (all, or the given tickers), with event category/series joined in."""
+        where, params = "TRUE", []
+        if tickers is not None:
+            where, params = "ticker IN (SELECT unnest(?))", [list(tickers)]
+        rows = self.query(
+            f"SELECT {self._MARKET_COLS} FROM markets WHERE {where} ORDER BY ticker", params
+        )
+        meta = {
+            r[0]: (r[1], r[2])
+            for r in self.query("SELECT event_ticker, series_ticker, category FROM events")
+        }
+        return [_market_from_row(r, *meta.get(r[1], (None, None))) for r in rows]
 
     # ------------------------------------------------------------------ inspection
     def query(self, sql: str, params: Sequence[Any] = ()) -> list[tuple]:
