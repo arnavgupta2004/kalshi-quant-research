@@ -16,3 +16,5 @@ var/
 *.sqlite
 *.sqlite3
 .DS_Store
+# regenerable per-instance dump of the Stage 3 study (summary JSON + series stats are kept)
+results/**/relation_instances.csv

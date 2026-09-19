@@ -24,6 +24,7 @@ dev = [
     "pytest-timeout>=2.3",
     "hypothesis>=6.100",
     "ruff>=0.5",
+    "scipy>=1.11",  # LP oracle in tests: independent check that constraint sets are complete
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -45,3 +46,4 @@ select = ["E", "F", "I", "UP", "B"]
 "tests/*" = ["E501"]  # long literal payloads in fixtures are clearer unwrapped
 "data/schemas/ddl.py" = ["E501"]  # declarative table docs read better unwrapped
 "data/collectors/run.py" = ["E501"]  # CLI report strings
+"scripts/*" = ["E501"]  # research reports print wide tables

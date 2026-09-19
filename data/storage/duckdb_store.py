@@ -31,7 +31,17 @@ from typing import Any
 import duckdb
 
 from data.schemas.ddl import META_DDL, SCHEMA_VERSION, TABLES, VIEWS
-from market.contracts import Event, Market, Trade
+from market.contracts import (
+    Event,
+    Market,
+    MarketStatus,
+    PriceRange,
+    Rules,
+    SettlementResult,
+    SettlementSource,
+    Strike,
+    Trade,
+)
 from market.timeutil import utcnow
 
 TMP_PREFIX = "kalshi_bulk_"
@@ -447,6 +457,92 @@ class Store:
             "FROM book_snapshots GROUP BY ticker"
         ).fetchall()
         return {t: (h, ts) for t, h, ts in rows}
+
+    # ------------------------------------------------------------------ reading domain objects
+    _MARKET_COLS = (
+        "ticker, event_ticker, title, yes_sub_title, no_sub_title, market_type, status, result, "
+        "settlement_value, strike_type, floor_strike, cap_strike, functional_strike, "
+        "custom_strike::VARCHAR, rules_primary, rules_secondary, early_close_condition, "
+        "can_close_early, open_time, close_time, expected_expiration_time, expiration_time, "
+        "settlement_ts, price_level_structure, price_ranges::VARCHAR, exchange_index, "
+        "is_multivariate, volume, open_interest"
+    )
+
+    def read_events_with_markets(
+        self, where: str = "TRUE", params: Sequence[Any] = ()
+    ) -> list[tuple[Event, list[Market]]]:
+        """Complete events (event + every stored market) selected by a SQL predicate on ``events``.
+
+        ``where`` is trusted internal SQL, e.g. ``"series_ticker = ?"``."""
+        ev_rows = self.query(
+            "SELECT event_ticker, series_ticker, title, sub_title, category, mutually_exclusive, "
+            "strike_period, collateral_return_type, exchange_index, market_tickers, "
+            f"settlement_sources::VARCHAR FROM events e WHERE {where} ORDER BY event_ticker",
+            params,
+        )
+        events: dict[str, Event] = {}
+        for r in ev_rows:
+            events[r[0]] = Event(
+                event_ticker=r[0],
+                series_ticker=r[1],
+                title=r[2] or "",
+                sub_title=r[3] or "",
+                category=r[4],
+                mutually_exclusive=bool(r[5]),
+                strike_period=r[6],
+                collateral_return_type=r[7],
+                exchange_index=r[8],
+                market_tickers=tuple(r[9] or ()),
+                settlement_sources=tuple(
+                    SettlementSource(x["name"], x.get("url")) for x in json.loads(r[10] or "[]")
+                ),
+            )
+        by_event: dict[str, list[Market]] = {t: [] for t in events}
+        m_rows = self.query(
+            f"SELECT {self._MARKET_COLS} FROM markets WHERE event_ticker IN "
+            f"(SELECT event_ticker FROM events e WHERE {where}) ORDER BY ticker",
+            params,
+        )
+        for r in m_rows:
+            ev = events[r[1]]
+            by_event[r[1]].append(
+                Market(
+                    ticker=r[0],
+                    event_ticker=r[1],
+                    series_ticker=ev.series_ticker,
+                    category=ev.category,
+                    title=r[2] or "",
+                    yes_sub_title=r[3] or "",
+                    no_sub_title=r[4] or "",
+                    market_type=r[5] or "binary",
+                    status=MarketStatus.parse(r[6]),
+                    result=SettlementResult.parse(r[7]),
+                    settlement_value=r[8],
+                    strike=Strike(
+                        strike_type=r[9],
+                        floor=r[10],
+                        cap=r[11],
+                        functional=r[12],
+                        custom=json.loads(r[13]) if r[13] else None,
+                    ),
+                    rules=Rules(r[14] or "", r[15] or "", r[16], bool(r[17])),
+                    open_time=as_utc(r[18]),
+                    close_time=as_utc(r[19]),
+                    expected_expiration_time=as_utc(r[20]),
+                    expiration_time=as_utc(r[21]),
+                    settlement_ts=as_utc(r[22]),
+                    price_level_structure=r[23],
+                    price_ranges=tuple(
+                        PriceRange(x["start"], x["end"], x["step"])
+                        for x in json.loads(r[24] or "[]")
+                    ),
+                    exchange_index=r[25],
+                    is_multivariate=bool(r[26]),
+                    volume=r[27],
+                    open_interest=r[28],
+                )
+            )
+        return [(events[t], by_event[t]) for t in events]
 
     # ------------------------------------------------------------------ inspection
     def query(self, sql: str, params: Sequence[Any] = ()) -> list[tuple]:

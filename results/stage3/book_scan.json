@@ -1,0 +1,15 @@
+{
+  "books_db": "var/books_stage3.duckdb",
+  "min_level": "DECLARED",
+  "cycles": 60,
+  "relations": 10,
+  "relation_kinds": {
+    "mutually_exclusive": 10
+  },
+  "events_with_relations": 10,
+  "constraints_priced_per_cycle_median": 6,
+  "cycles_with_any_violation": 0,
+  "max_margin_ticks_overall": 0,
+  "median_best_margin_ticks": -100,
+  "violations_seen": []
+}

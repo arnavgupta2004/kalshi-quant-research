@@ -88,6 +88,7 @@ class FakeExchange:
         self.trades = trades or {}
         self.events = events if events is not None else {}
         self.page = page
+        self.event_list: list[dict] = []  # /events listing, with nested ``markets``
         self.requests: list[httpx.Request] = []
         self.crash_after: int | None = None  # raise SimulatedCrash after N requests
         self.fail_tickers: set[str] = set()  # trades endpoint -> HTTP 500 for these
@@ -158,6 +159,22 @@ class FakeExchange:
                 for x in rows
             ]
             return self.paginate(rows, request, "trades")
+        if path == "/events":
+            rows = [
+                e
+                for e in self.event_list
+                if not q.get("series_ticker") or e["series_ticker"] == q["series_ticker"]
+            ]
+            rows = [
+                dict(e)
+                for e in rows
+                if not q.get("status") or e.get("_status", "settled") == q["status"]
+            ]
+            for e in rows:
+                e.pop("_status", None)
+                if q.get("with_nested_markets") != "true":
+                    e.pop("markets", None)
+            return self.paginate(rows, request, "events")
         if path.startswith("/events/"):
             t = path.rsplit("/", 1)[1]
             if t not in self.events:

@@ -1,0 +1,8 @@
+# Complete settled events (event + all sibling markets) for relationship research (Stage 3+).
+# Series list is taken from the history dataset so results describe the same universe.
+job: events
+db_path: var/relations.duckdb     # separate file: keeps the history dataset's fingerprint untouched
+series_from_db: var/kalshi.duckdb
+per_series: 12                    # most recent settled events per series
+requests_per_second: 10
+concurrency: 4

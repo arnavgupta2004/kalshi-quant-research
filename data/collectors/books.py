@@ -227,7 +227,7 @@ class BookPoller:
         for et in sorted({m.event_ticker for m in markets} - known):
             try:
                 self.store.upsert_events(
-                    [normalize_event(await self.rest.get_event(et, with_nested_markets=False))],
+                    [normalize_event(await self.rest.get_event(et, with_nested_markets=True))],
                     self.run_id,
                 )
             except (APIError, MessageValidationError) as exc:

@@ -108,6 +108,15 @@ Binding Python values into DuckDB one by one (`executemany`, `unnest(?)`) ran at
 this machine (28 s for 50k rows). Ingestion therefore writes newline-delimited JSON and lets DuckDB
 parse it natively: **~450k rows/s**, with a regression test guarding against reverting.
 
+## Complete events (Stage 3)
+
+The history dataset samples individual markets, so it cannot say whether an event's outcomes were
+exclusive or exhaustive. `data/collectors/events.py` stores complete settled events (event + every
+sibling market, `market_tickers` populated) in `var/relations.duckdb` - a *separate* file so the
+history dataset's definition and fingerprint are untouched. `Store.read_events_with_markets()`
+rebuilds domain objects (round-trip equality is tested). 14,383 settled events / 142,709 markets from
+713 series (12 most recent per series; 60 for series whose exclusivity is only exchange-declared).
+
 ## Operational caveats
 
 * DuckDB allows one writer process and **no concurrent reader**. While a collector runs, query a

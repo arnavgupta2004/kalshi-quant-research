@@ -1,0 +1,229 @@
+{
+  "git_commit": "bf7c2a118b78314c1b3604f923d90393635b3996+dirty",
+  "source_db": "var/relations.duckdb",
+  "dataset_fingerprint": "0e18e27863ceaaf4",
+  "settled_events": 14383,
+  "settled_markets": 142709,
+  "relations_by_kind_level": [
+    {
+      "kind": "chain",
+      "level": "LATTICE",
+      "scalar_involved": false,
+      "instances": 2237,
+      "violated": 0
+    },
+    {
+      "kind": "chain",
+      "level": "LATTICE",
+      "scalar_involved": true,
+      "instances": 36,
+      "violated": 0
+    },
+    {
+      "kind": "chain",
+      "level": "PROVEN",
+      "scalar_involved": false,
+      "instances": 5224,
+      "violated": 0
+    },
+    {
+      "kind": "chain",
+      "level": "PROVEN",
+      "scalar_involved": true,
+      "instances": 22,
+      "violated": 0
+    },
+    {
+      "kind": "exhaustive",
+      "level": "EMPIRICAL",
+      "scalar_involved": false,
+      "instances": 7837,
+      "violated": 6
+    },
+    {
+      "kind": "exhaustive",
+      "level": "EMPIRICAL",
+      "scalar_involved": true,
+      "instances": 214,
+      "violated": 3
+    },
+    {
+      "kind": "exhaustive",
+      "level": "UNVERIFIED",
+      "scalar_involved": false,
+      "instances": 966,
+      "violated": 43
+    },
+    {
+      "kind": "exhaustive",
+      "level": "UNVERIFIED",
+      "scalar_involved": true,
+      "instances": 10,
+      "violated": 0
+    },
+    {
+      "kind": "mutually_exclusive",
+      "level": "DECLARED",
+      "scalar_involved": false,
+      "instances": 8803,
+      "violated": 0
+    },
+    {
+      "kind": "mutually_exclusive",
+      "level": "DECLARED",
+      "scalar_involved": true,
+      "instances": 224,
+      "violated": 0
+    },
+    {
+      "kind": "mutually_exclusive",
+      "level": "PROVEN",
+      "scalar_involved": false,
+      "instances": 596,
+      "violated": 0
+    },
+    {
+      "kind": "partition",
+      "level": "EMPIRICAL",
+      "scalar_involved": false,
+      "instances": 7837,
+      "violated": 6
+    },
+    {
+      "kind": "partition",
+      "level": "EMPIRICAL",
+      "scalar_involved": true,
+      "instances": 214,
+      "violated": 3
+    },
+    {
+      "kind": "partition",
+      "level": "LATTICE",
+      "scalar_involved": false,
+      "instances": 513,
+      "violated": 0
+    },
+    {
+      "kind": "partition",
+      "level": "UNVERIFIED",
+      "scalar_involved": false,
+      "instances": 966,
+      "violated": 43
+    },
+    {
+      "kind": "partition",
+      "level": "UNVERIFIED",
+      "scalar_involved": true,
+      "instances": 10,
+      "violated": 0
+    },
+    {
+      "kind": "union",
+      "level": "LATTICE",
+      "scalar_involved": false,
+      "instances": 10893,
+      "violated": 0
+    }
+  ],
+  "flag_audit": {
+    "flagged_events": 9541,
+    "with_scalar": 224,
+    "multi_yes": 0,
+    "zero_yes": 49,
+    "exactly_one": 9268
+  },
+  "structure_coverage_by_category": {
+    "Climate and Weather": {
+      "events": 537,
+      "with_relation_ge_LATTICE": 516
+    },
+    "Commodities": {
+      "events": 209,
+      "with_relation_ge_LATTICE": 149
+    },
+    "Crypto": {
+      "events": 440,
+      "with_relation_ge_LATTICE": 136
+    },
+    "Economics": {
+      "events": 267,
+      "with_relation_ge_LATTICE": 246
+    },
+    "Elections": {
+      "events": 9,
+      "with_relation_ge_LATTICE": 8
+    },
+    "Entertainment": {
+      "events": 259,
+      "with_relation_ge_LATTICE": 51
+    },
+    "Financials": {
+      "events": 283,
+      "with_relation_ge_LATTICE": 270
+    },
+    "Mentions": {
+      "events": 98,
+      "with_relation_ge_LATTICE": 0
+    },
+    "Politics": {
+      "events": 38,
+      "with_relation_ge_LATTICE": 29
+    },
+    "Science and Technology": {
+      "events": 18,
+      "with_relation_ge_LATTICE": 12
+    },
+    "Sports": {
+      "events": 12225,
+      "with_relation_ge_LATTICE": 2842
+    }
+  },
+  "conflicts": {
+    "count": 7,
+    "examples": [
+      "KXDATACENTCON-26SEP01-T65.0: strike says (65.0, +inf) but rules text says (65000000000.0, +inf)",
+      "KXDATACENTCON-26SEP01-T67.5: strike says (67.5, +inf) but rules text says (67500000000.0, +inf)",
+      "KXDATACENTCON-26SEP01-T70.0: strike says (70.0, +inf) but rules text says (70000000000.0, +inf)",
+      "KXDATACENTCON-26SEP01-T72.5: strike says (72.5, +inf) but rules text says (72500000000.0, +inf)",
+      "KXDATACENTCON-26SEP01-T75.0: strike says (75.0, +inf) but rules text says (75000000000.0, +inf)",
+      "KXDATACENTCON-26SEP01-T77.5: strike says (77.5, +inf) but rules text says (77500000000.0, +inf)",
+      "KXDATACENTCON-26SEP01-T80.0: strike says (80.0, +inf) but rules text says (80000000000.0, +inf)"
+    ]
+  },
+  "violation_examples": {
+    "exhaustive|UNVERIFIED|False": [
+      "KXBUNDESLIGASCORE-26SEP18BMUUNI: sum X_i >= 1 over KXBUNDESLIGASCORE-26SEP18BMUUNI-BMU0UNI0, KXBUNDESLIGASCORE-26SEP18BMUUNI-BMU0UNI1, KXBUNDES",
+      "KXMLSSCORE-26AUG29MIAMTL: sum X_i >= 1 over KXMLSSCORE-26AUG29MIAMTL-MIA0MTL0, KXMLSSCORE-26AUG29MIAMTL-MIA0MTL1, KXMLSSCORE-26AUG29MIAM",
+      "KXMLSSCORE-26SEP05PORMIN: sum X_i >= 1 over KXMLSSCORE-26SEP05PORMIN-POR0MIN0, KXMLSSCORE-26SEP05PORMIN-POR0MIN1, KXMLSSCORE-26SEP05PORM",
+      "KXMLSSCORE-26SEP05TORCHI: sum X_i >= 1 over KXMLSSCORE-26SEP05TORCHI-TOR0CHI0, KXMLSSCORE-26SEP05TORCHI-TOR0CHI1, KXMLSSCORE-26SEP05TORC"
+    ],
+    "partition|UNVERIFIED|False": [
+      "KXBUNDESLIGASCORE-26SEP18BMUUNI: sum X_i = 1 over KXBUNDESLIGASCORE-26SEP18BMUUNI-BMU0UNI0, KXBUNDESLIGASCORE-26SEP18BMUUNI-BMU0UNI1, KXBUNDESL",
+      "KXMLSSCORE-26AUG29MIAMTL: sum X_i = 1 over KXMLSSCORE-26AUG29MIAMTL-MIA0MTL0, KXMLSSCORE-26AUG29MIAMTL-MIA0MTL1, KXMLSSCORE-26AUG29MIAMT",
+      "KXMLSSCORE-26SEP05PORMIN: sum X_i = 1 over KXMLSSCORE-26SEP05PORMIN-POR0MIN0, KXMLSSCORE-26SEP05PORMIN-POR0MIN1, KXMLSSCORE-26SEP05PORMI",
+      "KXMLSSCORE-26SEP05TORCHI: sum X_i = 1 over KXMLSSCORE-26SEP05TORCHI-TOR0CHI0, KXMLSSCORE-26SEP05TORCHI-TOR0CHI1, KXMLSSCORE-26SEP05TORCH"
+    ],
+    "exhaustive|EMPIRICAL|True": [
+      "KXDPWT3BALL-BMPC26R1MELVDLAWRGOU: sum X_i >= 1 over KXDPWT3BALL-BMPC26R1MELVDLAWRGOU-DLAW, KXDPWT3BALL-BMPC26R1MELVDLAWRGOU-MELV, KXDPWT3BALL-BM",
+      "KXDPWT3BALL-BMPC26R1SNORDPUIBWIE: sum X_i >= 1 over KXDPWT3BALL-BMPC26R1SNORDPUIBWIE-BWIE, KXDPWT3BALL-BMPC26R1SNORDPUIBWIE-DPUI, KXDPWT3BALL-BM",
+      "KXLALIGAGAME-26AUG16RCCOSA: sum X_i >= 1 over KXLALIGAGAME-26AUG16RCCOSA-OSA, KXLALIGAGAME-26AUG16RCCOSA-RCC, KXLALIGAGAME-26AUG16RCCOSA-T"
+    ],
+    "partition|EMPIRICAL|True": [
+      "KXDPWT3BALL-BMPC26R1MELVDLAWRGOU: sum X_i = 1 over KXDPWT3BALL-BMPC26R1MELVDLAWRGOU-DLAW, KXDPWT3BALL-BMPC26R1MELVDLAWRGOU-MELV, KXDPWT3BALL-BMP",
+      "KXDPWT3BALL-BMPC26R1SNORDPUIBWIE: sum X_i = 1 over KXDPWT3BALL-BMPC26R1SNORDPUIBWIE-BWIE, KXDPWT3BALL-BMPC26R1SNORDPUIBWIE-DPUI, KXDPWT3BALL-BMP",
+      "KXLALIGAGAME-26AUG16RCCOSA: sum X_i = 1 over KXLALIGAGAME-26AUG16RCCOSA-OSA, KXLALIGAGAME-26AUG16RCCOSA-RCC, KXLALIGAGAME-26AUG16RCCOSA-TI"
+    ],
+    "exhaustive|EMPIRICAL|False": [
+      "KXEPL1HSCORE-26AUG23BRIAVL: sum X_i >= 1 over KXEPL1HSCORE-26AUG23BRIAVL-BRI0AVL0, KXEPL1HSCORE-26AUG23BRIAVL-BRI0AVL1, KXEPL1HSCORE-26AUG",
+      "KXLALIGASCORE-26AUG29LEVRBB: sum X_i >= 1 over KXLALIGASCORE-26AUG29LEVRBB-LEV0RBB0, KXLALIGASCORE-26AUG29LEVRBB-LEV0RBB1, KXLALIGASCORE-26",
+      "KXLALIGASCORE-26SEP06ALAOSA: sum X_i >= 1 over KXLALIGASCORE-26SEP06ALAOSA-ALA0OSA0, KXLALIGASCORE-26SEP06ALAOSA-ALA0OSA1, KXLALIGASCORE-26",
+      "KXLIGAMXSCORE-26AUG15MONJUA: sum X_i >= 1 over KXLIGAMXSCORE-26AUG15MONJUA-MON0JUA0, KXLIGAMXSCORE-26AUG15MONJUA-MON0JUA1, KXLIGAMXSCORE-26"
+    ],
+    "partition|EMPIRICAL|False": [
+      "KXEPL1HSCORE-26AUG23BRIAVL: sum X_i = 1 over KXEPL1HSCORE-26AUG23BRIAVL-BRI0AVL0, KXEPL1HSCORE-26AUG23BRIAVL-BRI0AVL1, KXEPL1HSCORE-26AUG2",
+      "KXLALIGASCORE-26AUG29LEVRBB: sum X_i = 1 over KXLALIGASCORE-26AUG29LEVRBB-LEV0RBB0, KXLALIGASCORE-26AUG29LEVRBB-LEV0RBB1, KXLALIGASCORE-26A",
+      "KXLALIGASCORE-26SEP06ALAOSA: sum X_i = 1 over KXLALIGASCORE-26SEP06ALAOSA-ALA0OSA0, KXLALIGASCORE-26SEP06ALAOSA-ALA0OSA1, KXLALIGASCORE-26S",
+      "KXLIGAMXSCORE-26AUG15MONJUA: sum X_i = 1 over KXLIGAMXSCORE-26AUG15MONJUA-MON0JUA0, KXLIGAMXSCORE-26AUG15MONJUA-MON0JUA1, KXLIGAMXSCORE-26A"
+    ]
+  }
+}

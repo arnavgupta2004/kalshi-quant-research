@@ -109,7 +109,22 @@ class BooksConfig:
             raise ConfigError("mode must be 'rest' or 'ws'")
 
 
-def load_config(path: str | Path) -> HistoryConfig | BooksConfig:
+@dataclass
+class EventsConfig:
+    """Complete settled events (all sibling markets) for relationship research."""
+
+    job: str = "events"
+    db_path: str = "var/relations.duckdb"
+    series_from_db: str | None = "var/kalshi.duckdb"  # take the series list from another dataset
+    series: list[str] = field(default_factory=list)  # ...or list them explicitly
+    per_series: int = 12  # most recent settled events per series
+    requests_per_second: float = 10.0
+    concurrency: int = 4
+    max_retries: int = 10
+    backoff_max_s: float = 30.0
+
+
+def load_config(path: str | Path) -> HistoryConfig | BooksConfig | EventsConfig:
     data = yaml.safe_load(Path(path).read_text()) or {}
     job = data.get("job")
     if job == "history":
@@ -124,7 +139,9 @@ def load_config(path: str | Path) -> HistoryConfig | BooksConfig:
         return _strict(
             BooksConfig, {**data, "selection": _strict(BookSelection, s, "selection")}, "books"
         )
-    raise ConfigError(f"config needs `job: history|books`, got {job!r}")
+    if job == "events":
+        return _strict(EventsConfig, data, "events")
+    raise ConfigError(f"config needs `job: history|books|events`, got {job!r}")
 
 
 def to_plain(obj: Any) -> Any:

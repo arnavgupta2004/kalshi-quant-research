@@ -2,6 +2,7 @@
 
     python -m data.collectors.run history --config configs/history.yaml
     python -m data.collectors.run books   --config configs/books.yaml [--duration 600]
+    python -m data.collectors.run events  --config configs/events.yaml   # complete settled events
     python -m data.collectors.run status  [--db var/kalshi.duckdb]
     python -m data.collectors.run verify  [--db var/kalshi.duckdb]   # trade completeness check
     python -m data.collectors.run export  --db var/kalshi.duckdb --out var/export
@@ -19,7 +20,14 @@ import sys
 from pathlib import Path
 
 from data.collectors.books import BookPoller, record_ws, select_book_tickers
-from data.collectors.config import BooksConfig, ConfigError, HistoryConfig, load_config
+from data.collectors.config import (
+    BooksConfig,
+    ConfigError,
+    EventsConfig,
+    HistoryConfig,
+    load_config,
+)
+from data.collectors.events import EventCollector
 from data.collectors.history import HistoryCollector
 from data.schemas.ddl import TABLES
 from data.storage.duckdb_store import Store
@@ -72,6 +80,34 @@ async def cmd_books(cfg: BooksConfig) -> int:
                 s = await poller.run()
                 print(s)
     return 0
+
+
+async def cmd_events(cfg: EventsConfig) -> int:
+    series = list(cfg.series)
+    if not series and cfg.series_from_db:
+        with Store(cfg.series_from_db, read_only=True) as src:
+            series = [
+                r[0]
+                for r in src.query(
+                    "SELECT DISTINCT series_ticker FROM events WHERE series_ticker IS NOT NULL"
+                )
+            ]
+    if not series:
+        print("no series given (set `series` or `series_from_db`)", file=sys.stderr)
+        return 2
+    with Store(cfg.db_path) as store:
+        async with KalshiRestClient(
+            KalshiConfig.from_env(),
+            requests_per_second=cfg.requests_per_second,
+            max_retries=cfg.max_retries,
+            backoff_max=cfg.backoff_max_s,
+        ) as rest:
+            s = await EventCollector(store, rest, cfg, series, git_commit=git_commit()).run()
+    print(
+        f"run {s.run_id}: {s.events} events / {s.markets} markets from {s.series_fetched} series "
+        f"({s.series_skipped} already complete), {len(s.failures)} failures, {s.quarantined} quarantined"
+    )
+    return 1 if s.failures else 0
 
 
 def cmd_status(db: str) -> int:
@@ -145,7 +181,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     ap.add_argument("-v", "--verbose", action="store_true")
     sub = ap.add_subparsers(dest="cmd", required=True)
-    for name in ("history", "books"):
+    for name in ("history", "books", "events"):
         p = sub.add_parser(name)
         p.add_argument("--config", required=True)
         p.add_argument("--db", help="override db_path from the config")
@@ -182,6 +218,10 @@ def main(argv: list[str] | None = None) -> int:
             if not isinstance(cfg, HistoryConfig):
                 sys.exit(f"{args.config} is not a history config")
             return asyncio.run(cmd_history(cfg))
+        if args.cmd == "events":
+            if not isinstance(cfg, EventsConfig):
+                sys.exit(f"{args.config} is not an events config")
+            return asyncio.run(cmd_events(cfg))
         if not isinstance(cfg, BooksConfig):
             sys.exit(f"{args.config} is not a books config")
         if args.duration is not None:
