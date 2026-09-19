@@ -154,6 +154,9 @@ class Market:
     exchange_index: int | None
     is_multivariate: bool
     updated_time: datetime | None = None
+    #: lifetime contracts traded / open interest in centi-contracts (a snapshot at fetch time)
+    volume: Qty | None = None
+    open_interest: Qty | None = None
     raw: dict[str, Any] = field(default_factory=dict, repr=False, compare=False, hash=False)
 
     @property

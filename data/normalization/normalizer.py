@@ -116,6 +116,8 @@ def normalize_market(
         exchange_index=api.exchange_index,
         is_multivariate=api.mve_collection_ticker is not None,
         updated_time=api.updated_time,
+        volume=api.volume_fp,
+        open_interest=api.open_interest_fp,
         raw=raw if raw is not None else api.model_dump(mode="json"),
     )
 

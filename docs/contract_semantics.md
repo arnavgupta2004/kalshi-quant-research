@@ -70,6 +70,12 @@ event is `false`, and neither flag says whether the outcomes are collectively ex
 | Data is partitioned live/historical at `GET /historical/cutoff` (currently 2026-07-20) | historical endpoints exposed via `historical=True`; the Stage 2 collector must union both |
 | 429 responses carry no `Retry-After`; limits are token-bucket | client-side pacing + exponential backoff with jitter |
 | Intermittent `ConnectError('')` on fresh connections | transparent retry (observed and recovered in live runs) |
+| **No historical order books exist** (`/historical/markets/{t}/orderbook` -> 404) | book history must be self-recorded (Stage 2 `BookPoller` / `WsBookRecorder`) |
+| `/historical/markets` **ignores** `min_close_ts`/`max_close_ts`; it is ordered by `created_time` desc | scan with an early stop on `created_time`; ordering asserted at runtime |
+| The live/historical cutoff **moves** (07-20 -> 07-21 within a day) and the live listing overlaps it | trades routed per market from open/close vs cutoff; cutoff recorded per run; dedupe on `trade_id`/ticker |
+| ~70,000 settled markets per day; mostly crypto strike ladders; only ~19% have >=100 contracts volume | per-series cap + volume filter in the universe spec |
+| Invalid pagination cursors are **silently treated as page 1** (no error) | resume verifies the first page against the recorded one |
+| A market's lifetime `volume_fp` equals the sum of its public trade sizes exactly | used as a completeness check (`verify` command); 3,000/3,000 collected markets reconcile |
 
 ## 6. Open assumptions
 

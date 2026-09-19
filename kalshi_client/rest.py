@@ -180,8 +180,16 @@ class KalshiRestClient:
         *,
         limit: int | None,
         on_invalid: OnInvalid | None,
+        start_cursor: str | None = None,
+        on_page: Callable[[str | None], None] | None = None,
     ) -> AsyncIterator[M]:
-        cursor: str | None = None
+        """Cursor-paginate.  ``on_page(next_cursor)`` fires once every item of a page has been
+        consumed (``None`` after the last page) - the safe moment to checkpoint, because the
+        consumer's state then reflects exactly the pages before ``next_cursor``.
+
+        NOTE (verified live): the exchange silently treats an *invalid* cursor as "start from
+        page 1" instead of erroring, so a caller resuming from a saved cursor must verify it."""
+        cursor: str | None = start_cursor
         seen_cursors: set[str] = set()
         yielded = 0
         while True:
@@ -202,6 +210,8 @@ class KalshiRestClient:
                 if limit is not None and yielded >= limit:
                     return
             cursor = data.get("cursor") or None
+            if on_page is not None:
+                on_page(cursor)
             if not cursor:
                 return
             if cursor in seen_cursors:  # defensive: a stuck cursor would loop forever
@@ -235,6 +245,8 @@ class KalshiRestClient:
         limit: int | None = None,
         historical: bool = False,
         on_invalid: OnInvalid | None = None,
+        start_cursor: str | None = None,
+        on_page: Callable[[str | None], None] | None = None,
     ) -> AsyncIterator[ApiMarket]:
         """Iterate markets.  Multivariate ("combo") markets are excluded by default because
         they are path-dependent parlays, not the plain binary claims this project studies."""
@@ -250,7 +262,14 @@ class KalshiRestClient:
         }
         endpoint = "/historical/markets" if historical else "/markets"
         return self._paginate(
-            endpoint, "markets", ApiMarket, params, limit=limit, on_invalid=on_invalid
+            endpoint,
+            "markets",
+            ApiMarket,
+            params,
+            limit=limit,
+            on_invalid=on_invalid,
+            start_cursor=start_cursor,
+            on_page=on_page,
         )
 
     # ------------------------------------------------------------------ events

@@ -43,3 +43,5 @@ select = ["E", "F", "I", "UP", "B"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["E501"]  # long literal payloads in fixtures are clearer unwrapped
+"data/schemas/ddl.py" = ["E501"]  # declarative table docs read better unwrapped
+"data/collectors/run.py" = ["E501"]  # CLI report strings

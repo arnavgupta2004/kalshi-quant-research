@@ -1,0 +1,16 @@
+# Forward order-book collection for arbitrage / market-making research (Stages 4-11).
+# Kalshi serves no historical books, so THIS is the only way to build them: leave it running.
+# REST polling works without credentials; set mode: ws (needs an API key) for event-level data.
+job: books
+db_path: var/books.duckdb          # separate file: DuckDB allows one writer, and this runs for days
+mode: rest
+interval_s: 5
+duration_s: null               # null = until Ctrl-C
+heartbeat_s: 60
+metadata_refresh_s: 600
+requests_per_second: 10
+selection:
+  top_events: 20
+  max_tickers: 150
+  min_event_markets: 2         # multi-outcome events: needed for exhaustive/logical arbitrage
+  include_siblings: true

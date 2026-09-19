@@ -1,0 +1,17 @@
+# Settled-market dataset for calibration (Stage 8) and market-category analysis.
+# Re-running this config resumes: it selects the same markets and skips finished ones.
+job: history
+db_path: var/kalshi.duckdb
+requests_per_second: 10
+concurrency: 6
+universe:
+  status: settled
+  close_after: 2026-09-01        # window of market CLOSE times (UTC, half-open)
+  close_before: 2026-09-13       # whole window is post-cutoff -> no slow historical-partition scan
+                                 # Stage 12 split: research = closes before 09-08, out-of-sample = 09-08..09-13
+  min_volume: 100                # contracts traded over the market's life
+  sample_fraction: 1.0
+  seed: 20260919
+  max_per_series: 20             # stops strike-ladder series from dominating the sample
+  max_markets: 3000
+  created_lookback_days: 7
