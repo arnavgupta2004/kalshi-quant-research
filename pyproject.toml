@@ -50,3 +50,4 @@ select = ["E", "F", "I", "UP", "B"]
 "scripts/*" = ["E501"]  # research reports print wide tables
 "research/report.py" = ["E501"]  # markdown table rows
 "pricing/report.py" = ["E501"]  # markdown table rows
+"research/calibration_report.py" = ["E501"]  # markdown table rows

@@ -1,0 +1,257 @@
+{
+ "price_asc": {
+  "market_log_loss": 0.3658544827455609,
+  "citl": -0.014412162162162123,
+  "slope": 0.9521141114656922,
+  "slope_ci": [
+   0.8434719985229024,
+   1.089297814880431
+  ],
+  "blend_slope_ci": [
+   0.7781009031110803,
+   1.0052594525366851
+  ],
+  "verdicts": {
+   "P1": "consistent",
+   "P2": "consistent",
+   "P3": "consistent",
+   "P4": "consistent",
+   "P5": "consistent",
+   "P6": "consistent",
+   "P7": "consistent",
+   "C1": "consistent",
+   "C2": "consistent",
+   "C3": "consistent",
+   "C4": "consistent",
+   "C5": "consistent",
+   "C6": "consistent",
+   "C7": "consistent",
+   "C8": "consistent",
+   "C9": "consistent",
+   "C10": "consistent"
+  },
+  "observed": {
+   "P1": "market minus constant = -0.299",
+   "P2": "A minus market = -0.0007",
+   "P3": "recalibrated B minus constant = -0.0171",
+   "P4": "blend weight on B fitted on this period = +0.058",
+   "P5": "microprice minus mid = +0.0157 (681 instances)",
+   "P6": "C minus market = +0.0013 (32 events)",
+   "P7": "slope 0.95; Platt recalibration gain -0.0010",
+   "C1": "YES minus price = -0.014 [-0.040, +0.012]",
+   "C2": "reliability / resolution = 0.0069",
+   "C3": "largest decile gap -0.032 (bin [0.90, 1.00), n=271)",
+   "C4": "YES minus price for prices < 20% = -0.0093 (n=760)",
+   "C5": "slope in the last half hour = 0.95",
+   "C6": "isotonic recalibration gain in log loss = +0.0001",
+   "C7": "A slope 0.95 [0.8434749365539219, 1.0893002284830833]; blend slope 0.88 [0.7781009031110803, 1.0052594525366851]",
+   "C8": "book-mid gap -0.003; A_book minus market -0.0001",
+   "C9": "1 of 23 subgroup gaps have an interval excluding 0",
+   "C10": "lowest lifetime-volume tercile: YES minus price = -0.023"
+  }
+ },
+ "price_desc": {
+  "market_log_loss": 0.3610519859778628,
+  "citl": -0.008816441441441392,
+  "slope": 0.9737286156612859,
+  "slope_ci": [
+   0.8628552558690279,
+   1.1170107367511724
+  ],
+  "blend_slope_ci": [
+   0.7944553818613755,
+   1.0298771208487232
+  ],
+  "verdicts": {
+   "P1": "consistent",
+   "P2": "consistent",
+   "P3": "consistent",
+   "P4": "consistent",
+   "P5": "consistent",
+   "P6": "consistent",
+   "P7": "consistent",
+   "C1": "consistent",
+   "C2": "consistent",
+   "C3": "consistent",
+   "C4": "consistent",
+   "C5": "consistent",
+   "C6": "consistent",
+   "C7": "consistent",
+   "C8": "consistent",
+   "C9": "consistent",
+   "C10": "consistent"
+  },
+  "observed": {
+   "P1": "market minus constant = -0.303",
+   "P2": "A minus market = -0.0002",
+   "P3": "recalibrated B minus constant = -0.0171",
+   "P4": "blend weight on B fitted on this period = +0.036",
+   "P5": "microprice minus mid = +0.0157 (681 instances)",
+   "P6": "C minus market = +0.0011 (32 events)",
+   "P7": "slope 0.97; Platt recalibration gain -0.0011",
+   "C1": "YES minus price = -0.009 [-0.034, +0.018]",
+   "C2": "reliability / resolution = 0.0046",
+   "C3": "largest decile gap -0.028 (bin [0.90, 1.00), n=264)",
+   "C4": "YES minus price for prices < 20% = -0.0078 (n=769)",
+   "C5": "slope in the last half hour = 1.03",
+   "C6": "isotonic recalibration gain in log loss = -0.0023",
+   "C7": "A slope 0.97 [0.8628559441047003, 1.1170119068973987]; blend slope 0.90 [0.7944553818613755, 1.0298771208487232]",
+   "C8": "book-mid gap -0.003; A_book minus market -0.0000",
+   "C9": "0 of 23 subgroup gaps have an interval excluding 0",
+   "C10": "lowest lifetime-volume tercile: YES minus price = -0.016"
+  }
+ },
+ "trade_id": {
+  "market_log_loss": 0.3632390175719898,
+  "citl": -0.012025619369369356,
+  "slope": 0.960903455334598,
+  "slope_ci": [
+   0.8531653317045167,
+   1.0992162462923816
+  ],
+  "blend_slope_ci": [
+   0.7847565316841266,
+   1.0101484454585874
+  ],
+  "verdicts": {
+   "P1": "consistent",
+   "P2": "consistent",
+   "P3": "consistent",
+   "P4": "consistent",
+   "P5": "consistent",
+   "P6": "consistent",
+   "P7": "consistent",
+   "C1": "consistent",
+   "C2": "consistent",
+   "C3": "consistent",
+   "C4": "consistent",
+   "C5": "consistent",
+   "C6": "consistent",
+   "C7": "consistent",
+   "C8": "consistent",
+   "C9": "consistent",
+   "C10": "consistent"
+  },
+  "observed": {
+   "P1": "market minus constant = -0.301",
+   "P2": "A minus market = -0.0004",
+   "P3": "recalibrated B minus constant = -0.0171",
+   "P4": "blend weight on B fitted on this period = +0.049",
+   "P5": "microprice minus mid = +0.0157 (681 instances)",
+   "P6": "C minus market = +0.0012 (32 events)",
+   "P7": "slope 0.96; Platt recalibration gain -0.0012",
+   "C1": "YES minus price = -0.012 [-0.038, +0.014]",
+   "C2": "reliability / resolution = 0.0039",
+   "C3": "largest decile gap -0.031 (bin [0.90, 1.00), n=271)",
+   "C4": "YES minus price for prices < 20% = -0.0084 (n=765)",
+   "C5": "slope in the last half hour = 0.99",
+   "C6": "isotonic recalibration gain in log loss = -0.0008",
+   "C7": "A slope 0.96 [0.853167462061925, 1.0992213959941364]; blend slope 0.88 [0.7847565316841266, 1.0101484454585874]",
+   "C8": "book-mid gap -0.003; A_book minus market -0.0000",
+   "C9": "0 of 23 subgroup gaps have an interval excluding 0",
+   "C10": "lowest lifetime-volume tercile: YES minus price = -0.020"
+  }
+ },
+ "shuffle_1": {
+  "market_log_loss": 0.3627866068630703,
+  "citl": -0.011540822072072021,
+  "slope": 0.9660341176391802,
+  "slope_ci": [
+   0.8547071058527363,
+   1.1069131238706484
+  ],
+  "blend_slope_ci": [
+   0.786129864748024,
+   1.0173577101595686
+  ],
+  "verdicts": {
+   "P1": "consistent",
+   "P2": "consistent",
+   "P3": "consistent",
+   "P4": "consistent",
+   "P5": "consistent",
+   "P6": "consistent",
+   "P7": "consistent",
+   "C1": "consistent",
+   "C2": "consistent",
+   "C3": "consistent",
+   "C4": "consistent",
+   "C5": "consistent",
+   "C6": "consistent",
+   "C7": "consistent",
+   "C8": "consistent",
+   "C9": "consistent",
+   "C10": "consistent"
+  },
+  "observed": {
+   "P1": "market minus constant = -0.302",
+   "P2": "A minus market = -0.0004",
+   "P3": "recalibrated B minus constant = -0.0171",
+   "P4": "blend weight on B fitted on this period = +0.044",
+   "P5": "microprice minus mid = +0.0157 (681 instances)",
+   "P6": "C minus market = +0.0012 (32 events)",
+   "P7": "slope 0.97; Platt recalibration gain -0.0011",
+   "C1": "YES minus price = -0.012 [-0.037, +0.015]",
+   "C2": "reliability / resolution = 0.0057",
+   "C3": "largest decile gap -0.029 (bin [0.90, 1.00), n=266)",
+   "C4": "YES minus price for prices < 20% = -0.0086 (n=765)",
+   "C5": "slope in the last half hour = 1.02",
+   "C6": "isotonic recalibration gain in log loss = -0.0009",
+   "C7": "A slope 0.97 [0.8547100376661768, 1.1069176553672875]; blend slope 0.89 [0.786129864748024, 1.0173577101595686]",
+   "C8": "book-mid gap -0.003; A_book minus market -0.0000",
+   "C9": "1 of 23 subgroup gaps have an interval excluding 0",
+   "C10": "lowest lifetime-volume tercile: YES minus price = -0.019"
+  }
+ },
+ "shuffle_2": {
+  "market_log_loss": 0.3616144931253711,
+  "citl": -0.01081221846846847,
+  "slope": 0.969789112850963,
+  "slope_ci": [
+   0.8587896417094572,
+   1.1134594725650553
+  ],
+  "blend_slope_ci": [
+   0.7959100489626686,
+   1.032160958527895
+  ],
+  "verdicts": {
+   "P1": "consistent",
+   "P2": "consistent",
+   "P3": "consistent",
+   "P4": "consistent",
+   "P5": "consistent",
+   "P6": "consistent",
+   "P7": "consistent",
+   "C1": "consistent",
+   "C2": "consistent",
+   "C3": "consistent",
+   "C4": "consistent",
+   "C5": "consistent",
+   "C6": "consistent",
+   "C7": "consistent",
+   "C8": "consistent",
+   "C9": "consistent",
+   "C10": "consistent"
+  },
+  "observed": {
+   "P1": "market minus constant = -0.303",
+   "P2": "A minus market = -0.0004",
+   "P3": "recalibrated B minus constant = -0.0171",
+   "P4": "blend weight on B fitted on this period = +0.040",
+   "P5": "microprice minus mid = +0.0157 (681 instances)",
+   "P6": "C minus market = +0.0012 (32 events)",
+   "P7": "slope 0.97; Platt recalibration gain -0.0008",
+   "C1": "YES minus price = -0.011 [-0.037, +0.016]",
+   "C2": "reliability / resolution = 0.0059",
+   "C3": "largest decile gap -0.029 (bin [0.90, 1.00), n=267)",
+   "C4": "YES minus price for prices < 20% = -0.0084 (n=765)",
+   "C5": "slope in the last half hour = 1.02",
+   "C6": "isotonic recalibration gain in log loss = -0.0011",
+   "C7": "A slope 0.97 [0.858790848364523, 1.1134629910084435]; blend slope 0.90 [0.7959100489626686, 1.032160958527895]",
+   "C8": "book-mid gap -0.003; A_book minus market -0.0000",
+   "C9": "0 of 23 subgroup gaps have an interval excluding 0",
+   "C10": "lowest lifetime-volume tercile: YES minus price = -0.019"
+  }
+ }
+}
