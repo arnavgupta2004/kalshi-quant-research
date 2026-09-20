@@ -163,3 +163,23 @@ drawdown at $300 (vs $600) without creating edge. All 8 pre-registered hypothese
 worsens near resolution", holds only by a 0.03¢ gap and is a null in substance). Caveat: the maker quotes around a
 polled, ~3 s stale mid while fills come from timely trades, so this measures that information set, not a live-feed
 system. See [`docs/market_making.md`](docs/market_making.md).
+
+## Adaptive market maker (Stage 10)
+
+```bash
+python -m scripts.stage10_adaptive_mm --role development --out results/stage10/dev
+```
+
+The Stage 9 maker plus four measured adjustments, each one formula with a switch (all off = the baseline,
+quote for quote): a fair-value shift from a frozen ridge forecast of the next 5 s mid move, adverse-selection
+widening by the forecast size of the next move, size inversely to it, and a time-to-resolution skew. Models are
+fitted on the Stage 9 confirmatory databases (now training data) and admitted or rejected on databases they never
+saw. Findings: of the microstructure features only a **staleness correction** (prints newer than the polled book,
+what a live feed would show for free) transfers out of sample (skill 1.4% [0.9, 2.0]); order-book imbalance, flow
+and momentum look useful in-sample and lose it out of sample (momentum significantly). The *size* of the next move
+is forecastable (10%), its direction is not, and fill toxicity barely depends on it (-1.66¢ in every volatility
+state). Consequently **no adaptation improves fill quality per contract**; sizing by expected volatility cuts the
+loss (-$317 to -$112 on validation) only by trading 71% fewer contracts, at a *worse* per-contract result, and
+widening is monotonically worse. All 11 pre-registered hypotheses hold on the validation data (by construction);
+the confirmatory run on a fresh recording is pending (frozen fingerprint `dabbe4d46dbefeee`) and its data are
+thin. See [`docs/adaptive_market_maker.md`](docs/adaptive_market_maker.md).

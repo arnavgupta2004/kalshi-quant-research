@@ -1,0 +1,47 @@
+{
+ "databases": [
+  "var/books_shortlived.duckdb",
+  "var/books_research_short.duckdb",
+  "var/books_research_wide.duckdb"
+ ],
+ "fills": 3644,
+ "terciles_of_forecast_scale": [
+  {
+   "sigma_hat_cents": [
+    0.1511750428358482,
+    0.6065622753603125
+   ],
+   "fills": 1227,
+   "mean_markout_30s_cents": -1.6312143439282805,
+   "contract_weighted_markout_30s_cents": -1.9240446248564793,
+   "mean_settled_pnl_cents_per_contract": -1.5478214688393723,
+   "settled_fills": 777
+  },
+  {
+   "sigma_hat_cents": [
+    0.6065622753603125,
+    1.2137452520595988
+   ],
+   "fills": 1235,
+   "mean_markout_30s_cents": -1.6591093117408906,
+   "contract_weighted_markout_30s_cents": -1.7064352701150411,
+   "mean_settled_pnl_cents_per_contract": -2.8572963736402266,
+   "settled_fills": 937
+  },
+  {
+   "sigma_hat_cents": [
+    1.2137452520595988,
+    9.334817565412548
+   ],
+   "fills": 1215,
+   "mean_markout_30s_cents": -2.1526748971193417,
+   "contract_weighted_markout_30s_cents": -2.2707543566157975,
+   "mean_settled_pnl_cents_per_contract": -2.988412542744469,
+   "settled_fills": 1089
+  }
+ ],
+ "markout_slope_cents_per_cent_of_sigma": -0.12584194874258428,
+ "markout_intercept_cents": -1.6637715319355468,
+ "corr_sigma_abs_markout": 0.14929335444861647,
+ "note": "fills are not independent (clustered by event); no intervals are claimed"
+}
