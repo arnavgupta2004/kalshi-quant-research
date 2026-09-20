@@ -207,6 +207,15 @@ def test_the_pattern_the_hypotheses_expect_is_scored_consistent():
     assert all(x == "consistent" for x in v.values()), v
 
 
+def test_the_staleness_and_extra_feature_hypotheses_test_what_they_say():
+    b = toy_block()
+    b["ladder"]["contrasts"]["2 vs 1"] = {"settled_cents_per_contract": est(-0.2, -0.6, 0.2)}
+    b["ladder"]["contrasts"]["3 vs 2"] = {"settled_cents_per_contract": est(0.9, 0.3, 1.5)}
+    v = {h: verdict for h, verdict, *_ in H.evaluate(b)}
+    assert v["T4"] == "NOT consistent"  # the staleness fair value made fills worse
+    assert v["T5"] == "NOT consistent"  # extra features gained significantly
+
+
 def test_a_significant_improvement_or_a_profit_contradicts_them():
     b = toy_block()
     full = b["ladder"]["rows"][H.FULL]
@@ -290,3 +299,69 @@ def test_features_are_sampled_at_trades_as_well_as_books_and_respect_the_gap():
     assert len(s) == 4  # three book updates and the print at 5 s
     s2 = S.build_samples(_toy_feed(), "toy", horizons=(5.0,), min_gap_s=8.0)
     assert len(s2) == 3  # samples closer than 8 s to the previous one are skipped
+
+
+# ------------------------------------------------------------------ recording outages
+def _outage_feed():
+    """A recorder that polls every 10 s, then goes dark from 20 s to 200 s while the tape keeps going."""
+    from datetime import UTC, datetime, timedelta
+
+    from backtest.events import BookConfirm, BookUpdate, TradeTick
+    from backtest.feed import ListFeed
+    from backtest.market_info import MarketInfo
+    from market.contracts import Rules, Side, Strike, Trade
+
+    T0 = 1_800_000_000 * S.SEC
+
+    def at(sec):
+        return T0 + int(sec * S.SEC)
+
+    def book(sec, bid):
+        return BookUpdate(at(sec), "A", ((bid, 10_000),), ((10_000 - bid - 200, 10_000),))
+
+    def trade(sec, tid):
+        tr = Trade(tid, "A", 5000, 5000, 1000, Side.YES, "bid", datetime.now(UTC))
+        return TradeTick(at(sec), "A", tr)
+
+    end = datetime.fromtimestamp(T0 / S.SEC, UTC) + timedelta(hours=2)
+    info = MarketInfo("A", "E1", "KX", "Sports", "t", "y", "n", Strike(), Rules(), None, end, ())
+    events = [
+        book(0, 4900),
+        BookConfirm(at(0)),
+        BookConfirm(at(10)),
+        trade(15, "before"),  # a print 5 s after the last poll: a fine sample
+        BookConfirm(at(20)),
+        trade(100, "inside-outage"),  # the recorder was dark: no book for 80 s
+        trade(150, "inside-outage-2"),
+        BookConfirm(at(200)),
+        book(200, 5400),  # the mid jumped while nobody was looking
+        trade(205, "after"),
+        BookConfirm(at(210)),
+    ]
+    feed = ListFeed(events)
+    feed.infos = {"A": info}
+    return feed
+
+
+def test_prints_inside_a_recording_outage_are_not_sampled():
+    s = S.build_samples(_outage_feed(), "toy", horizons=(5.0,), min_gap_s=1.0)
+    secs = sorted(round((t - s.ts.min()) / S.SEC) for t in s.ts)
+    assert 100 not in secs and 150 not in secs  # the book was 80-130 s old: no defensible sample
+    assert 15 in secs and 205 in secs and 0 in secs and 200 in secs
+
+
+def test_a_label_that_crosses_an_outage_is_dropped_rather_than_recorded_as_no_move():
+    s = S.build_samples(_outage_feed(), "toy", horizons=(5.0, 30.0), min_gap_s=1.0)
+    t0 = s.ts.min()
+    by = {round((t - t0) / S.SEC): i for i, t in enumerate(s.ts)}
+    assert not np.isnan(s.y[5.0][by[0]])  # 0 -> 5 s: fully observed
+    assert not np.isnan(s.y[5.0][by[15]])  # 15 -> 20 s: ends exactly as the outage begins
+    assert np.isnan(s.y[30.0][by[15]])  # 15 -> 45 s runs into the outage
+    assert not np.isnan(s.y[5.0][by[200]])  # 200 -> 205 s: after it
+
+
+def test_a_feed_without_poll_confirmations_has_no_outages():
+    s = S.build_samples(_toy_feed(), "toy", horizons=(5.0,), min_gap_s=1.0)
+    assert len(s) == 4 and not np.isnan(
+        s.y[5.0][0]
+    )  # unchanged behaviour for a feed of book changes

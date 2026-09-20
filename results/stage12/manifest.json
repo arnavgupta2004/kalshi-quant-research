@@ -1,0 +1,254 @@
+{
+ "experiments": [
+  {
+   "result": "results/stage3/relations_summary.json",
+   "sha256": "cbdca4a0053bfb35",
+   "git_commit": "f521a94e8bd3236183ffb87d6c2384001df6ba8c+dirty"
+  },
+  {
+   "result": "results/stage4/replay.json",
+   "sha256": "bfedba0bdab13ce0",
+   "git_commit": "f521a94e8bd3236183ffb87d6c2384001df6ba8c+dirty"
+  },
+  {
+   "result": "results/stage5/backtest_demo.json",
+   "sha256": "5c1e572196e42abe",
+   "git_commit": "f9b052dc888fc1cd23d301933e452eace20838ca+dirty"
+  },
+  {
+   "result": "results/stage6/confirm/arbitrage_research.json",
+   "sha256": "94ce706b228c3d41",
+   "stage": 6,
+   "role": "confirmatory",
+   "git_commit": "f9b052dc888fc1cd23d301933e452eace20838ca+dirty",
+   "code_fingerprint": "663d74308d808b79",
+   "frozen_fingerprint_now": "717d9c633d774c7c",
+   "frozen_code_unchanged": null,
+   "reproduced_by_rerun": true
+  },
+  {
+   "result": "results/stage6/dev/arbitrage_research.json",
+   "sha256": "bc26d483c7288fa2",
+   "stage": 6,
+   "role": "development",
+   "git_commit": "f9b052dc888fc1cd23d301933e452eace20838ca+dirty",
+   "code_fingerprint": "663d74308d808b79",
+   "frozen_fingerprint_now": "717d9c633d774c7c",
+   "frozen_code_unchanged": null,
+   "reproduced_by_rerun": true
+  },
+  {
+   "result": "results/stage7/probability_models.json",
+   "sha256": "b9e4fdf578688a24",
+   "stage": 7,
+   "git_commit": "83a05653e858bb68677a7a8ed014a56abab37641+dirty",
+   "seed": 20260920,
+   "n_boot": 2000,
+   "code_fingerprint": "f47b450da7120eaa"
+  },
+  {
+   "result": "results/stage8/confirm/calibration.json",
+   "sha256": "3bf2f3b9e3e4ca2f",
+   "stage": 8,
+   "role": "confirmatory",
+   "git_commit": "d457e7f4749ca5397716170f239fcc2936751268+dirty",
+   "seed": 20260921,
+   "n_boot": 2000,
+   "code_fingerprint": "9c7d30b39a17ea63",
+   "frozen_fingerprint_now": "9c7d30b39a17ea63",
+   "frozen_code_unchanged": true
+  },
+  {
+   "result": "results/stage9/confirm/market_making.json",
+   "sha256": "fb5a64411278dbb3",
+   "stage": 9,
+   "role": "confirmatory",
+   "git_commit": "27b70915fe2ff7ac946d6d0e3dcc283b78f4972a+dirty",
+   "seed": 20260922,
+   "n_boot": 1000,
+   "code_fingerprint": "e036156024e9174a",
+   "frozen_fingerprint_now": "e036156024e9174a",
+   "frozen_code_unchanged": true
+  },
+  {
+   "result": "results/stage9/dev/market_making.json",
+   "sha256": "d7bca9c420bd32a3",
+   "stage": 9,
+   "role": "development",
+   "git_commit": "27b70915fe2ff7ac946d6d0e3dcc283b78f4972a+dirty",
+   "seed": 20260922,
+   "n_boot": 1000,
+   "code_fingerprint": "e036156024e9174a",
+   "frozen_fingerprint_now": "e036156024e9174a",
+   "frozen_code_unchanged": true
+  },
+  {
+   "result": "results/stage10/dev/adaptive.json",
+   "sha256": "058a99c0a35a871b",
+   "stage": 10,
+   "role": "development",
+   "git_commit": "6d9b5893ada667cba7215b9b501fac49c3ac0104+dirty",
+   "seed": 20260923,
+   "n_boot": 500,
+   "code_fingerprint": "6ccb2dba95a32994",
+   "frozen_fingerprint_now": "6ccb2dba95a32994",
+   "frozen_code_unchanged": true
+  },
+  {
+   "result": "results/stage10/confirm/adaptive.json",
+   "status": "not yet produced"
+  },
+  {
+   "result": "results/stage10/dev/toxicity.json",
+   "sha256": "fc05af7b71796706"
+  },
+  {
+   "result": "results/stage11/rest_baseline/summary.json",
+   "sha256": "7bb421f9e9cf1547"
+  },
+  {
+   "result": "results/stage11/rest_adaptive/summary.json",
+   "sha256": "a7b44d5be2d5b682"
+  },
+  {
+   "result": "results/stage11/rest_arbitrage/summary.json",
+   "sha256": "0e0636f6546d92b2"
+  },
+  {
+   "result": "results/stage12/final/final_oos.json",
+   "status": "not yet produced"
+  }
+ ],
+ "datasets": [
+  {
+   "db": "var/kalshi.duckdb",
+   "counts": {
+    "events": 2786,
+    "markets": 3000,
+    "market_status_log": 3000,
+    "trades": 1913528,
+    "trade_sync": 3021
+   },
+   "trades_time_range": [
+    "2026-01-05 17:32:49.908843",
+    "2026-09-12 23:55:12.366177"
+   ],
+   "markets_digest": "c350fc7fe9d2a2f76d68afdda8a8efd6",
+   "trades_digest": "f58cd7ff80088bf940fec68ed5711658",
+   "books_digest": null,
+   "fingerprint": "2257819296b9ca2a"
+  },
+  {
+   "db": "var/relations.duckdb",
+   "counts": {
+    "events": 15462,
+    "markets": 144170,
+    "market_status_log": 144170
+   },
+   "trades_time_range": [
+    "None",
+    "None"
+   ],
+   "markets_digest": "96aadae98f8c9d352f7c085cc5168c8f",
+   "trades_digest": null,
+   "books_digest": null,
+   "fingerprint": "1306fa87faf2a24c"
+  },
+  {
+   "db": "var/books_shortlived.duckdb",
+   "counts": {
+    "events": 60,
+    "markets": 177,
+    "market_status_log": 307,
+    "trades": 116006,
+    "trade_sync": 177,
+    "series_meta": 34,
+    "book_snapshots": 57823,
+    "poll_log": 715
+   },
+   "trades_time_range": [
+    "2026-09-11 00:53:20.449605",
+    "2026-09-19 11:37:51.953775"
+   ],
+   "markets_digest": "dc8bbe9e445c03c2591176e646da3665",
+   "trades_digest": "e236e372b18999a97f41f82b10080db2",
+   "books_digest": "d46ca60fb5674da6dd1001273f35ffff",
+   "fingerprint": "dc782d40efb60a15"
+  },
+  {
+   "db": "var/books_structural.duckdb",
+   "counts": {
+    "events": 100,
+    "markets": 589,
+    "market_status_log": 593,
+    "series_meta": 20,
+    "book_snapshots": 62723,
+    "poll_log": 535
+   },
+   "trades_time_range": [
+    "None",
+    "None"
+   ],
+   "markets_digest": "05d814dd2993883045ed7a8aebe41150",
+   "trades_digest": null,
+   "books_digest": "6a23bedde9a08b6b7e6c90c897fa9380",
+   "fingerprint": "3e9339d7224601ea"
+  },
+  {
+   "db": "var/books_research_short.duckdb",
+   "counts": {
+    "events": 53,
+    "markets": 399,
+    "market_status_log": 869,
+    "trades": 197349,
+    "trade_sync": 399,
+    "series_meta": 31,
+    "book_snapshots": 184554,
+    "poll_log": 2054
+   },
+   "trades_time_range": [
+    "2026-09-06 07:55:04.164465",
+    "2026-09-19 18:24:36.362380"
+   ],
+   "markets_digest": "c51e24231ca2655aa8087bc8f9237491",
+   "trades_digest": "5c6bc77569b649eb9417e4ae66d09f92",
+   "books_digest": "1c86a30c31c1a07665d1f37535c7e1ab",
+   "fingerprint": "a21d5d461e0d0897"
+  },
+  {
+   "db": "var/books_research_wide.duckdb",
+   "counts": {
+    "events": 100,
+    "markets": 595,
+    "market_status_log": 641,
+    "trades": 698607,
+    "trade_sync": 640,
+    "series_meta": 22,
+    "book_snapshots": 168085,
+    "poll_log": 1302
+   },
+   "trades_time_range": [
+    "2026-03-18 14:01:56.414509",
+    "2026-09-19 18:32:04.906606"
+   ],
+   "markets_digest": "a55c164e1b9eb8265d7ef0531b053acb",
+   "trades_digest": "4a9a30c5f2ab24fcd3888902b7ea98dd",
+   "books_digest": "d581566450e457571c7504cde1b5e23a",
+   "fingerprint": "84611a500eeff4b9"
+  },
+  {
+   "db": "var/books_stage10.duckdb",
+   "status": "locked"
+  },
+  {
+   "db": "var/books_stage12_us.duckdb",
+   "status": "absent"
+  }
+ ],
+ "frozen_fingerprints_now": {
+  "stage6": "717d9c633d774c7c",
+  "stage8": "9c7d30b39a17ea63",
+  "stage9": "e036156024e9174a",
+  "stage10": "6ccb2dba95a32994"
+ }
+}

@@ -133,10 +133,11 @@ class MarketTracker:
         old = None
         for ts, m in self._mids:
             if ts <= now - RET_WINDOW_S * SEC:
-                old = m
+                old, old_ts = m, ts
             else:
                 break
-        if old is not None:
+        # a reference older than two windows is a mid from before an outage, not a 60 s return
+        if old is not None and now - old_ts <= 2 * RET_WINDOW_S * SEC:
             ret = mid - old
         rv, prev = 0.0, None
         for ts, m in self._mids:

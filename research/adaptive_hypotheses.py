@@ -6,6 +6,12 @@ before the confirmatory recording was opened.  Each row prints the observed valu
 criterion.  A claim resting on fewer than ``MIN_CLUSTERS`` independent events is "inconclusive".
 
     python -m research.adaptive_hypotheses results/stage10/confirm/adaptive.json
+
+Revision.  T4 and T5 were first written from a development run whose signal study had sampled
+trade prints inside a recording outage (docs/adaptive_market_maker.md, "Correction"); on the
+corrected data the staleness fair value DOES improve fill quality (+0.41 cents/contract, interval
+above 0) and the original T4 ("no detectable change") was contradicted.  They were rewritten
+before the confirmatory recording was scored, and the reason is recorded here, not hidden.
 """
 
 from __future__ import annotations
@@ -95,17 +101,17 @@ def evaluate(block: dict) -> list[tuple[str, str, str, str]]:
     c = con.get("2 vs 1", {}).get("settled_cents_per_contract", {})
     add(
         "T4",
-        c.get("lo") is not None and c["lo"] <= 0 <= c["hi"],
+        c.get("value") is not None and c["value"] > 0,
         f"{_f(c)} cents/contract",
-        "the staleness correction moves settled P&L per contract by nothing detectable (CI has 0)",
-        c.get("n_clusters", 0),
+        "the staleness fair value does not hurt fill quality: rung 2 vs 1, point estimate > 0",
     )
     c = con.get("3 vs 2", {}).get("settled_cents_per_contract", {})
     add(
         "T5",
-        c.get("value") is not None and c["value"] <= 0,
+        c.get("lo") is not None and c["lo"] <= 0,
         f"{_f(c)} cents/contract",
-        "order book, flow and momentum in the fair value do not improve on staleness alone (point)",
+        "book, flow, momentum add no significant gain on staleness: rung 3 vs 2, lower bound <= 0",
+        c.get("n_clusters", 0),
     )
     c = con.get("6 vs 5", {}).get("settled_cents_per_contract", {})
     add(

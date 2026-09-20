@@ -1,0 +1,5 @@
+# Complete the Stage 12 recording with settlements and the trade tape.
+job: refresh
+db_path: var/books_stage12_us.duckdb
+requests_per_second: 4
+concurrency: 6

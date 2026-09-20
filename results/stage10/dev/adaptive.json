@@ -1,8 +1,8 @@
 {
  "stage": 10,
  "role": "development",
- "git_commit": "aeac8190325308641009b6330098a4f72caf4a84+dirty",
- "code_fingerprint": "dabbe4d46dbefeee",
+ "git_commit": "6d9b5893ada667cba7215b9b501fac49c3ac0104+dirty",
+ "code_fingerprint": "6ccb2dba95a32994",
  "seed": 20260923,
  "n_boot": 500,
  "kappa": 1.0,
@@ -17,16 +17,16 @@
     "stale_out"
    ],
    "weights": [
-    0.003979921547445748,
-    -0.0034006675245605703
+    0.0023406764956966837,
+    0.0019946656636500824
    ],
    "center": [
-    0.0018392928591996305,
-    0.0009112812521958683
+    0.0006818188628724968,
+    4.857681108561263e-05
    ],
    "scale": [
-    0.01990366343609233,
-    0.01805047734675554
+    0.005833693323028274,
+    0.002633725350823833
    ],
    "intercept": 0.0,
    "alpha": 10000.0,
@@ -44,31 +44,31 @@
     "ret_60"
    ],
    "weights": [
-    0.0006288916718666908,
-    0.00021890646316902548,
-    -0.000888775953918588,
-    0.0002824729872938116,
-    0.003906612398162167,
-    -0.0033632947470508645,
-    -0.001043893829130841
+    0.0007691325541113715,
+    7.241772313944753e-05,
+    -0.0010140494417868846,
+    0.00015886098763878565,
+    0.002318389278783006,
+    0.0019807772122123015,
+    -0.0012338611975151504
    ],
    "center": [
-    -0.20243937289139244,
-    -0.26694815444683206,
-    -0.0002137141960490698,
-    0.34779932093032717,
-    0.0018392928591996305,
-    0.0009112812521958683,
-    0.00014643855870476242
+    -0.1169932365695068,
+    -0.13990723403809605,
+    0.0005368069959132128,
+    0.2541648939467975,
+    0.0006818188628724968,
+    4.857681108561263e-05,
+    0.00013743375515237776
    ],
    "scale": [
-    0.6404828038428628,
-    0.5077375005460845,
-    0.021734508153967384,
-    0.5019851989619647,
-    0.01990366343609233,
-    0.01805047734675554,
-    0.03842712886865377
+    0.6450467854487264,
+    0.5041665535335734,
+    0.025199597384150767,
+    0.4784421580344655,
+    0.005833693323028274,
+    0.002633725350823833,
+    0.04345923321873701
    ],
    "intercept": 0.0,
    "alpha": 10000.0,
@@ -80,20 +80,20 @@
     "rv_60"
    ],
    "weights": [
-    0.0070190430992823506
+    0.0077811159555020324
    ],
    "center": [
-    0.03320615532134559
+    0.045158170472620496
    ],
    "scale": [
-    0.09248010393754647
+    0.10535852325747212
    ],
-   "intercept": 0.0040320269574526625,
+   "intercept": 0.005431261099926216,
    "alpha": 1000.0,
    "horizon_s": 10.0,
    "clip": 0.5
   },
-  "sigma_ref": 0.0019546653172879767,
+  "sigma_ref": 0.002914076398751449,
   "training": [
    "books_research_short",
    "books_research_wide"
@@ -119,36 +119,36 @@
    ],
    "signal": {
     "fair_value_staleness": {
-     "n": 109173,
+     "n": 102889,
      "events": 142,
-     "skill_vs_zero": 0.013594159050011267,
-     "lo": 0.008966312671110477,
-     "hi": 0.019205548647597492,
-     "corr": 0.12702431045222637,
-     "direction_accuracy": 0.5721278968893295,
-     "share_moved": 0.14782043179174337,
-     "rmse_zero": 0.016210302778472366
+     "skill_vs_zero": 0.05331590005665421,
+     "lo": 0.034126428777853546,
+     "hi": 0.07587203899175232,
+     "corr": 0.23420884832255404,
+     "direction_accuracy": 0.5711870773854245,
+     "share_moved": 0.15523525352564413,
+     "rmse_zero": 0.015795526926879126
     },
     "fair_value_all_direction_features": {
-     "n": 109173,
+     "n": 102889,
      "events": 142,
-     "skill_vs_zero": 0.0003589571832278704,
-     "lo": -0.009997379539897544,
-     "hi": 0.010896981267247141,
-     "corr": 0.07453835652043654,
-     "direction_accuracy": 0.5882389391498327,
-     "share_moved": 0.14782043179174337,
-     "rmse_zero": 0.016210302778472366
+     "skill_vs_zero": 0.04073187624526575,
+     "lo": 0.023202992164969016,
+     "hi": 0.05946707860779854,
+     "corr": 0.20417392010681776,
+     "direction_accuracy": 0.5961056849486601,
+     "share_moved": 0.15523525352564413,
+     "rmse_zero": 0.015795526926879126
     },
     "scale_of_next_move": {
-     "n": 109005,
+     "n": 102219,
      "events": 142,
-     "skill_vs_mean": 0.10177055715660333,
-     "lo": 0.07195063253875855,
-     "hi": 0.13322601254771804,
-     "corr": 0.31399677647080176
+     "skill_vs_mean": 0.1122809745820641,
+     "lo": 0.08247863658822285,
+     "hi": 0.14212478470780165,
+     "corr": 0.3353506493631013
     },
-    "samples": 109817
+    "samples": 104211
    },
    "ladder": {
     "rows": {
@@ -233,469 +233,469 @@
       }
      },
      "2 + fair value: staleness correction": {
-      "net_usd": -317.537773,
+      "net_usd": -313.5686,
       "fees_usd": 0.0,
-      "fills": 1409,
-      "contracts": 13380.6,
+      "fills": 1442,
+      "contracts": 13730.92,
       "settled_pnl_cents_per_contract": {
-       "value": -3.3325386573993265,
-       "lo": -4.600586469888736,
-       "hi": -2.2507585073904033,
-       "n_rows": 938,
+       "value": -2.832170179328151,
+       "lo": -3.817890802905026,
+       "hi": -1.9421676141372917,
+       "n_rows": 936,
        "n_clusters": 25
       },
       "markout_30s_cents_per_contract": {
-       "value": -2.1792707352435614,
-       "lo": -3.036418184957208,
-       "hi": -1.4773004709998132,
-       "n_rows": 1409,
+       "value": -1.9940495611364717,
+       "lo": -2.72610218271355,
+       "hi": -1.376269813864178,
+       "n_rows": 1442,
        "n_clusters": 46
       },
-      "max_drawdown_usd": 353.0698,
-      "worst_event_settled_usd": -17.471952,
-      "mean_abs_inventory": 5.884882895670688,
+      "max_drawdown_usd": 321.2799,
+      "worst_event_settled_usd": -17.05,
+      "mean_abs_inventory": 5.8194868238557556,
       "killed": [
        true,
        false
       ],
-      "settled_pnl_total_usd": -295.92709999999994,
+      "settled_pnl_total_usd": -252.29679999999996,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": -0.6349454545454533,
-        "lo": -2.563927272727271,
-        "hi": 1.0748727272727294,
+        "value": 0.6871848484848502,
+        "lo": -0.9211757575757568,
+        "hi": 2.2658363636363656,
         "n_rows": 33,
         "n_clusters": 33,
         "events": 33,
-        "total_x": -295.92709999999994,
+        "total_x": -252.29679999999996,
         "total_base": -274.9739
        },
        "settled_cents_per_contract": {
-        "value": -0.1559118390410701,
-        "lo": -1.0002651088551269,
-        "hi": 0.49566208249650945,
+        "value": 0.3444566390301049,
+        "lo": -0.22691830142146863,
+        "hi": 0.9368228280776285,
         "n_clusters": 33
        },
        "markout_cents_per_contract": {
-        "value": -0.003753945808917969,
-        "lo": -0.2244855327424129,
-        "hi": 0.20993420151696984,
+        "value": 0.1814672282981722,
+        "lo": -0.04912221379414716,
+        "hi": 0.4314373552798365,
         "n_clusters": 54
        }
       }
      },
      "3 + fair value: staleness + order book, flow, momentum": {
-      "net_usd": -322.6217,
+      "net_usd": -323.5842,
       "fees_usd": 0.0,
-      "fills": 1400,
-      "contracts": 13281.0,
+      "fills": 1473,
+      "contracts": 14060.34,
       "settled_pnl_cents_per_contract": {
-       "value": -3.4603668759732296,
-       "lo": -4.616462965832493,
-       "hi": -2.4128408488562663,
-       "n_rows": 920,
+       "value": -2.637492802770742,
+       "lo": -3.6755213246449507,
+       "hi": -1.6891252757664146,
+       "n_rows": 955,
        "n_clusters": 25
       },
       "markout_30s_cents_per_contract": {
-       "value": -2.164700700248475,
-       "lo": -2.973769528662683,
-       "hi": -1.4359054374158042,
-       "n_rows": 1400,
+       "value": -2.0310799738839886,
+       "lo": -2.7145314032874843,
+       "hi": -1.4472101152238876,
+       "n_rows": 1473,
        "n_clusters": 45
       },
-      "max_drawdown_usd": 357.9926,
-      "worst_event_settled_usd": -19.871952,
-      "mean_abs_inventory": 6.023,
+      "max_drawdown_usd": 324.0413,
+      "worst_event_settled_usd": -19.15,
+      "mean_abs_inventory": 5.855980991174474,
       "killed": [
        true,
        false
       ],
-      "settled_pnl_total_usd": -301.33289999999994,
+      "settled_pnl_total_usd": -240.94709999999998,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": -0.7987575757575743,
-        "lo": -2.721439393939393,
-        "hi": 0.8540090909090929,
+        "value": 1.0311151515151529,
+        "lo": -0.4277848484848472,
+        "hi": 2.4127181818181844,
         "n_rows": 33,
         "n_clusters": 33,
         "events": 33,
-        "total_x": -301.33289999999994,
+        "total_x": -240.94709999999998,
         "total_base": -274.9739
        },
        "settled_cents_per_contract": {
-        "value": -0.28374005761497356,
-        "lo": -1.1975384656426296,
-        "hi": 0.5190155186664795,
+        "value": 0.5391340155875142,
+        "lo": -0.07821584694954664,
+        "hi": 1.1737964150713398,
         "n_clusters": 33
        },
        "markout_cents_per_contract": {
-        "value": 0.010816089186168831,
-        "lo": -0.25051864562346116,
-        "hi": 0.28141791478305533,
+        "value": 0.14443681555065524,
+        "lo": -0.11206287769551171,
+        "hi": 0.43649150653307167,
         "n_clusters": 54
        }
       }
      },
      "4 + widening by expected move": {
-      "net_usd": -298.236402,
+      "net_usd": -270.835913,
       "fees_usd": 0.0,
-      "fills": 1211,
-      "contracts": 11441.0,
+      "fills": 1096,
+      "contracts": 10443.31,
       "settled_pnl_cents_per_contract": {
-       "value": -3.3829307010708,
-       "lo": -5.061608691262602,
-       "hi": -1.8959421470879387,
-       "n_rows": 735,
+       "value": -3.4374148554573747,
+       "lo": -4.65164326384418,
+       "hi": -2.003903839032218,
+       "n_rows": 672,
        "n_clusters": 26
       },
       "markout_30s_cents_per_contract": {
-       "value": -2.2603863298662707,
-       "lo": -3.3906726702808023,
-       "hi": -1.3413005664035866,
-       "n_rows": 1211,
+       "value": -2.2741113689050696,
+       "lo": -3.3123363845462888,
+       "hi": -1.478357622210753,
+       "n_rows": 1096,
        "n_clusters": 46
       },
-      "max_drawdown_usd": 297.136402,
-      "worst_event_settled_usd": -17.308065,
-      "mean_abs_inventory": 6.129397192402973,
+      "max_drawdown_usd": 270.035913,
+      "worst_event_settled_usd": -16.771113,
+      "mean_abs_inventory": 5.9567700729927004,
       "killed": [
        false,
        false
       ],
-      "settled_pnl_total_usd": -234.41680000000002,
+      "settled_pnl_total_usd": -220.0248,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 1.22900303030303,
-        "lo": -1.1642272727272722,
-        "hi": 3.3003636363636346,
+        "value": 1.6651242424242427,
+        "lo": -0.7193939393939391,
+        "hi": 3.771057575757578,
         "n_rows": 33,
         "n_clusters": 33,
         "events": 33,
-        "total_x": -234.41680000000002,
+        "total_x": -220.0248,
         "total_base": -274.9739
        },
        "settled_cents_per_contract": {
-        "value": -0.20630388271254407,
-        "lo": -1.4653343570773187,
-        "hi": 1.0644198761634285,
+        "value": -0.2607880370991187,
+        "lo": -1.2689369250807747,
+        "hi": 0.7997532917899526,
         "n_clusters": 33
        },
        "markout_cents_per_contract": {
-        "value": -0.08486954043162642,
-        "lo": -0.6334821972148439,
-        "hi": 0.461729401245063,
+        "value": -0.09859457947042483,
+        "lo": -0.6210056837086291,
+        "hi": 0.4056905819913079,
         "n_clusters": 54
        }
       }
      },
      "5 + size by expected move": {
-      "net_usd": -105.247535,
+      "net_usd": -117.71907100000001,
       "fees_usd": 0.0,
-      "fills": 1074,
-      "contracts": 3788.0,
+      "fills": 1027,
+      "contracts": 4377.48,
       "settled_pnl_cents_per_contract": {
-       "value": -4.752578285218489,
-       "lo": -7.44639446092604,
-       "hi": -2.353677081965778,
-       "n_rows": 620,
+       "value": -4.580203285011022,
+       "lo": -7.114844709903549,
+       "hi": -2.2657134510773016,
+       "n_rows": 590,
        "n_clusters": 26
       },
       "markout_30s_cents_per_contract": {
-       "value": -2.0030570221752906,
-       "lo": -3.7427698841867896,
-       "hi": -0.7060028196894522,
-       "n_rows": 1074,
+       "value": -1.802667288028729,
+       "lo": -3.0999759564178446,
+       "hi": -0.7368898292277468,
+       "n_rows": 1027,
        "n_clusters": 46
       },
-      "max_drawdown_usd": 115.120469,
-      "worst_event_settled_usd": -24.078391,
-      "mean_abs_inventory": 3.8723091247672254,
+      "max_drawdown_usd": 129.9452,
+      "worst_event_settled_usd": -25.249274,
+      "mean_abs_inventory": 4.294664070107108,
       "killed": [
        false,
        false
       ],
-      "settled_pnl_total_usd": -96.4051,
+      "settled_pnl_total_usd": -107.8331,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 5.411175757575758,
-        "lo": 2.545148484848485,
-        "hi": 8.63322424242424,
+        "value": 5.064872727272728,
+        "lo": 2.4456515151515155,
+        "hi": 7.778345454545454,
         "n_rows": 33,
         "n_clusters": 33,
         "events": 33,
-        "total_x": -96.4051,
+        "total_x": -107.8331,
         "total_base": -274.9739
        },
        "settled_cents_per_contract": {
-        "value": -1.5759514668602321,
-        "lo": -3.6439398383951445,
-        "hi": 0.24152022382172778,
+        "value": -1.4035764666527664,
+        "lo": -3.5672971337181703,
+        "hi": 0.39990296458995855,
         "n_clusters": 33
        },
        "markout_cents_per_contract": {
-        "value": 0.17245976725935286,
-        "lo": -0.6571158320705006,
-        "hi": 1.021702896731659,
+        "value": 0.3728495014059141,
+        "lo": -0.3573686710872823,
+        "hi": 1.0217118747775573,
         "n_clusters": 54
        }
       }
      },
      "6 + time-to-resolution skew (= FULL)": {
-      "net_usd": -111.736824,
+      "net_usd": -131.450098,
       "fees_usd": 0.0,
-      "fills": 1088,
-      "contracts": 3878.91,
+      "fills": 1028,
+      "contracts": 4460.4,
       "settled_pnl_cents_per_contract": {
-       "value": -4.779003004285597,
-       "lo": -7.273715118405039,
-       "hi": -2.447813510907666,
-       "n_rows": 611,
+       "value": -4.7887833923398775,
+       "lo": -7.055515510886861,
+       "hi": -2.5823618403488475,
+       "n_rows": 589,
        "n_clusters": 26
       },
       "markout_30s_cents_per_contract": {
-       "value": -1.8570629377840684,
-       "lo": -3.115407656544521,
-       "hi": -0.771148579766926,
-       "n_rows": 1088,
+       "value": -1.9418157564344005,
+       "lo": -3.212297084610939,
+       "hi": -1.038592200532255,
+       "n_rows": 1028,
        "n_clusters": 46
       },
-      "max_drawdown_usd": 118.135128,
-      "worst_event_settled_usd": -20.407,
-      "mean_abs_inventory": 3.7443382352941175,
+      "max_drawdown_usd": 134.613342,
+      "worst_event_settled_usd": -21.549,
+      "mean_abs_inventory": 4.297782101167315,
       "killed": [
        false,
        false
       ],
-      "settled_pnl_total_usd": -98.4661,
+      "settled_pnl_total_usd": -113.0785,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 5.348721212121212,
-        "lo": 2.5304393939393948,
-        "hi": 8.349815151515152,
+        "value": 4.905921212121212,
+        "lo": 2.3453484848484853,
+        "hi": 7.810263636363636,
         "n_rows": 33,
         "n_clusters": 33,
         "events": 33,
-        "total_x": -98.4661,
+        "total_x": -113.0785,
         "total_base": -274.9739
        },
        "settled_cents_per_contract": {
-        "value": -1.6023761859273415,
-        "lo": -3.4647073255776655,
-        "hi": 0.07247702227859465,
+        "value": -1.612156573981622,
+        "lo": -3.33305456467446,
+        "hi": 0.01834263895896493,
         "n_clusters": 33
        },
        "markout_cents_per_contract": {
-        "value": 0.31845385165057527,
-        "lo": -0.4057255713118604,
-        "hi": 1.0231001372155137,
+        "value": 0.23370103300024292,
+        "lo": -0.37505884090781905,
+        "hi": 0.8242475007637526,
         "n_clusters": 54
        }
       }
      },
      "full - fair value": {
-      "net_usd": -109.73971399999999,
+      "net_usd": -146.015848,
       "fees_usd": 0.0,
-      "fills": 1153,
-      "contracts": 4101.24,
+      "fills": 1171,
+      "contracts": 5052.33,
       "settled_pnl_cents_per_contract": {
-       "value": -4.339621763490498,
-       "lo": -6.8036158600208685,
-       "hi": -2.0222107983634148,
-       "n_rows": 652,
+       "value": -4.454564519692765,
+       "lo": -6.857981855929944,
+       "hi": -2.2998444456364315,
+       "n_rows": 668,
        "n_clusters": 26
       },
       "markout_30s_cents_per_contract": {
-       "value": -1.9016199978543076,
-       "lo": -3.4251679759482547,
-       "hi": -0.8171799330259083,
-       "n_rows": 1153,
+       "value": -1.999233027137974,
+       "lo": -3.3884566565305136,
+       "hi": -1.0136965146470112,
+       "n_rows": 1171,
        "n_clusters": 46
       },
-      "max_drawdown_usd": 117.859435,
-      "worst_event_settled_usd": -20.36,
-      "mean_abs_inventory": 3.7324718126626193,
+      "max_drawdown_usd": 149.369075,
+      "worst_event_settled_usd": -21.749045,
+      "mean_abs_inventory": 4.241520068317677,
       "killed": [
        false,
        false
       ],
-      "settled_pnl_total_usd": -93.255,
+      "settled_pnl_total_usd": -118.94890000000001,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 5.506633333333334,
-        "lo": 2.5543090909090913,
-        "hi": 8.561269696969697,
+        "value": 4.7280303030303035,
+        "lo": 2.213633333333333,
+        "hi": 7.526999999999999,
         "n_rows": 33,
         "n_clusters": 33,
         "events": 33,
-        "total_x": -93.255,
+        "total_x": -118.94890000000001,
         "total_base": -274.9739
        },
        "settled_cents_per_contract": {
-        "value": -1.162994945132242,
-        "lo": -3.102139045835118,
-        "hi": 0.561662115461083,
+        "value": -1.2779377013345083,
+        "lo": -3.0756908170081765,
+        "hi": 0.2620076293730462,
         "n_clusters": 33
        },
        "markout_cents_per_contract": {
-        "value": 0.27389679158033564,
-        "lo": -0.3957930489279944,
-        "hi": 0.958706590206577,
+        "value": 0.17628376229666953,
+        "lo": -0.5114350680348276,
+        "hi": 0.8066922631231608,
         "n_clusters": 54
        }
       }
      },
      "full - widening": {
-      "net_usd": -124.54809,
+      "net_usd": -148.298534,
       "fees_usd": 0.0,
-      "fills": 1620,
-      "contracts": 5013.42,
+      "fills": 1514,
+      "contracts": 5736.76,
       "settled_pnl_cents_per_contract": {
-       "value": -3.6209553945085236,
-       "lo": -5.760102786296411,
-       "hi": -1.6977293647214904,
-       "n_rows": 957,
+       "value": -3.868318617677774,
+       "lo": -6.006582715531498,
+       "hi": -1.9258824204394815,
+       "n_rows": 891,
        "n_clusters": 26
       },
       "markout_30s_cents_per_contract": {
-       "value": -1.8973894068320627,
-       "lo": -3.0731126767702364,
-       "hi": -0.9321715011133623,
-       "n_rows": 1620,
+       "value": -1.88259139305113,
+       "lo": -2.8549716904869946,
+       "hi": -1.1045349117020784,
+       "n_rows": 1514,
        "n_clusters": 47
       },
-      "max_drawdown_usd": 128.826757,
-      "worst_event_settled_usd": -20.703334,
-      "mean_abs_inventory": 3.2008456790123456,
+      "max_drawdown_usd": 149.898203,
+      "worst_event_settled_usd": -21.314884,
+      "mean_abs_inventory": 3.662873183619551,
       "killed": [
        false,
        false
       ],
-      "settled_pnl_total_usd": -99.32860000000001,
+      "settled_pnl_total_usd": -118.1605,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 5.3225848484848495,
-        "lo": 2.516721212121212,
-        "hi": 8.445154545454546,
+        "value": 4.751921212121212,
+        "lo": 2.200257575757576,
+        "hi": 7.56621818181818,
         "n_rows": 33,
         "n_clusters": 33,
         "events": 33,
-        "total_x": -99.32860000000001,
+        "total_x": -118.1605,
         "total_base": -274.9739
        },
        "settled_cents_per_contract": {
-        "value": -0.4443285761502671,
-        "lo": -1.8616392629253373,
-        "hi": 0.9169520401600435,
+        "value": -0.6916917993195177,
+        "lo": -2.057627052705799,
+        "hi": 0.7224493141798551,
         "n_clusters": 33
        },
        "markout_cents_per_contract": {
-        "value": 0.2781273826025803,
-        "lo": -0.23240324339633167,
-        "hi": 0.7762386544358966,
+        "value": 0.29292539638351345,
+        "lo": -0.09884725987076437,
+        "hi": 0.7479619812530873,
         "n_clusters": 54
        }
       }
      },
      "full - size": {
-      "net_usd": -302.74708200000003,
+      "net_usd": -275.693456,
       "fees_usd": 0.0,
-      "fills": 1188,
-      "contracts": 11326.55,
+      "fills": 1117,
+      "contracts": 10703.65,
       "settled_pnl_cents_per_contract": {
-       "value": -3.580603400863613,
-       "lo": -4.897615090595962,
-       "hi": -2.2597509562498255,
-       "n_rows": 744,
+       "value": -3.1685676121538093,
+       "lo": -4.512465993022221,
+       "hi": -2.039570973778875,
+       "n_rows": 705,
        "n_clusters": 26
       },
       "markout_30s_cents_per_contract": {
-       "value": -2.340001147745783,
-       "lo": -3.3169721015120186,
-       "hi": -1.4185702799229605,
-       "n_rows": 1188,
+       "value": -2.2928916771381727,
+       "lo": -3.21449418298704,
+       "hi": -1.520399093421684,
+       "n_rows": 1117,
        "n_clusters": 46
       },
-      "max_drawdown_usd": 301.647082,
-      "worst_event_settled_usd": -16.311113,
-      "mean_abs_inventory": 5.8867929292929295,
+      "max_drawdown_usd": 274.893456,
+      "worst_event_settled_usd": -16.286113,
+      "mean_abs_inventory": 5.801468218442256,
       "killed": [
-       true,
+       false,
        false
       ],
-      "settled_pnl_total_usd": -253.9056,
+      "settled_pnl_total_usd": -213.9664,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 0.6384333333333336,
-        "lo": -1.9796666666666665,
-        "hi": 2.8832393939393937,
+        "value": 1.8487121212121214,
+        "lo": -0.565575757575758,
+        "hi": 4.1294121212121215,
         "n_rows": 33,
         "n_clusters": 33,
         "events": 33,
-        "total_x": -253.9056,
+        "total_x": -213.9664,
         "total_base": -274.9739
        },
        "settled_cents_per_contract": {
-        "value": -0.40397658250535695,
-        "lo": -1.3285808942458117,
-        "hi": 0.7214034716634683,
+        "value": 0.008059206204447111,
+        "lo": -0.9569707744184033,
+        "hi": 1.104484323827223,
         "n_clusters": 33
        },
        "markout_cents_per_contract": {
-        "value": -0.16448435831113928,
-        "lo": -0.7771709037318932,
-        "hi": 0.468161409303256,
+        "value": -0.11737488770352833,
+        "lo": -0.7144899863356917,
+        "hi": 0.45680194537539864,
         "n_clusters": 54
        }
       }
      },
      "full - time skew": {
-      "net_usd": -105.247535,
+      "net_usd": -117.71907100000001,
       "fees_usd": 0.0,
-      "fills": 1074,
-      "contracts": 3788.0,
+      "fills": 1027,
+      "contracts": 4377.48,
       "settled_pnl_cents_per_contract": {
-       "value": -4.752578285218489,
-       "lo": -7.44639446092604,
-       "hi": -2.353677081965778,
-       "n_rows": 620,
+       "value": -4.580203285011022,
+       "lo": -7.114844709903549,
+       "hi": -2.2657134510773016,
+       "n_rows": 590,
        "n_clusters": 26
       },
       "markout_30s_cents_per_contract": {
-       "value": -2.0030570221752906,
-       "lo": -3.7427698841867896,
-       "hi": -0.7060028196894522,
-       "n_rows": 1074,
+       "value": -1.802667288028729,
+       "lo": -3.0999759564178446,
+       "hi": -0.7368898292277468,
+       "n_rows": 1027,
        "n_clusters": 46
       },
-      "max_drawdown_usd": 115.120469,
-      "worst_event_settled_usd": -24.078391,
-      "mean_abs_inventory": 3.8723091247672254,
+      "max_drawdown_usd": 129.9452,
+      "worst_event_settled_usd": -25.249274,
+      "mean_abs_inventory": 4.294664070107108,
       "killed": [
        false,
        false
       ],
-      "settled_pnl_total_usd": -96.4051,
+      "settled_pnl_total_usd": -107.8331,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 5.411175757575758,
-        "lo": 2.545148484848485,
-        "hi": 8.63322424242424,
+        "value": 5.064872727272728,
+        "lo": 2.4456515151515155,
+        "hi": 7.778345454545454,
         "n_rows": 33,
         "n_clusters": 33,
         "events": 33,
-        "total_x": -96.4051,
+        "total_x": -107.8331,
         "total_base": -274.9739
        },
        "settled_cents_per_contract": {
-        "value": -1.5759514668602321,
-        "lo": -3.6439398383951445,
-        "hi": 0.24152022382172778,
+        "value": -1.4035764666527664,
+        "lo": -3.5672971337181703,
+        "hi": 0.39990296458995855,
         "n_clusters": 33
        },
        "markout_cents_per_contract": {
-        "value": 0.17245976725935286,
-        "lo": -0.6571158320705006,
-        "hi": 1.021702896731659,
+        "value": 0.3728495014059141,
+        "lo": -0.3573686710872823,
+        "hi": 1.0217118747775573,
         "n_clusters": 54
        }
       }
@@ -704,121 +704,121 @@
     "contrasts": {
      "2 vs 1": {
       "event_pnl_total_usd": {
-       "value": -0.296227272727273,
-       "lo": -1.2943333333333336,
-       "hi": 0.5649848484848478,
+       "value": 1.0259030303030303,
+       "lo": -0.05013939393939372,
+       "hi": 2.2324757575757572,
        "n_rows": 33,
        "n_clusters": 33,
        "events": 33,
-       "total_x": -295.92709999999994,
+       "total_x": -252.29679999999996,
        "total_base": -286.1516
       },
       "settled_cents_per_contract": {
-       "value": -0.08762655813494113,
-       "lo": -0.5556795083916568,
-       "hi": 0.20787891981226325,
+       "value": 0.4127419199362339,
+       "lo": 0.09799552649412835,
+       "hi": 0.7893884206268278,
        "n_clusters": 33
       },
       "markout_cents_per_contract": {
-       "value": -0.011572296750999467,
-       "lo": -0.21301317820215182,
-       "hi": 0.128121047555243,
+       "value": 0.1736488773560907,
+       "lo": -0.0504951208868778,
+       "hi": 0.42234007032545895,
        "n_clusters": 54
       }
      },
      "3 vs 2": {
       "event_pnl_total_usd": {
-       "value": -0.1638121212121212,
-       "lo": -0.789439393939394,
-       "hi": 0.574627272727273,
+       "value": 0.34393030303030264,
+       "lo": -0.25027272727272726,
+       "hi": 1.2450939393939378,
        "n_rows": 33,
        "n_clusters": 33,
        "events": 33,
-       "total_x": -301.33289999999994,
-       "total_base": -295.92709999999994
+       "total_x": -240.94709999999998,
+       "total_base": -252.29679999999996
       },
       "settled_cents_per_contract": {
-       "value": -0.12782821857390347,
-       "lo": -0.48350525831359015,
-       "hi": 0.21974942110922724,
+       "value": 0.19467737655740924,
+       "lo": -0.14349513582074858,
+       "hi": 0.6055661216562014,
        "n_clusters": 33
       },
       "markout_cents_per_contract": {
-       "value": 0.0145700349950868,
-       "lo": -0.11407377035467459,
-       "hi": 0.18992620301876872,
+       "value": -0.03703041274751695,
+       "lo": -0.12859701371208954,
+       "hi": 0.08267562023165587,
        "n_clusters": 54
       }
      },
      "4 vs 2": {
       "event_pnl_total_usd": {
-       "value": 1.8639484848484829,
-       "lo": 0.5487969696969678,
-       "hi": 3.032224242424242,
+       "value": 0.9779393939393923,
+       "lo": -0.07283636363636438,
+       "hi": 1.9144878787878767,
        "n_rows": 33,
        "n_clusters": 33,
        "events": 33,
-       "total_x": -234.41680000000002,
-       "total_base": -295.92709999999994
+       "total_x": -220.0248,
+       "total_base": -252.29679999999996
       },
       "settled_cents_per_contract": {
-       "value": -0.050392043671473985,
-       "lo": -1.2625729384615392,
-       "hi": 1.1790693884910302,
+       "value": -0.6052446761292236,
+       "lo": -1.5899016155614136,
+       "hi": 0.25966479878364934,
        "n_clusters": 33
       },
       "markout_cents_per_contract": {
-       "value": -0.08111559462270845,
-       "lo": -0.5686800867018795,
-       "hi": 0.4228938232353465,
+       "value": -0.280061807768597,
+       "lo": -0.865228095286185,
+       "hi": 0.1683546561228122,
        "n_clusters": 54
       }
      },
      "5 vs 4": {
       "event_pnl_total_usd": {
-       "value": 4.182172727272728,
-       "lo": 1.622042424242424,
-       "hi": 7.484960606060606,
+       "value": 3.3997484848484847,
+       "lo": 1.4724787878787882,
+       "hi": 5.587072727272729,
        "n_rows": 33,
        "n_clusters": 33,
        "events": 33,
-       "total_x": -96.4051,
-       "total_base": -234.41680000000002
+       "total_x": -107.8331,
+       "total_base": -220.0248
       },
       "settled_cents_per_contract": {
-       "value": -1.369647584147688,
-       "lo": -3.1960742163633475,
-       "hi": -0.0861231797216866,
+       "value": -1.1427884295536477,
+       "lo": -3.103410433514436,
+       "hi": 0.22570615989232934,
        "n_clusters": 33
       },
       "markout_cents_per_contract": {
-       "value": 0.2573293076909793,
-       "lo": -0.3919237408069529,
-       "hi": 0.8004471181016144,
+       "value": 0.47144408087633893,
+       "lo": -0.10247722587161512,
+       "hi": 0.9366839067769676,
        "n_clusters": 53
       }
      },
      "6 vs 5": {
       "event_pnl_total_usd": {
-       "value": -0.0624545454545451,
-       "lo": -0.4336393939393936,
-       "hi": 0.2815545454545457,
+       "value": -0.1589515151515152,
+       "lo": -0.5444909090909094,
+       "hi": 0.1959272727272728,
        "n_rows": 33,
        "n_clusters": 33,
        "events": 33,
-       "total_x": -98.4661,
-       "total_base": -96.4051
+       "total_x": -113.0785,
+       "total_base": -107.8331
       },
       "settled_cents_per_contract": {
-       "value": -0.026424719067109415,
-       "lo": -0.625345562965943,
-       "hi": 0.6002842041068774,
+       "value": -0.20858010732885557,
+       "lo": -0.7551802182762533,
+       "hi": 0.5679499252658209,
        "n_clusters": 33
       },
       "markout_cents_per_contract": {
-       "value": 0.1459940843912224,
-       "lo": -0.09183742791141619,
-       "hi": 0.44617195516850794,
+       "value": -0.1391484684056712,
+       "lo": -0.4061954171909874,
+       "hi": 0.14607629946235035,
        "n_clusters": 53
       }
      }
@@ -829,8 +829,8 @@
      "Climate and Weather": {
       "fills": 3,
       "events": 1,
-      "contracts": 21.0,
-      "spread_captured_cents_per_contract": -1.2619047619047619,
+      "contracts": 27.0,
+      "spread_captured_cents_per_contract": -1.2407407407407407,
       "markout_30s_cents": {
        "value": -2.0,
        "lo": null,
@@ -840,185 +840,185 @@
       }
      },
      "Crypto": {
-      "fills": 12,
+      "fills": 9,
       "events": 2,
-      "contracts": 59.0,
-      "spread_captured_cents_per_contract": -0.9576271186440678,
+      "contracts": 49.0,
+      "spread_captured_cents_per_contract": -0.7653061224489796,
       "markout_30s_cents": {
-       "value": -1.1666666666666667,
-       "lo": -1.5454545454545454,
-       "hi": 3.0,
-       "n_rows": 12,
+       "value": -0.8888888888888888,
+       "lo": -1.5,
+       "hi": 1.25,
+       "n_rows": 9,
        "n_clusters": 2
       }
      },
      "Sports": {
-      "fills": 1073,
+      "fills": 1016,
       "events": 43,
-      "contracts": 3798.91,
-      "spread_captured_cents_per_contract": 0.8972349963542174,
+      "contracts": 4384.4,
+      "spread_captured_cents_per_contract": 0.7884613630143236,
       "markout_30s_cents": {
-       "value": -1.537744641192917,
-       "lo": -2.6666666666666665,
-       "hi": -0.5594758064516129,
-       "n_rows": 1073,
+       "value": -1.6446850393700787,
+       "lo": -2.6913696060037524,
+       "hi": -0.8130608175473579,
+       "n_rows": 1016,
        "n_clusters": 43
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.1611556464811784,
-       "lo": -0.2463706896551725,
-       "hi": -0.08219394856278363,
-       "n_rows": 611,
+       "value": -0.19198387096774194,
+       "lo": -0.28837868162692853,
+       "hi": -0.10167630853994492,
+       "n_rows": 589,
        "n_clusters": 26
       },
-      "settled_pnl_total_usd": -98.4661,
-      "settled_fills": 611
+      "settled_pnl_total_usd": -113.0785,
+      "settled_fills": 589
      }
     },
     "liquidity_trailing_hour_volume": {
      "none": {
-      "fills": 16,
+      "fills": 13,
       "events": 4,
-      "contracts": 85.0,
-      "spread_captured_cents_per_contract": -1.2705882352941176,
+      "contracts": 83.0,
+      "spread_captured_cents_per_contract": -1.2771084337349397,
       "markout_30s_cents": {
-       "value": -1.5625,
-       "lo": -3.0,
-       "hi": 0.5,
-       "n_rows": 16,
+       "value": -1.4615384615384615,
+       "lo": -2.75,
+       "hi": 0.16666666666666666,
+       "n_rows": 13,
        "n_clusters": 4
       }
      },
      "thin (0, 100]": {
-      "fills": 9,
+      "fills": 10,
       "events": 7,
-      "contracts": 44.0,
-      "spread_captured_cents_per_contract": 1.6363636363636362,
+      "contracts": 51.0,
+      "spread_captured_cents_per_contract": 1.8137254901960784,
       "markout_30s_cents": {
-       "value": 0.4444444444444444,
-       "lo": -3.3076923076923075,
+       "value": 2.3,
+       "lo": 0.6842105263157895,
        "hi": 5.0,
-       "n_rows": 9,
+       "n_rows": 10,
        "n_clusters": 7
       },
       "settled_pnl_per_fill_usd": {
-       "value": 0.07428571428571432,
-       "lo": -0.2666666666666666,
-       "hi": 0.752,
-       "n_rows": 7,
+       "value": 0.15375,
+       "lo": -0.1127272727272727,
+       "hi": 0.8059999999999998,
+       "n_rows": 8,
        "n_clusters": 5
       },
-      "settled_pnl_total_usd": 0.52,
-      "settled_fills": 7
+      "settled_pnl_total_usd": 1.23,
+      "settled_fills": 8
      },
      "busy (> 100)": {
-      "fills": 1063,
+      "fills": 1005,
       "events": 40,
-      "contracts": 3749.91,
-      "spread_captured_cents_per_contract": 0.8964255142123411,
+      "contracts": 4326.4,
+      "spread_captured_cents_per_contract": 0.7857410318047338,
       "markout_30s_cents": {
-       "value": -1.5512699905926624,
-       "lo": -2.7094668117519043,
-       "hi": -0.5075934579439252,
-       "n_rows": 1063,
+       "value": -1.680597014925373,
+       "lo": -2.6344647519582245,
+       "hi": -0.8348170128585559,
+       "n_rows": 1005,
        "n_clusters": 40
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.1638842715231788,
-       "lo": -0.24582472972972982,
-       "hi": -0.08739268292682927,
-       "n_rows": 604,
+       "value": -0.19674440619621344,
+       "lo": -0.29518991416309015,
+       "hi": -0.11213050847457628,
+       "n_rows": 581,
        "n_clusters": 24
       },
-      "settled_pnl_total_usd": -98.9861,
-      "settled_fills": 604
+      "settled_pnl_total_usd": -114.3085,
+      "settled_fills": 581
      }
     },
     "time_to_resolution": {
      "<0.5h": {
-      "fills": 25,
+      "fills": 20,
       "events": 2,
-      "contracts": 106.0,
-      "spread_captured_cents_per_contract": 0.9764150943396227,
+      "contracts": 92.0,
+      "spread_captured_cents_per_contract": 1.2717391304347827,
       "markout_30s_cents": {
-       "value": -3.82,
-       "lo": -6.0,
-       "hi": -0.55,
-       "n_rows": 25,
+       "value": -3.3,
+       "lo": -4.392857142857143,
+       "hi": -0.75,
+       "n_rows": 20,
        "n_clusters": 2
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.4519999999999998,
+       "value": -0.6457142857142857,
        "lo": null,
        "hi": null,
-       "n_rows": 15,
+       "n_rows": 14,
        "n_clusters": 1
       },
-      "settled_pnl_total_usd": -6.78,
-      "settled_fills": 15
+      "settled_pnl_total_usd": -9.04,
+      "settled_fills": 14
      },
      "0.5-1.5h": {
-      "fills": 335,
-      "events": 20,
-      "contracts": 972.88,
-      "spread_captured_cents_per_contract": 0.7508120220376614,
+      "fills": 314,
+      "events": 18,
+      "contracts": 1112.98,
+      "spread_captured_cents_per_contract": 0.8521267228521627,
       "markout_30s_cents": {
-       "value": -2.6253731343283584,
-       "lo": -5.190709046454768,
-       "hi": 0.3996478873239437,
-       "n_rows": 335,
-       "n_clusters": 20
+       "value": -2.4028662420382165,
+       "lo": -4.664619164619165,
+       "hi": -0.020942408376963352,
+       "n_rows": 314,
+       "n_clusters": 18
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.13930483870967744,
-       "lo": -0.24590174563591027,
-       "hi": -0.016901408450704224,
-       "n_rows": 248,
-       "n_clusters": 16
+       "value": -0.1786405172413793,
+       "lo": -0.30843187660668386,
+       "hi": 0.0009205020920502175,
+       "n_rows": 232,
+       "n_clusters": 15
       },
-      "settled_pnl_total_usd": -34.5476,
-      "settled_fills": 248
+      "settled_pnl_total_usd": -41.4446,
+      "settled_fills": 232
      },
      "1.5-4h": {
-      "fills": 713,
+      "fills": 682,
       "events": 35,
-      "contracts": 2720.03,
-      "spread_captured_cents_per_contract": 0.9465208104322379,
+      "contracts": 3179.42,
+      "spread_captured_cents_per_contract": 0.7521906511250479,
       "markout_30s_cents": {
-       "value": -0.9467040673211781,
-       "lo": -1.6535508637236085,
-       "hi": -0.33869395711500977,
-       "n_rows": 713,
+       "value": -1.247067448680352,
+       "lo": -1.711290322580645,
+       "hi": -0.7289256198347107,
+       "n_rows": 682,
        "n_clusters": 35
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.16419109195402298,
-       "lo": -0.2991976470588235,
-       "hi": -0.0718817365269461,
-       "n_rows": 348,
+       "value": -0.18248950437317785,
+       "lo": -0.32134688346883467,
+       "hi": -0.08913406593406596,
+       "n_rows": 343,
        "n_clusters": 19
       },
-      "settled_pnl_total_usd": -57.1385,
-      "settled_fills": 348
+      "settled_pnl_total_usd": -62.5939,
+      "settled_fills": 343
      },
      "4-12h": {
-      "fills": 12,
+      "fills": 9,
       "events": 2,
-      "contracts": 59.0,
-      "spread_captured_cents_per_contract": -0.9576271186440678,
+      "contracts": 49.0,
+      "spread_captured_cents_per_contract": -0.7653061224489796,
       "markout_30s_cents": {
-       "value": -1.1666666666666667,
-       "lo": -1.5454545454545454,
-       "hi": 3.0,
-       "n_rows": 12,
+       "value": -0.8888888888888888,
+       "lo": -1.5,
+       "hi": 1.25,
+       "n_rows": 9,
        "n_clusters": 2
       }
      },
      ">=12h": {
       "fills": 3,
       "events": 1,
-      "contracts": 21.0,
-      "spread_captured_cents_per_contract": -1.2619047619047619,
+      "contracts": 27.0,
+      "spread_captured_cents_per_contract": -1.2407407407407407,
       "markout_30s_cents": {
        "value": -2.0,
        "lo": null,
@@ -1030,136 +1030,136 @@
     },
     "probability_range": {
      "<5%": {
-      "fills": 17,
-      "events": 9,
-      "contracts": 76.0,
-      "spread_captured_cents_per_contract": 0.4276315789473684,
+      "fills": 12,
+      "events": 8,
+      "contracts": 71.0,
+      "spread_captured_cents_per_contract": 0.4929577464788732,
       "markout_30s_cents": {
-       "value": -11.382352941176471,
-       "lo": -38.67857142857143,
-       "hi": 0.038461538461538464,
-       "n_rows": 17,
-       "n_clusters": 9
-      },
-      "settled_pnl_per_fill_usd": {
-       "value": -0.19687500000000002,
-       "lo": -0.7676923076923077,
-       "hi": 0.21500000000000002,
-       "n_rows": 16,
+       "value": -15.625,
+       "lo": -46.36363636363637,
+       "hi": -0.8125,
+       "n_rows": 12,
        "n_clusters": 8
       },
-      "settled_pnl_total_usd": -3.15,
-      "settled_fills": 16
+      "settled_pnl_per_fill_usd": {
+       "value": -0.23363636363636361,
+       "lo": -0.8330769230769229,
+       "hi": 0.47714285714285715,
+       "n_rows": 11,
+       "n_clusters": 7
+      },
+      "settled_pnl_total_usd": -2.57,
+      "settled_fills": 11
      },
      "5-20%": {
-      "fills": 209,
-      "events": 35,
-      "contracts": 807.89,
-      "spread_captured_cents_per_contract": 1.0961578927824334,
-      "markout_30s_cents": {
-       "value": 0.18181818181818182,
-       "lo": -1.5569948186528497,
-       "hi": 2.777456647398844,
-       "n_rows": 209,
-       "n_clusters": 35
-      },
-      "settled_pnl_per_fill_usd": {
-       "value": -0.18474444444444443,
-       "lo": -0.40715340909090914,
-       "hi": 0.005234285714285718,
-       "n_rows": 162,
-       "n_clusters": 23
-      },
-      "settled_pnl_total_usd": -29.9286,
-      "settled_fills": 162
-     },
-     "20-50%": {
-      "fills": 415,
+      "fills": 189,
       "events": 32,
-      "contracts": 1347.18,
-      "spread_captured_cents_per_contract": 0.9632936949776569,
+      "contracts": 914.98,
+      "spread_captured_cents_per_contract": 1.4556602330105577,
       "markout_30s_cents": {
-       "value": -2.0626506024096387,
-       "lo": -3.7733333333333334,
-       "hi": -0.8095238095238095,
-       "n_rows": 415,
+       "value": -0.013227513227513227,
+       "lo": -1.652694610778443,
+       "hi": 2.1302083333333335,
+       "n_rows": 189,
        "n_clusters": 32
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.21963350785340313,
-       "lo": -0.520157894736842,
-       "hi": -0.06913705583756345,
-       "n_rows": 191,
-       "n_clusters": 17
+       "value": -0.2747288590604027,
+       "lo": -0.5191262135922329,
+       "hi": -0.0328846153846154,
+       "n_rows": 149,
+       "n_clusters": 22
       },
-      "settled_pnl_total_usd": -41.95,
-      "settled_fills": 191
+      "settled_pnl_total_usd": -40.9346,
+      "settled_fills": 149
      },
-     "50-80%": {
-      "fills": 328,
+     "20-50%": {
+      "fills": 404,
       "events": 33,
-      "contracts": 1136.29,
-      "spread_captured_cents_per_contract": 0.23295989580124793,
+      "contracts": 1653.92,
+      "spread_captured_cents_per_contract": 0.7676792106026893,
       "markout_30s_cents": {
-       "value": -1.521341463414634,
-       "lo": -2.8909774436090228,
-       "hi": -0.4141689373297003,
-       "n_rows": 328,
+       "value": -2.1943069306930694,
+       "lo": -3.604265402843602,
+       "hi": -1.099552572706935,
+       "n_rows": 404,
        "n_clusters": 33
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.0658141891891892,
-       "lo": -0.18785185185185185,
-       "hi": 0.0487631578947368,
+       "value": -0.18060624999999997,
+       "lo": -0.45497882352941177,
+       "hi": -0.036998994974874355,
+       "n_rows": 192,
+       "n_clusters": 18
+      },
+      "settled_pnl_total_usd": -34.6764,
+      "settled_fills": 192
+     },
+     "50-80%": {
+      "fills": 314,
+      "events": 33,
+      "contracts": 1304.95,
+      "spread_captured_cents_per_contract": -0.02080539484271428,
+      "markout_30s_cents": {
+       "value": -1.230891719745223,
+       "lo": -2.284452296819788,
+       "hi": -0.3207831325301205,
+       "n_rows": 314,
+       "n_clusters": 33
+      },
+      "settled_pnl_per_fill_usd": {
+       "value": -0.11236824324324325,
+       "lo": -0.2771743421052632,
+       "hi": 0.07256410256410256,
        "n_rows": 148,
        "n_clusters": 17
       },
-      "settled_pnl_total_usd": -9.7405,
+      "settled_pnl_total_usd": -16.6305,
       "settled_fills": 148
      },
      "80-95%": {
-      "fills": 113,
-      "events": 24,
-      "contracts": 489.55,
-      "spread_captured_cents_per_contract": 1.5851292002859771,
+      "fills": 105,
+      "events": 22,
+      "contracts": 498.55,
+      "spread_captured_cents_per_contract": 1.438170695015545,
       "markout_30s_cents": {
-       "value": -1.6460176991150441,
-       "lo": -3.4967532467532467,
-       "hi": 0.6767676767676768,
-       "n_rows": 113,
-       "n_clusters": 24
+       "value": -2.3142857142857145,
+       "lo": -4.721739130434782,
+       "hi": 0.4880952380952381,
+       "n_rows": 105,
+       "n_clusters": 22
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.14973863636363635,
-       "lo": -0.2571555555555555,
-       "hi": -0.019746031746031744,
-       "n_rows": 88,
-       "n_clusters": 17
+       "value": -0.18361176470588234,
+       "lo": -0.42779661016949144,
+       "hi": 0.013064516129032238,
+       "n_rows": 85,
+       "n_clusters": 16
       },
-      "settled_pnl_total_usd": -13.177,
-      "settled_fills": 88
+      "settled_pnl_total_usd": -15.607,
+      "settled_fills": 85
      },
      ">=95%": {
-      "fills": 6,
-      "events": 6,
-      "contracts": 22.0,
-      "spread_captured_cents_per_contract": 3.1363636363636362,
+      "fills": 4,
+      "events": 4,
+      "contracts": 17.0,
+      "spread_captured_cents_per_contract": 3.5,
       "markout_30s_cents": {
-       "value": 4.416666666666667,
-       "lo": 0.8333333333333334,
-       "hi": 9.166666666666666,
-       "n_rows": 6,
-       "n_clusters": 6
+       "value": 5.25,
+       "lo": -0.75,
+       "hi": 11.25,
+       "n_rows": 4,
+       "n_clusters": 4
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.08666666666666668,
-       "lo": -0.8266666666666667,
-       "hi": 0.38333333333333336,
-       "n_rows": 6,
-       "n_clusters": 6
+       "value": -0.665,
+       "lo": -2.71,
+       "hi": 0.43000000000000005,
+       "n_rows": 4,
+       "n_clusters": 4
       },
-      "settled_pnl_total_usd": -0.52,
-      "settled_fills": 6
+      "settled_pnl_total_usd": -2.66,
+      "settled_fills": 4
      }
     }
    },
@@ -1514,57 +1514,57 @@
    "inventory_risk_by_ttr_full": [
     {
      "bucket": "<0.5h",
-     "fills": 25,
+     "fills": 20,
      "events": 2,
-     "mean_abs_inventory_contracts": 4.0,
-     "mean_remaining_std_usd": 1.8338806195375061,
+     "mean_abs_inventory_contracts": 4.05,
+     "mean_remaining_std_usd": 1.8467739282436615,
      "markout_30s_cents": {
-      "value": -3.82,
-      "lo": -6.0,
-      "hi": -0.55,
-      "n_rows": 25,
+      "value": -3.3,
+      "lo": -4.392857142857143,
+      "hi": -0.75,
+      "n_rows": 20,
       "n_clusters": 2
      }
     },
     {
      "bucket": "0.5-1.5h",
-     "fills": 335,
-     "events": 20,
-     "mean_abs_inventory_contracts": 3.4207462686567163,
-     "mean_remaining_std_usd": 1.3428802706960958,
+     "fills": 314,
+     "events": 18,
+     "mean_abs_inventory_contracts": 4.291082802547771,
+     "mean_remaining_std_usd": 1.6852331426668783,
      "markout_30s_cents": {
-      "value": -2.6253731343283584,
-      "lo": -5.190709046454768,
-      "hi": 0.3996478873239437,
-      "n_rows": 335,
-      "n_clusters": 20
+      "value": -2.4028662420382165,
+      "lo": -4.664619164619165,
+      "hi": -0.020942408376963352,
+      "n_rows": 314,
+      "n_clusters": 18
      }
     },
     {
      "bucket": "1.5-4h",
-     "fills": 713,
+     "fills": 682,
      "events": 35,
-     "mean_abs_inventory_contracts": 3.8609957924263676,
-     "mean_remaining_std_usd": 1.5989464481301279,
+     "mean_abs_inventory_contracts": 4.298709677419355,
+     "mean_remaining_std_usd": 1.8246484285561555,
      "markout_30s_cents": {
-      "value": -0.9467040673211781,
-      "lo": -1.6535508637236085,
-      "hi": -0.33869395711500977,
-      "n_rows": 713,
+      "value": -1.247067448680352,
+      "lo": -1.711290322580645,
+      "hi": -0.7289256198347107,
+      "n_rows": 682,
       "n_clusters": 35
      }
     },
     {
      "bucket": "4-12h",
-     "fills": 12,
+     "fills": 9,
      "events": 2,
-     "mean_abs_inventory_contracts": 5.166666666666666,
-     "mean_remaining_std_usd": 2.166478228194182,
+     "mean_abs_inventory_contracts": 4.555555555555555,
+     "mean_remaining_std_usd": 2.023894151030454,
      "markout_30s_cents": {
-      "value": -1.1666666666666667,
-      "lo": -1.5454545454545454,
-      "hi": 3.0,
-      "n_rows": 12,
+      "value": -0.8888888888888888,
+      "lo": -1.5,
+      "hi": 1.25,
+      "n_rows": 9,
       "n_clusters": 2
      }
     },
@@ -1572,8 +1572,8 @@
      "bucket": ">=12h",
      "fills": 3,
      "events": 1,
-     "mean_abs_inventory_contracts": 4.333333333333333,
-     "mean_remaining_std_usd": 2.161351814644406,
+     "mean_abs_inventory_contracts": 5.666666666666666,
+     "mean_remaining_std_usd": 2.8263831422273,
      "markout_30s_cents": {
       "value": -2.0,
       "lo": null,
@@ -1614,157 +1614,157 @@
       "settled_pnl_total_usd": -274.9739
      },
      "4 + widening by expected move": {
-      "net_usd": -310.2664,
+      "net_usd": -282.04717899999997,
       "fees_usd": 0.0,
-      "fills": 1291,
-      "contracts": 12299.71,
+      "fills": 1235,
+      "contracts": 11749.51,
       "settled_pnl_cents_per_contract": {
-       "value": -3.258012730458593,
-       "lo": -4.537163303321608,
-       "hi": -1.9043094696807217,
-       "n_rows": 823,
-       "n_clusters": 25
+       "value": -3.4693910300370323,
+       "lo": -4.591914958292332,
+       "hi": -2.2587276704555617,
+       "n_rows": 768,
+       "n_clusters": 24
       },
       "markout_30s_cents_per_contract": {
-       "value": -2.1059866452135867,
-       "lo": -3.1086935296601217,
-       "hi": -1.3245575250311317,
-       "n_rows": 1291,
-       "n_clusters": 45
+       "value": -2.15670057730067,
+       "lo": -3.180799834078389,
+       "hi": -1.482917415307039,
+       "n_rows": 1235,
+       "n_clusters": 44
       },
-      "max_drawdown_usd": 322.0993,
-      "worst_event_settled_usd": -17.371952,
-      "mean_abs_inventory": 6.091781564678544,
+      "max_drawdown_usd": 305.098694,
+      "worst_event_settled_usd": -16.95,
+      "mean_abs_inventory": 6.042461538461539,
       "killed": [
        true,
        false
       ],
-      "settled_pnl_total_usd": -255.1037,
+      "settled_pnl_total_usd": -252.95329999999998,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 0.6021272727272727,
-        "lo": -0.7500242424242426,
-        "hi": 2.0931454545454526,
+        "value": 0.6672909090909096,
+        "lo": -1.6585757575757576,
+        "hi": 2.706403030303032,
         "n_rows": 33,
         "n_clusters": 33,
         "events": 33,
-        "total_x": -255.1037,
+        "total_x": -252.95329999999998,
         "total_base": -274.9739
        },
        "settled_cents_per_contract": {
-        "value": -0.08138591210033708,
-        "lo": -0.682285297214456,
-        "hi": 0.6018697051993085,
+        "value": -0.29276421167877587,
+        "lo": -0.869395920923782,
+        "hi": 0.4979718745040036,
         "n_clusters": 33
        },
        "markout_cents_per_contract": {
-        "value": 0.06953014422105719,
-        "lo": -0.2363147304295823,
-        "hi": 0.3898451587599736,
+        "value": 0.01881621213397322,
+        "lo": -0.5694862965944374,
+        "hi": 0.4693558530265738,
         "n_clusters": 54
        }
       }
      },
      "5 + size by expected move": {
-      "net_usd": -122.835989,
+      "net_usd": -137.226061,
       "fees_usd": 0.0,
-      "fills": 1258,
-      "contracts": 4230.47,
+      "fills": 1247,
+      "contracts": 5150.27,
       "settled_pnl_cents_per_contract": {
-       "value": -4.561513432704568,
-       "lo": -6.887415239995519,
-       "hi": -2.2168246248608288,
-       "n_rows": 729,
+       "value": -4.187113292877343,
+       "lo": -6.292356139821326,
+       "hi": -2.1998037764428453,
+       "n_rows": 714,
        "n_clusters": 26
       },
       "markout_30s_cents_per_contract": {
-       "value": -1.9786607634612698,
-       "lo": -3.3705666309113647,
-       "hi": -0.8100531709874578,
-       "n_rows": 1258,
+       "value": -1.8851128193279185,
+       "lo": -3.084838303233935,
+       "hi": -0.9010393749083297,
+       "n_rows": 1247,
        "n_clusters": 46
       },
-      "max_drawdown_usd": 124.415757,
-      "worst_event_settled_usd": -23.190391,
-      "mean_abs_inventory": 3.7375119236883942,
+      "max_drawdown_usd": 138.715592,
+      "worst_event_settled_usd": -24.091,
+      "mean_abs_inventory": 4.170080192461909,
       "killed": [
        false,
        false
       ],
-      "settled_pnl_total_usd": -103.7425,
+      "settled_pnl_total_usd": -112.67480000000002,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 5.188830303030303,
-        "lo": 2.594415151515153,
-        "hi": 8.097603030303029,
+        "value": 4.918154545454546,
+        "lo": 2.365909090909092,
+        "hi": 7.761912121212118,
         "n_rows": 33,
         "n_clusters": 33,
         "events": 33,
-        "total_x": -103.7425,
+        "total_x": -112.67480000000002,
         "total_base": -274.9739
        },
        "settled_cents_per_contract": {
-        "value": -1.3848866143463123,
-        "lo": -3.3100432702742495,
-        "hi": 0.5977005679449037,
+        "value": -1.0104864745190865,
+        "lo": -2.6582942870845434,
+        "hi": 0.5619968349281816,
         "n_clusters": 33
        },
        "markout_cents_per_contract": {
-        "value": 0.19685602597337315,
-        "lo": -0.5346671665516736,
-        "hi": 0.894854438051511,
+        "value": 0.29040397010672425,
+        "lo": -0.3329070701948753,
+        "hi": 0.8726135816614209,
         "n_clusters": 54
        }
       }
      },
      "6 + time-to-resolution skew (= FULL)": {
-      "net_usd": -121.67499,
+      "net_usd": -136.51945999999998,
       "fees_usd": 0.0,
-      "fills": 1316,
-      "contracts": 4446.73,
+      "fills": 1240,
+      "contracts": 5074.41,
       "settled_pnl_cents_per_contract": {
-       "value": -4.148665442084078,
-       "lo": -6.4706577219073145,
-       "hi": -1.979984086151089,
-       "n_rows": 752,
+       "value": -4.348941766576952,
+       "lo": -6.560861891763127,
+       "hi": -1.890112022698984,
+       "n_rows": 702,
        "n_clusters": 26
       },
       "markout_30s_cents_per_contract": {
-       "value": -1.788551362461854,
-       "lo": -3.1462238473110262,
-       "hi": -0.6910842428390185,
-       "n_rows": 1316,
+       "value": -1.8791593505451867,
+       "lo": -3.150345572781119,
+       "hi": -0.9842269616517049,
+       "n_rows": 1240,
        "n_clusters": 46
       },
-      "max_drawdown_usd": 122.617657,
-      "worst_event_settled_usd": -21.966667,
-      "mean_abs_inventory": 3.538563829787234,
+      "max_drawdown_usd": 137.502433,
+      "worst_event_settled_usd": -24.124286,
+      "mean_abs_inventory": 3.994572580645161,
       "killed": [
        false,
        false
       ],
-      "settled_pnl_total_usd": -99.15020000000001,
+      "settled_pnl_total_usd": -113.7544,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 5.327990909090909,
-        "lo": 2.7062151515151514,
-        "hi": 8.449733333333333,
+        "value": 4.885439393939394,
+        "lo": 2.3974393939393956,
+        "hi": 7.778345454545454,
         "n_rows": 33,
         "n_clusters": 33,
         "events": 33,
-        "total_x": -99.15020000000001,
+        "total_x": -113.7544,
         "total_base": -274.9739
        },
        "settled_cents_per_contract": {
-        "value": -0.9720386237258216,
-        "lo": -2.9528530298654645,
-        "hi": 0.5891790275848816,
+        "value": -1.1723149482186956,
+        "lo": -3.0505192466658193,
+        "hi": 0.6771492429620896,
         "n_clusters": 33
        },
        "markout_cents_per_contract": {
-        "value": 0.38696542697278935,
-        "lo": -0.3133963388110539,
-        "hi": 1.0380780599151676,
+        "value": 0.2963574388894561,
+        "lo": -0.20543777468934854,
+        "hi": 0.7841051977589459,
         "n_clusters": 54
        }
       }
@@ -1800,157 +1800,157 @@
       "settled_pnl_total_usd": -274.9739
      },
      "4 + widening by expected move": {
-      "net_usd": -207.2321,
+      "net_usd": -182.10289999999998,
       "fees_usd": 0.0,
-      "fills": 891,
-      "contracts": 8510.95,
+      "fills": 772,
+      "contracts": 7461.7,
       "settled_pnl_cents_per_contract": {
-       "value": -3.7573758365172463,
-       "lo": -5.617786660487391,
-       "hi": -2.0511218148957027,
-       "n_rows": 577,
-       "n_clusters": 25
+       "value": -3.654496688036197,
+       "lo": -5.698513401092343,
+       "hi": -1.8443013669366755,
+       "n_rows": 495,
+       "n_clusters": 24
       },
       "markout_30s_cents_per_contract": {
-       "value": -2.4200647401288924,
-       "lo": -3.734283623855705,
-       "hi": -1.1773967628138617,
-       "n_rows": 891,
-       "n_clusters": 44
+       "value": -2.448923837731348,
+       "lo": -3.747578714045354,
+       "hi": -1.4083708331238374,
+       "n_rows": 772,
+       "n_clusters": 43
       },
-      "max_drawdown_usd": 233.028346,
-      "worst_event_settled_usd": -22.859732,
-      "mean_abs_inventory": 6.218305274971941,
+      "max_drawdown_usd": 198.3721,
+      "worst_event_settled_usd": -22.475,
+      "mean_abs_inventory": 6.061023316062176,
       "killed": [
        false,
        false
       ],
-      "settled_pnl_total_usd": -206.22469999999998,
+      "settled_pnl_total_usd": -174.9477,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 2.083309090909091,
-        "lo": -0.20446666666666713,
-        "hi": 4.1787,
+        "value": 3.0310969696969696,
+        "lo": 0.8941060606060606,
+        "hi": 5.123733333333332,
         "n_rows": 33,
         "n_clusters": 33,
         "events": 33,
-        "total_x": -206.22469999999998,
+        "total_x": -174.9477,
         "total_base": -274.9739
        },
        "settled_cents_per_contract": {
-        "value": -0.5807490181589898,
-        "lo": -1.7763761909455695,
-        "hi": 0.7764399787789682,
+        "value": -0.47786986967794043,
+        "lo": -1.7396933496177605,
+        "hi": 0.9814071481173432,
         "n_clusters": 33
        },
        "markout_cents_per_contract": {
-        "value": -0.24454795069424806,
-        "lo": -1.2104106688863552,
-        "hi": 0.5220239993191906,
+        "value": -0.2734070482967046,
+        "lo": -1.2342855846667362,
+        "hi": 0.44439347015985264,
         "n_clusters": 54
        }
       }
      },
      "5 + size by expected move": {
-      "net_usd": -90.396081,
+      "net_usd": -97.557655,
       "fees_usd": 0.0,
-      "fills": 778,
-      "contracts": 3022.11,
+      "fills": 764,
+      "contracts": 3629.33,
       "settled_pnl_cents_per_contract": {
-       "value": -5.113180899941005,
-       "lo": -7.9032477231125124,
-       "hi": -2.386515498184384,
-       "n_rows": 459,
-       "n_clusters": 25
+       "value": -4.646622459807795,
+       "lo": -7.99868077043007,
+       "hi": -1.7087234818243489,
+       "n_rows": 448,
+       "n_clusters": 24
       },
       "markout_30s_cents_per_contract": {
-       "value": -2.126496057390366,
-       "lo": -3.9944463423416763,
-       "hi": -0.6475986187779776,
-       "n_rows": 778,
-       "n_clusters": 44
+       "value": -2.0176699280583468,
+       "lo": -3.5390111509980398,
+       "hi": -0.7482315423854966,
+       "n_rows": 764,
+       "n_clusters": 43
       },
-      "max_drawdown_usd": 96.5167,
-      "worst_event_settled_usd": -21.250814,
-      "mean_abs_inventory": 4.424794344473008,
+      "max_drawdown_usd": 105.0476,
+      "worst_event_settled_usd": -22.405512,
+      "mean_abs_inventory": 4.867604712041885,
       "killed": [
        false,
        false
       ],
-      "settled_pnl_total_usd": -85.8048,
+      "settled_pnl_total_usd": -93.2684,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 5.73239696969697,
-        "lo": 2.9357272727272723,
-        "hi": 8.781600000000003,
+        "value": 5.506227272727273,
+        "lo": 2.8997696969696976,
+        "hi": 8.36989090909091,
         "n_rows": 33,
         "n_clusters": 33,
         "events": 33,
-        "total_x": -85.8048,
+        "total_x": -93.2684,
         "total_base": -274.9739
        },
        "settled_cents_per_contract": {
-        "value": -1.9365540815827478,
-        "lo": -4.659284698242306,
-        "hi": 0.5122930749222756,
+        "value": -1.4699956414495388,
+        "lo": -4.45930342388678,
+        "hi": 0.9138041561183248,
         "n_clusters": 33
        },
        "markout_cents_per_contract": {
-        "value": 0.04902073204427726,
-        "lo": -1.2070061891207469,
-        "hi": 1.1211154178695506,
+        "value": 0.15784686137629667,
+        "lo": -0.9058935291824057,
+        "hi": 1.0529275500591593,
         "n_clusters": 54
        }
       }
      },
      "6 + time-to-resolution skew (= FULL)": {
-      "net_usd": -91.707543,
+      "net_usd": -103.521714,
       "fees_usd": 0.0,
-      "fills": 799,
-      "contracts": 3136.44,
+      "fills": 767,
+      "contracts": 3545.25,
       "settled_pnl_cents_per_contract": {
-       "value": -5.387420780617853,
-       "lo": -8.46779856882528,
-       "hi": -2.647251631617114,
-       "n_rows": 462,
+       "value": -5.0183728406031936,
+       "lo": -8.165523996082273,
+       "hi": -2.2509439899307737,
+       "n_rows": 444,
        "n_clusters": 24
       },
       "markout_30s_cents_per_contract": {
-       "value": -2.1204167782581527,
-       "lo": -4.030509428400432,
-       "hi": -0.6567340901611128,
-       "n_rows": 799,
+       "value": -2.1392355969254635,
+       "lo": -3.710967733050555,
+       "hi": -0.9485378770435183,
+       "n_rows": 767,
        "n_clusters": 43
       },
-      "max_drawdown_usd": 100.468785,
-      "worst_event_settled_usd": -20.722381,
-      "mean_abs_inventory": 4.201877346683354,
+      "max_drawdown_usd": 110.214285,
+      "worst_event_settled_usd": -21.558889,
+      "mean_abs_inventory": 4.732294654498045,
       "killed": [
        false,
        false
       ],
-      "settled_pnl_total_usd": -92.1486,
+      "settled_pnl_total_usd": -96.009,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 5.540160606060606,
-        "lo": 2.9402363636363638,
-        "hi": 8.44653939393939,
+        "value": 5.423178787878788,
+        "lo": 2.8631030303030314,
+        "hi": 8.297839393939391,
         "n_rows": 33,
         "n_clusters": 33,
         "events": 33,
-        "total_x": -92.1486,
+        "total_x": -96.009,
         "total_base": -274.9739
        },
        "settled_cents_per_contract": {
-        "value": -2.210793962259597,
-        "lo": -4.9733118836441665,
-        "hi": 0.08176596567665761,
+        "value": -1.841746022244938,
+        "lo": -4.421165088534249,
+        "hi": 0.4997651850160305,
         "n_clusters": 33
        },
        "markout_cents_per_contract": {
-        "value": 0.05510001117649077,
-        "lo": -1.1548020330504989,
-        "hi": 1.0701822184675605,
+        "value": 0.036281192509179494,
+        "lo": -0.9544920641135612,
+        "hi": 0.8517775221764823,
         "n_clusters": 54
        }
       }
@@ -1986,157 +1986,157 @@
       "settled_pnl_total_usd": -274.9739
      },
      "4 + widening by expected move": {
-      "net_usd": -157.2973,
+      "net_usd": -127.88279999999999,
       "fees_usd": 0.0,
-      "fills": 525,
-      "contracts": 5041.98,
+      "fills": 450,
+      "contracts": 4280.3,
       "settled_pnl_cents_per_contract": {
-       "value": -4.765359060160332,
-       "lo": -7.9616467618215365,
-       "hi": -2.3579135231605415,
-       "n_rows": 350,
+       "value": -5.253328458702739,
+       "lo": -9.01701685707438,
+       "hi": -2.23401815704631,
+       "n_rows": 279,
        "n_clusters": 23
       },
       "markout_30s_cents_per_contract": {
-       "value": -2.7451358394916285,
-       "lo": -4.96070412088386,
-       "hi": -0.8999310180436574,
-       "n_rows": 525,
-       "n_clusters": 39
+       "value": -2.6439887391070718,
+       "lo": -4.8139116907771,
+       "hi": -0.7373978494623656,
+       "n_rows": 450,
+       "n_clusters": 38
       },
-      "max_drawdown_usd": 169.118506,
-      "worst_event_settled_usd": -22.645122,
-      "mean_abs_inventory": 6.782019047619047,
+      "max_drawdown_usd": 144.715959,
+      "worst_event_settled_usd": -21.65,
+      "mean_abs_inventory": 6.673266666666667,
       "killed": [
        false,
        false
       ],
-      "settled_pnl_total_usd": -158.3586,
+      "settled_pnl_total_usd": -137.94400000000002,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 3.53379696969697,
-        "lo": 1.5207060606060594,
-        "hi": 5.598051515151513,
+        "value": 4.152421212121212,
+        "lo": 2.0459545454545447,
+        "hi": 6.3398878787878825,
         "n_rows": 33,
         "n_clusters": 33,
         "events": 33,
-        "total_x": -158.3586,
+        "total_x": -137.94400000000002,
         "total_base": -274.9739
        },
        "settled_cents_per_contract": {
-        "value": -1.5887322418020746,
-        "lo": -3.8937552441708134,
-        "hi": 0.6174061730918816,
+        "value": -2.0767016403444822,
+        "lo": -4.758508361157123,
+        "hi": 0.7571504935449562,
         "n_clusters": 33
        },
        "markout_cents_per_contract": {
-        "value": -0.5696190500569842,
-        "lo": -2.0836595549940173,
-        "hi": 0.9945411851268289,
+        "value": -0.4684719496724279,
+        "lo": -2.3286696922221397,
+        "hi": 1.2463897506659163,
         "n_clusters": 54
        }
       }
      },
      "5 + size by expected move": {
-      "net_usd": -85.815271,
+      "net_usd": -93.782185,
       "fees_usd": 0.0,
-      "fills": 504,
-      "contracts": 2273.54,
+      "fills": 462,
+      "contracts": 2557.67,
       "settled_pnl_cents_per_contract": {
-       "value": -6.0366865305277475,
-       "lo": -10.26535433070866,
-       "hi": -2.5119704030450714,
-       "n_rows": 318,
+       "value": -6.782698576151506,
+       "lo": -12.01291711517761,
+       "hi": -2.1443206179324794,
+       "n_rows": 257,
        "n_clusters": 23
       },
       "markout_30s_cents_per_contract": {
-       "value": -2.4937652295539117,
-       "lo": -4.852028237003971,
-       "hi": -0.691216631136451,
-       "n_rows": 504,
-       "n_clusters": 39
+       "value": -2.4018129782184565,
+       "lo": -4.752655018842069,
+       "hi": -0.612865469878771,
+       "n_rows": 462,
+       "n_clusters": 38
       },
-      "max_drawdown_usd": 91.967071,
-      "worst_event_settled_usd": -22.069025,
-      "mean_abs_inventory": 5.307123015873016,
+      "max_drawdown_usd": 97.9933,
+      "worst_event_settled_usd": -22.955,
+      "mean_abs_inventory": 5.727056277056278,
       "killed": [
        false,
        false
       ],
-      "settled_pnl_total_usd": -81.6486,
+      "settled_pnl_total_usd": -87.6033,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 5.858342424242424,
-        "lo": 3.248745454545455,
-        "hi": 8.812993939393941,
+        "value": 5.677896969696969,
+        "lo": 3.1432909090909105,
+        "hi": 8.45518484848485,
         "n_rows": 33,
         "n_clusters": 33,
         "events": 33,
-        "total_x": -81.6486,
+        "total_x": -87.6033,
         "total_base": -274.9739
        },
        "settled_cents_per_contract": {
-        "value": -2.860059712169492,
-        "lo": -7.012092152520836,
-        "hi": 0.7151994051941664,
+        "value": -3.6060717577932495,
+        "lo": -8.081673334243508,
+        "hi": 0.5281843492014398,
         "n_clusters": 33
        },
        "markout_cents_per_contract": {
-        "value": -0.3182484401192682,
-        "lo": -1.849415543754874,
-        "hi": 1.2036699417151284,
+        "value": -0.22629618878381308,
+        "lo": -2.316222795895722,
+        "hi": 1.3681711789003925,
         "n_clusters": 54
        }
       }
      },
      "6 + time-to-resolution skew (= FULL)": {
-      "net_usd": -83.332904,
+      "net_usd": -98.954248,
       "fees_usd": 0.0,
-      "fills": 492,
-      "contracts": 2222.75,
+      "fills": 473,
+      "contracts": 2594.1,
       "settled_pnl_cents_per_contract": {
-       "value": -6.069200235224932,
-       "lo": -10.34567589853034,
-       "hi": -2.409511927715399,
-       "n_rows": 313,
+       "value": -6.761515601783061,
+       "lo": -10.967982129560685,
+       "hi": -2.5242334322453015,
+       "n_rows": 271,
        "n_clusters": 23
       },
       "markout_30s_cents_per_contract": {
-       "value": -2.2973613766730403,
-       "lo": -4.769607700705234,
-       "hi": -0.5090629677277254,
-       "n_rows": 492,
-       "n_clusters": 39
+       "value": -2.5107937242203464,
+       "lo": -5.31630615640599,
+       "hi": -0.6875897096168709,
+       "n_rows": 473,
+       "n_clusters": 38
       },
-      "max_drawdown_usd": 93.406371,
-      "worst_event_settled_usd": -21.447143,
-      "mean_abs_inventory": 5.06400406504065,
+      "max_drawdown_usd": 102.665666,
+      "worst_event_settled_usd": -21.97,
+      "mean_abs_inventory": 5.644397463002114,
       "killed": [
        false,
        false
       ],
-      "settled_pnl_total_usd": -82.5654,
+      "settled_pnl_total_usd": -91.01,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 5.830560606060606,
-        "lo": 3.2000424242424232,
-        "hi": 8.713742424242424,
+        "value": 5.574663636363637,
+        "lo": 3.0789575757575767,
+        "hi": 8.322836363636362,
         "n_rows": 33,
         "n_clusters": 33,
         "events": 33,
-        "total_x": -82.5654,
+        "total_x": -91.01,
         "total_base": -274.9739
        },
        "settled_cents_per_contract": {
-        "value": -2.8925734168666777,
-        "lo": -7.118109932601376,
-        "hi": 0.440479725285182,
+        "value": -3.5848887834248044,
+        "lo": -7.912126076994337,
+        "hi": 0.2514863903590334,
         "n_clusters": 33
        },
        "markout_cents_per_contract": {
-        "value": -0.12184458723839686,
-        "lo": -1.7451439998130671,
-        "hi": 1.4710924668994574,
+        "value": -0.335276934785703,
+        "lo": -2.0564709136165003,
+        "hi": 1.1131063738838245,
         "n_clusters": 54
        }
       }
@@ -2148,81 +2148,81 @@
      "latency_ms": 200.0,
      "maker": "pessimistic",
      "baseline_net_usd": -323.9,
-     "full_net_usd": -109.27753399999999,
+     "full_net_usd": -131.826481,
      "baseline_fills": 1121,
-     "full_fills": 974
+     "full_fills": 917
     },
     {
      "latency_ms": 200.0,
      "maker": "queue(a=1,c=0)",
      "baseline_net_usd": -323.929124,
-     "full_net_usd": -113.421224,
+     "full_net_usd": -130.191498,
      "baseline_fills": 1379,
-     "full_fills": 1083
+     "full_fills": 1017
     },
     {
      "latency_ms": 200.0,
      "maker": "queue(a=1,c=.5)",
      "baseline_net_usd": -317.404273,
-     "full_net_usd": -111.736824,
+     "full_net_usd": -131.450098,
      "baseline_fills": 1402,
-     "full_fills": 1088
+     "full_fills": 1028
     },
     {
      "latency_ms": 200.0,
      "maker": "queue(a=.5,c=.5)",
      "baseline_net_usd": -319.05289999999997,
-     "full_net_usd": -111.95400099999999,
+     "full_net_usd": -128.855781,
      "baseline_fills": 1459,
-     "full_fills": 1190
+     "full_fills": 1124
     },
     {
      "latency_ms": 200.0,
      "maker": "optimistic",
      "baseline_net_usd": -326.0463,
-     "full_net_usd": -102.594642,
+     "full_net_usd": -112.38257200000001,
      "baseline_fills": 1657,
-     "full_fills": 1314
+     "full_fills": 1319
     },
     {
      "latency_ms": 1000.0,
      "maker": "pessimistic",
      "baseline_net_usd": -311.4,
-     "full_net_usd": -111.035962,
+     "full_net_usd": -122.045693,
      "baseline_fills": 1188,
-     "full_fills": 945
+     "full_fills": 939
     },
     {
      "latency_ms": 1000.0,
      "maker": "queue(a=1,c=0)",
      "baseline_net_usd": -318.591324,
-     "full_net_usd": -107.05345299999999,
+     "full_net_usd": -124.795766,
      "baseline_fills": 1403,
-     "full_fills": 1034
+     "full_fills": 1010
     },
     {
      "latency_ms": 1000.0,
      "maker": "queue(a=1,c=.5)",
      "baseline_net_usd": -315.19843099999997,
-     "full_net_usd": -108.520253,
+     "full_net_usd": -123.21176600000001,
      "baseline_fills": 1415,
-     "full_fills": 1042
+     "full_fills": 1012
     },
     {
      "latency_ms": 1000.0,
      "maker": "queue(a=.5,c=.5)",
      "baseline_net_usd": -325.5198,
-     "full_net_usd": -106.258996,
+     "full_net_usd": -125.020166,
      "baseline_fills": 1514,
-     "full_fills": 1146
+     "full_fills": 1104
     },
     {
      "latency_ms": 1000.0,
      "maker": "optimistic",
      "baseline_net_usd": -324.0621,
-     "full_net_usd": -101.952068,
+     "full_net_usd": -110.63312300000001,
      "baseline_fills": 1666,
-     "full_fills": 1307
+     "full_fills": 1298
     }
    ]
   },
@@ -2233,36 +2233,36 @@
    ],
    "signal": {
     "fair_value_staleness": {
-     "n": 367253,
+     "n": 270021,
      "events": 137,
-     "skill_vs_zero": 0.013425400679175081,
-     "lo": 0.009385253912708058,
-     "hi": 0.018990173534219612,
-     "corr": 0.12670951132330005,
-     "direction_accuracy": 0.6033146733585197,
-     "share_moved": 0.09874119476219391,
-     "rmse_zero": 0.01388933910104412
+     "skill_vs_zero": 0.057125745486061974,
+     "lo": 0.038298583503995065,
+     "hi": 0.08540718665585934,
+     "corr": 0.24165203662968063,
+     "direction_accuracy": 0.6032206386034692,
+     "share_moved": 0.13407846056417835,
+     "rmse_zero": 0.015649332261981876
     },
     "fair_value_all_direction_features": {
-     "n": 367253,
+     "n": 270021,
      "events": 137,
-     "skill_vs_zero": 0.02439535157791406,
-     "lo": 0.016904781582600004,
-     "hi": 0.031742066216716935,
-     "corr": 0.15945876973470957,
-     "direction_accuracy": 0.635303201610457,
-     "share_moved": 0.09874119476219391,
-     "rmse_zero": 0.01388933910104412
+     "skill_vs_zero": 0.06874876808294839,
+     "lo": 0.05194073650099951,
+     "hi": 0.09247620822642588,
+     "corr": 0.2643176771596037,
+     "direction_accuracy": 0.6497348359297315,
+     "share_moved": 0.13407846056417835,
+     "rmse_zero": 0.015649332261981876
     },
     "scale_of_next_move": {
-     "n": 367097,
+     "n": 269709,
      "events": 137,
-     "skill_vs_mean": 0.1340340868902884,
-     "lo": 0.10994475874354526,
-     "hi": 0.16043564907494856,
-     "corr": 0.3661080115385327
+     "skill_vs_mean": 0.12954891867607188,
+     "lo": 0.10608651230334898,
+     "hi": 0.15662136327088239,
+     "corr": 0.35993150248478023
     },
-    "samples": 403268
+    "samples": 270565
    },
    "ladder": {
     "rows": {
@@ -2347,469 +2347,469 @@
       }
      },
      "2 + fair value: staleness correction": {
-      "net_usd": -434.756888,
-      "fees_usd": 11.001788,
-      "fills": 2303,
-      "contracts": 21555.95,
+      "net_usd": -413.12273899999997,
+      "fees_usd": 10.770039,
+      "fills": 2300,
+      "contracts": 21495.51,
       "settled_pnl_cents_per_contract": {
-       "value": -1.997788747199762,
-       "lo": -2.4788228779553276,
-       "hi": -1.5882355749738597,
-       "n_rows": 1942,
+       "value": -1.8998551856177217,
+       "lo": -2.340422927362348,
+       "hi": -1.4486012112022004,
+       "n_rows": 1940,
        "n_clusters": 43
       },
       "markout_30s_cents_per_contract": {
-       "value": -1.7800479681943964,
-       "lo": -2.1774894439574166,
-       "hi": -1.4526275310137848,
-       "n_rows": 2303,
+       "value": -1.8493969205662022,
+       "lo": -2.2590847394258597,
+       "hi": -1.5464004091949977,
+       "n_rows": 2300,
        "n_clusters": 62
       },
-      "max_drawdown_usd": 326.436911,
-      "worst_event_settled_usd": -17.0,
-      "mean_abs_inventory": 5.79747286148502,
+      "max_drawdown_usd": 307.753749,
+      "worst_event_settled_usd": -15.925,
+      "mean_abs_inventory": 5.675873913043478,
       "killed": [
        true,
        false
       ],
-      "settled_pnl_total_usd": -365.27889099999993,
+      "settled_pnl_total_usd": -346.02005499999996,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": -0.5252011785714285,
-        "lo": -2.0078106071428583,
-        "hi": 0.7277332321428573,
+        "value": -0.18129339285714324,
+        "lo": -1.7567349821428573,
+        "hi": 1.453410732142857,
         "n_rows": 56,
         "n_clusters": 56,
         "events": 56,
-        "total_x": -365.27889099999993,
+        "total_x": -346.02005499999996,
         "total_base": -335.867625
        },
        "settled_cents_per_contract": {
-        "value": -0.11087925679870247,
-        "lo": -0.5976398714989042,
-        "hi": 0.26619445948454734,
+        "value": -0.012945695216662667,
+        "lo": -0.4663294702703886,
+        "hi": 0.48697680885216377,
         "n_clusters": 56
        },
        "markout_cents_per_contract": {
-        "value": -0.19233993645735792,
-        "lo": -0.38060264155191503,
-        "hi": -0.03751412674053389,
+        "value": -0.2616888888291635,
+        "lo": -0.49865146289747186,
+        "hi": -0.07699286549974493,
         "n_clusters": 90
        }
       }
      },
      "3 + fair value: staleness + order book, flow, momentum": {
-      "net_usd": -411.57495,
-      "fees_usd": 12.36245,
-      "fills": 2322,
-      "contracts": 21505.26,
+      "net_usd": -412.141181,
+      "fees_usd": 11.270181000000001,
+      "fills": 2276,
+      "contracts": 21097.6,
       "settled_pnl_cents_per_contract": {
-       "value": -1.9090705822483065,
-       "lo": -2.414291250275298,
-       "hi": -1.4861842916809436,
-       "n_rows": 1927,
+       "value": -1.9393621171745932,
+       "lo": -2.333403161504253,
+       "hi": -1.5601295627014797,
+       "n_rows": 1917,
        "n_clusters": 43
       },
       "markout_30s_cents_per_contract": {
-       "value": -1.7819561353826925,
-       "lo": -2.1418526080332216,
-       "hi": -1.4345544913991013,
-       "n_rows": 2322,
-       "n_clusters": 62
+       "value": -1.7980587839375095,
+       "lo": -2.0916519816472032,
+       "hi": -1.4883651428241402,
+       "n_rows": 2276,
+       "n_clusters": 61
       },
-      "max_drawdown_usd": 308.962529,
-      "worst_event_settled_usd": -6.3,
-      "mean_abs_inventory": 5.841330749354005,
+      "max_drawdown_usd": 306.753532,
+      "worst_event_settled_usd": -8.125,
+      "mean_abs_inventory": 5.586019332161687,
       "killed": [
        true,
        false
       ],
-      "settled_pnl_total_usd": -342.12873899999994,
+      "settled_pnl_total_usd": -345.47660999999994,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": -0.11180560714285691,
-        "lo": -1.2953449464285707,
-        "hi": 0.9665100892857141,
+        "value": -0.1715890178571428,
+        "lo": -1.359270267857143,
+        "hi": 1.0127207857142857,
         "n_rows": 56,
         "n_clusters": 56,
         "events": 56,
-        "total_x": -342.12873899999994,
+        "total_x": -345.47660999999994,
         "total_base": -335.867625
        },
        "settled_cents_per_contract": {
-        "value": -0.022161091847247905,
-        "lo": -0.4041823153443165,
-        "hi": 0.306183174443303,
+        "value": -0.052452626773533684,
+        "lo": -0.4354588936526893,
+        "hi": 0.3179231562284588,
         "n_clusters": 56
        },
        "markout_cents_per_contract": {
-        "value": -0.19424810364565337,
-        "lo": -0.38771284311933685,
-        "hi": -0.07451367136514686,
+        "value": -0.2103507522004715,
+        "lo": -0.4115591238111964,
+        "hi": -0.02706492431855745,
         "n_clusters": 90
        }
       }
      },
      "4 + widening by expected move": {
-      "net_usd": -407.505864,
-      "fees_usd": 12.162064,
-      "fills": 2141,
-      "contracts": 19649.96,
+      "net_usd": -408.847757,
+      "fees_usd": 12.480957,
+      "fills": 2152,
+      "contracts": 19762.87,
       "settled_pnl_cents_per_contract": {
-       "value": -2.101567118453992,
-       "lo": -2.5795860122073395,
-       "hi": -1.671141392394477,
-       "n_rows": 1838,
+       "value": -2.1126623443191863,
+       "lo": -2.6958271745176408,
+       "hi": -1.6507466269676543,
+       "n_rows": 1864,
        "n_clusters": 42
       },
       "markout_30s_cents_per_contract": {
-       "value": -1.8519699276741532,
-       "lo": -2.233514791099305,
-       "hi": -1.4854911701177975,
-       "n_rows": 2141,
+       "value": -1.736058578536417,
+       "lo": -2.173607984152848,
+       "hi": -1.3259243724852687,
+       "n_rows": 2152,
        "n_clusters": 58
       },
-      "max_drawdown_usd": 316.388334,
-      "worst_event_settled_usd": -15.7684,
-      "mean_abs_inventory": 5.801158337225595,
+      "max_drawdown_usd": 328.053382,
+      "worst_event_settled_usd": -18.423,
+      "mean_abs_inventory": 5.592848513011153,
       "killed": [
        true,
        false
       ],
-      "settled_pnl_total_usd": -355.682459,
+      "settled_pnl_total_usd": -362.70482899999996,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": -0.3538363214285716,
-        "lo": -2.404792249999999,
-        "hi": 1.390422839285714,
+        "value": -0.47923578571428604,
+        "lo": -2.6605350535714316,
+        "hi": 1.7609858749999987,
         "n_rows": 56,
         "n_clusters": 56,
         "events": 56,
-        "total_x": -355.682459,
+        "total_x": -362.70482899999996,
         "total_base": -335.867625
        },
        "settled_cents_per_contract": {
-        "value": -0.21465762805293354,
-        "lo": -0.6709713165799127,
-        "hi": 0.18415060810724926,
+        "value": -0.22575285391812772,
+        "lo": -0.7798116811443379,
+        "hi": 0.3222638045506496,
         "n_clusters": 56
        },
        "markout_cents_per_contract": {
-        "value": -0.2642618959371148,
-        "lo": -0.57705476104793,
-        "hi": -0.03583369030185857,
+        "value": -0.14835054679937865,
+        "lo": -0.541457141562921,
+        "hi": 0.14495910772680043,
         "n_clusters": 90
        }
       }
      },
      "5 + size by expected move": {
-      "net_usd": -185.226309,
-      "fees_usd": 5.456208999999999,
-      "fills": 2439,
-      "contracts": 8584.6,
+      "net_usd": -200.21234499999997,
+      "fees_usd": 6.150145,
+      "fills": 2244,
+      "contracts": 9754.14,
       "settled_pnl_cents_per_contract": {
-       "value": -2.3922110824546428,
-       "lo": -3.0469774811396406,
-       "hi": -1.7565309786631218,
-       "n_rows": 2127,
+       "value": -2.13710749522159,
+       "lo": -2.795547957485812,
+       "hi": -1.558453397986473,
+       "n_rows": 1946,
        "n_clusters": 42
       },
       "markout_30s_cents_per_contract": {
-       "value": -1.8966783542622836,
-       "lo": -2.451281933731419,
-       "hi": -1.3610192374462762,
-       "n_rows": 2439,
+       "value": -1.6187039554486609,
+       "lo": -2.1562709094566803,
+       "hi": -1.149518492260428,
+       "n_rows": 2244,
        "n_clusters": 58
       },
-      "max_drawdown_usd": 132.66877,
-      "worst_event_settled_usd": -6.331104,
-      "mean_abs_inventory": 4.007781877818778,
+      "max_drawdown_usd": 134.827734,
+      "worst_event_settled_usd": -4.48,
+      "mean_abs_inventory": 4.25062834224599,
       "killed": [
        false,
        false
       ],
-      "settled_pnl_total_usd": -160.557792,
+      "settled_pnl_total_usd": -163.019842,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 3.130532732142856,
-        "lo": 1.1350546249999998,
-        "hi": 5.399017214285712,
+        "value": 3.0865675535714274,
+        "lo": 1.072378392857142,
+        "hi": 5.319982910714287,
         "n_rows": 56,
         "n_clusters": 56,
         "events": 56,
-        "total_x": -160.557792,
+        "total_x": -163.019842,
         "total_base": -335.867625
        },
        "settled_cents_per_contract": {
-        "value": -0.5053015920535837,
-        "lo": -1.1541838052669045,
-        "hi": 0.1151647238173541,
+        "value": -0.25019800482053034,
+        "lo": -0.9270382289872534,
+        "hi": 0.3314270173600613,
         "n_clusters": 56
        },
        "markout_cents_per_contract": {
-        "value": -0.30897032252524537,
-        "lo": -0.8050852939881155,
-        "hi": 0.20114097548397347,
+        "value": -0.030995923711621742,
+        "lo": -0.5138633115102831,
+        "hi": 0.4479303468874618,
         "n_clusters": 90
        }
       }
      },
      "6 + time-to-resolution skew (= FULL)": {
-      "net_usd": -176.43305800000002,
-      "fees_usd": 5.368458,
-      "fills": 2385,
-      "contracts": 8369.02,
+      "net_usd": -198.42092300000002,
+      "fees_usd": 6.285723,
+      "fills": 2276,
+      "contracts": 9718.14,
       "settled_pnl_cents_per_contract": {
-       "value": -2.3276800576688683,
-       "lo": -2.9663010941663357,
-       "hi": -1.7097605551351427,
-       "n_rows": 2076,
+       "value": -2.1253344687492586,
+       "lo": -2.7239963901304707,
+       "hi": -1.5091704594887647,
+       "n_rows": 1978,
        "n_clusters": 42
       },
       "markout_30s_cents_per_contract": {
-       "value": -1.8789135406535054,
-       "lo": -2.425762852711289,
-       "hi": -1.3539020035550136,
-       "n_rows": 2385,
+       "value": -1.6621138407143756,
+       "lo": -2.1934000759053247,
+       "hi": -1.1803894129371106,
+       "n_rows": 2276,
        "n_clusters": 58
       },
-      "max_drawdown_usd": 123.780197,
-      "worst_event_settled_usd": -4.601718,
-      "mean_abs_inventory": 3.6808134171907754,
+      "max_drawdown_usd": 132.249089,
+      "worst_event_settled_usd": -4.25,
+      "mean_abs_inventory": 3.966265377855888,
       "killed": [
        false,
        false
       ],
-      "settled_pnl_total_usd": -151.441425,
+      "settled_pnl_total_usd": -161.229148,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 3.2933249999999994,
-        "lo": 1.3155827857142843,
-        "hi": 5.473260678571428,
+        "value": 3.1185442321428565,
+        "lo": 1.0952820892857138,
+        "hi": 5.277289803571426,
         "n_rows": 56,
         "n_clusters": 56,
         "events": 56,
-        "total_x": -151.441425,
+        "total_x": -161.229148,
         "total_base": -335.867625
        },
        "settled_cents_per_contract": {
-        "value": -0.4407705672678084,
-        "lo": -1.0473754946643632,
-        "hi": 0.19162096360181224,
+        "value": -0.23842497834819953,
+        "lo": -0.9068345311788677,
+        "hi": 0.36146026347419524,
         "n_clusters": 56
        },
        "markout_cents_per_contract": {
-        "value": -0.2912055089164667,
-        "lo": -0.7687035553640937,
-        "hi": 0.2642261073770702,
+        "value": -0.07440580897733651,
+        "lo": -0.5476867827371323,
+        "hi": 0.3872459149156311,
         "n_clusters": 90
        }
       }
      },
      "full - fair value": {
-      "net_usd": -193.880017,
-      "fees_usd": 5.531117,
-      "fills": 2572,
-      "contracts": 8957.83,
+      "net_usd": -243.856243,
+      "fees_usd": 6.803343,
+      "fills": 2720,
+      "contracts": 11278.17,
       "settled_pnl_cents_per_contract": {
-       "value": -2.340181317685538,
-       "lo": -2.9669197373276397,
-       "hi": -1.7220247147919236,
-       "n_rows": 2243,
+       "value": -2.230305993372175,
+       "lo": -2.8590797270490476,
+       "hi": -1.6052996212932136,
+       "n_rows": 2405,
        "n_clusters": 42
       },
       "markout_30s_cents_per_contract": {
-       "value": -1.8762423488724391,
-       "lo": -2.369378550556292,
-       "hi": -1.3631262969156075,
-       "n_rows": 2572,
+       "value": -1.7729201634662362,
+       "lo": -2.2930668346322274,
+       "hi": -1.2536671944103177,
+       "n_rows": 2720,
        "n_clusters": 58
       },
-      "max_drawdown_usd": 137.559728,
-      "worst_event_settled_usd": -5.075215,
-      "mean_abs_inventory": 3.5947356143079316,
+      "max_drawdown_usd": 171.327094,
+      "worst_event_settled_usd": -6.080776,
+      "mean_abs_inventory": 4.059496323529412,
       "killed": [
        false,
        false
       ],
-      "settled_pnl_total_usd": -163.990312,
+      "settled_pnl_total_usd": -203.115305,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 3.069237732142857,
-        "lo": 1.1357585714285703,
-        "hi": 5.264822160714284,
+        "value": 2.3705771428571416,
+        "lo": 0.45037773214285587,
+        "hi": 4.541537839285715,
         "n_rows": 56,
         "n_clusters": 56,
         "events": 56,
-        "total_x": -163.990312,
+        "total_x": -203.115305,
         "total_base": -335.867625
        },
        "settled_cents_per_contract": {
-        "value": -0.4532718272844787,
-        "lo": -1.05994698827929,
-        "hi": 0.1576761363134369,
+        "value": -0.3433965029711161,
+        "lo": -1.0161590361815105,
+        "hi": 0.21887246982348496,
         "n_clusters": 56
        },
        "markout_cents_per_contract": {
-        "value": -0.2885343171354007,
-        "lo": -0.7589217284671785,
-        "hi": 0.2010396060864188,
+        "value": -0.18521213172919815,
+        "lo": -0.6454948125788043,
+        "hi": 0.26475597747963,
         "n_clusters": 90
        }
       }
      },
      "full - widening": {
-      "net_usd": -221.42676799999998,
-      "fees_usd": 7.387168,
-      "fills": 3560,
-      "contracts": 11237.84,
+      "net_usd": -249.28400799999997,
+      "fees_usd": 8.697708,
+      "fills": 3319,
+      "contracts": 12751.84,
       "settled_pnl_cents_per_contract": {
-       "value": -2.1214685153027406,
-       "lo": -2.6459442185759796,
-       "hi": -1.6299141402945339,
-       "n_rows": 3191,
+       "value": -2.0730190883023267,
+       "lo": -2.5879891411984057,
+       "hi": -1.6070827585360354,
+       "n_rows": 2962,
        "n_clusters": 44
       },
       "markout_30s_cents_per_contract": {
-       "value": -1.648323877186363,
-       "lo": -1.9983101042850926,
-       "hi": -1.2792656357676786,
-       "n_rows": 3560,
+       "value": -1.6976914704074078,
+       "lo": -2.0935722865953847,
+       "hi": -1.291648911237056,
+       "n_rows": 3319,
        "n_clusters": 62
       },
-      "max_drawdown_usd": 164.000745,
-      "worst_event_settled_usd": -6.151668,
-      "mean_abs_inventory": 3.199991573033708,
+      "max_drawdown_usd": 183.902822,
+      "worst_event_settled_usd": -6.267429,
+      "mean_abs_inventory": 3.5217505272672494,
       "killed": [
        false,
        false
       ],
-      "settled_pnl_total_usd": -193.63597800000002,
+      "settled_pnl_total_usd": -214.933314,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 2.5398508392857133,
-        "lo": 0.6200181607142852,
-        "hi": 4.681880571428569,
+        "value": 2.159541267857142,
+        "lo": 0.23902273214285663,
+        "hi": 4.312543357142858,
         "n_rows": 56,
         "n_clusters": 56,
         "events": 56,
-        "total_x": -193.63597800000002,
+        "total_x": -214.933314,
         "total_base": -335.867625
        },
        "settled_cents_per_contract": {
-        "value": -0.23455902490168112,
-        "lo": -0.7630652828444211,
-        "hi": 0.2409546690629114,
+        "value": -0.1861095979012677,
+        "lo": -0.7213433400584388,
+        "hi": 0.3013052514115251,
         "n_clusters": 56
        },
        "markout_cents_per_contract": {
-        "value": -0.06061584544932486,
-        "lo": -0.45600223496654224,
-        "hi": 0.29480884213198877,
+        "value": -0.10998343867036953,
+        "lo": -0.4859456937406972,
+        "hi": 0.21276374112199248,
         "n_clusters": 90
        }
       }
      },
      "full - size": {
-      "net_usd": -392.100415,
-      "fees_usd": 14.233915,
-      "fills": 2241,
-      "contracts": 20494.55,
+      "net_usd": -393.72043699999995,
+      "fees_usd": 12.794737,
+      "fills": 2115,
+      "contracts": 19400.57,
       "settled_pnl_cents_per_contract": {
-       "value": -1.914980004749786,
-       "lo": -2.34792115860874,
-       "hi": -1.531375823933223,
-       "n_rows": 1938,
+       "value": -2.066430633636878,
+       "lo": -2.584554435057332,
+       "hi": -1.6246493958782062,
+       "n_rows": 1828,
        "n_clusters": 42
       },
       "markout_30s_cents_per_contract": {
-       "value": -1.7844844117094547,
-       "lo": -2.1607857676517543,
-       "hi": -1.4231597972968268,
-       "n_rows": 2241,
+       "value": -1.8073559178931342,
+       "lo": -2.337506238779315,
+       "hi": -1.3589892885697996,
+       "n_rows": 2115,
        "n_clusters": 58
       },
-      "max_drawdown_usd": 300.61022,
-      "worst_event_settled_usd": -4.9932,
-      "mean_abs_inventory": 5.653935742971887,
+      "max_drawdown_usd": 312.239743,
+      "worst_event_settled_usd": -4.2,
+      "mean_abs_inventory": 5.49756501182033,
       "killed": [
        true,
        false
       ],
-      "settled_pnl_total_usd": -340.27700999999996,
+      "settled_pnl_total_usd": -347.28102599999994,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": -0.07873901785714307,
-        "lo": -2.071218857142857,
-        "hi": 1.6743806071428557,
+        "value": -0.20381073214285708,
+        "lo": -2.1513469107142855,
+        "hi": 1.8085433035714291,
         "n_rows": 56,
         "n_clusters": 56,
         "events": 56,
-        "total_x": -340.27700999999996,
+        "total_x": -347.28102599999994,
         "total_base": -335.867625
        },
        "settled_cents_per_contract": {
-        "value": -0.02807051434872654,
-        "lo": -0.45307805210088503,
-        "hi": 0.3640576478890609,
+        "value": -0.17952114323581903,
+        "lo": -0.7052536007935077,
+        "hi": 0.3037492984018366,
         "n_clusters": 56
        },
        "markout_cents_per_contract": {
-        "value": -0.1967763799724156,
-        "lo": -0.49014555614969013,
-        "hi": 0.008024841725781773,
+        "value": -0.21964788615609532,
+        "lo": -0.6596531546082549,
+        "hi": 0.06990607974004304,
         "n_clusters": 90
        }
       }
      },
      "full - time skew": {
-      "net_usd": -185.226309,
-      "fees_usd": 5.456208999999999,
-      "fills": 2439,
-      "contracts": 8584.6,
+      "net_usd": -200.21234499999997,
+      "fees_usd": 6.150145,
+      "fills": 2244,
+      "contracts": 9754.14,
       "settled_pnl_cents_per_contract": {
-       "value": -2.3922110824546428,
-       "lo": -3.0469774811396406,
-       "hi": -1.7565309786631218,
-       "n_rows": 2127,
+       "value": -2.13710749522159,
+       "lo": -2.795547957485812,
+       "hi": -1.558453397986473,
+       "n_rows": 1946,
        "n_clusters": 42
       },
       "markout_30s_cents_per_contract": {
-       "value": -1.8966783542622836,
-       "lo": -2.451281933731419,
-       "hi": -1.3610192374462762,
-       "n_rows": 2439,
+       "value": -1.6187039554486609,
+       "lo": -2.1562709094566803,
+       "hi": -1.149518492260428,
+       "n_rows": 2244,
        "n_clusters": 58
       },
-      "max_drawdown_usd": 132.66877,
-      "worst_event_settled_usd": -6.331104,
-      "mean_abs_inventory": 4.007781877818778,
+      "max_drawdown_usd": 134.827734,
+      "worst_event_settled_usd": -4.48,
+      "mean_abs_inventory": 4.25062834224599,
       "killed": [
        false,
        false
       ],
-      "settled_pnl_total_usd": -160.557792,
+      "settled_pnl_total_usd": -163.019842,
       "vs_baseline": {
        "event_pnl_total_usd": {
-        "value": 3.130532732142856,
-        "lo": 1.1350546249999998,
-        "hi": 5.399017214285712,
+        "value": 3.0865675535714274,
+        "lo": 1.072378392857142,
+        "hi": 5.319982910714287,
         "n_rows": 56,
         "n_clusters": 56,
         "events": 56,
-        "total_x": -160.557792,
+        "total_x": -163.019842,
         "total_base": -335.867625
        },
        "settled_cents_per_contract": {
-        "value": -0.5053015920535837,
-        "lo": -1.1541838052669045,
-        "hi": 0.1151647238173541,
+        "value": -0.25019800482053034,
+        "lo": -0.9270382289872534,
+        "hi": 0.3314270173600613,
         "n_clusters": 56
        },
        "markout_cents_per_contract": {
-        "value": -0.30897032252524537,
-        "lo": -0.8050852939881155,
-        "hi": 0.20114097548397347,
+        "value": -0.030995923711621742,
+        "lo": -0.5138633115102831,
+        "hi": 0.4479303468874618,
         "n_clusters": 90
        }
       }
@@ -2818,121 +2818,121 @@
     "contrasts": {
      "2 vs 1": {
       "event_pnl_total_usd": {
-       "value": 0.009665285714286332,
-       "lo": -1.010770535714285,
-       "hi": 0.8714428571428583,
+       "value": 0.35357307142857153,
+       "lo": -0.7412736964285714,
+       "hi": 1.5710776785714289,
        "n_rows": 56,
        "n_clusters": 56,
        "events": 56,
-       "total_x": -365.27889099999993,
+       "total_x": -346.02005499999996,
        "total_base": -365.82014699999996
       },
       "settled_cents_per_contract": {
-       "value": 0.12467955677573128,
-       "lo": -0.1498069264299553,
-       "hi": 0.38704082615569635,
+       "value": 0.2226131183577711,
+       "lo": -0.06054136717184866,
+       "hi": 0.6050083239945703,
        "n_clusters": 56
       },
       "markout_cents_per_contract": {
-       "value": 0.05293360190774421,
-       "lo": -0.0573548365495804,
-       "hi": 0.16136364750009435,
+       "value": -0.016415350464061396,
+       "lo": -0.18474032398228912,
+       "hi": 0.1382687466594945,
        "n_clusters": 76
       }
      },
      "3 vs 2": {
       "event_pnl_total_usd": {
-       "value": 0.41339557142857153,
-       "lo": -0.31227726785714305,
-       "hi": 1.366182214285714,
+       "value": 0.009704375000000414,
+       "lo": -0.9299694821428568,
+       "hi": 0.7602600000000017,
        "n_rows": 56,
        "n_clusters": 56,
        "events": 56,
-       "total_x": -342.12873899999994,
-       "total_base": -365.27889099999993
+       "total_x": -345.47660999999994,
+       "total_base": -346.02005499999996
       },
       "settled_cents_per_contract": {
-       "value": 0.08871816495145457,
-       "lo": -0.13094546465058898,
-       "hi": 0.4051131453300385,
+       "value": -0.03950693155687102,
+       "lo": -0.26266329775461505,
+       "hi": 0.1488506619008647,
        "n_clusters": 56
       },
       "markout_cents_per_contract": {
-       "value": -0.001908167188295451,
-       "lo": -0.11402516275928098,
-       "hi": 0.10111536249685105,
+       "value": 0.05133813662869202,
+       "lo": -0.10309393217678653,
+       "hi": 0.23353434079943525,
        "n_clusters": 75
       }
      },
      "4 vs 2": {
       "event_pnl_total_usd": {
-       "value": 0.1713648571428569,
-       "lo": -1.010689375,
-       "hi": 1.3460956071428574,
+       "value": -0.2979423928571428,
+       "lo": -2.1115871607142855,
+       "hi": 1.4379678571428565,
        "n_rows": 56,
        "n_clusters": 56,
        "events": 56,
-       "total_x": -355.682459,
-       "total_base": -365.27889099999993
+       "total_x": -362.70482899999996,
+       "total_base": -346.02005499999996
       },
       "settled_cents_per_contract": {
-       "value": -0.10377837125423106,
-       "lo": -0.38419443109991125,
-       "hi": 0.18815589448580905,
+       "value": -0.21280715870146505,
+       "lo": -0.7011747332196638,
+       "hi": 0.18909706487882927,
        "n_clusters": 56
       },
       "markout_cents_per_contract": {
-       "value": -0.07192195947975688,
-       "lo": -0.30720035243064214,
-       "hi": 0.12291808091072287,
+       "value": 0.11333834202978488,
+       "lo": -0.23473385430402827,
+       "hi": 0.4180602350633984,
        "n_clusters": 75
       }
      },
      "5 vs 4": {
       "event_pnl_total_usd": {
-       "value": 3.484369053571428,
-       "lo": 2.026558303571429,
-       "hi": 5.162821517857142,
+       "value": 3.5658033392857136,
+       "lo": 2.1932435892857147,
+       "hi": 5.076892749999999,
        "n_rows": 56,
        "n_clusters": 56,
        "events": 56,
-       "total_x": -160.557792,
-       "total_base": -355.682459
+       "total_x": -163.019842,
+       "total_base": -362.70482899999996
       },
       "settled_cents_per_contract": {
-       "value": -0.2906439640006502,
-       "lo": -0.8517963460654048,
-       "hi": 0.29889919606107407,
+       "value": -0.024445150902402624,
+       "lo": -0.37570345502618885,
+       "hi": 0.43311875365590224,
        "n_clusters": 56
       },
       "markout_cents_per_contract": {
-       "value": -0.04470842658813057,
-       "lo": -0.4996953977837173,
-       "hi": 0.47927179317818047,
+       "value": 0.1173546230877569,
+       "lo": -0.21965911322099285,
+       "hi": 0.5289257691986133,
        "n_clusters": 72
       }
      },
      "6 vs 5": {
       "event_pnl_total_usd": {
-       "value": 0.16279226785714315,
-       "lo": -0.015095892857142619,
-       "hi": 0.36460230357142864,
+       "value": 0.031976678571428906,
+       "lo": -0.16745662499999941,
+       "hi": 0.22530685714285736,
        "n_rows": 56,
        "n_clusters": 56,
        "events": 56,
-       "total_x": -151.441425,
-       "total_base": -160.557792
+       "total_x": -161.229148,
+       "total_base": -163.019842
       },
       "settled_cents_per_contract": {
-       "value": 0.06453102478577533,
-       "lo": -0.06760224903658951,
-       "hi": 0.21489376776317437,
+       "value": 0.011773026472330805,
+       "lo": -0.1307360200619163,
+       "hi": 0.14460671028454808,
        "n_clusters": 56
       },
       "markout_cents_per_contract": {
-       "value": 0.017764813608778685,
-       "lo": -0.07685739788667556,
-       "hi": 0.14156874416583665,
+       "value": -0.043409885265714765,
+       "lo": -0.16920302857695013,
+       "hi": 0.07737624557569567,
        "n_clusters": 72
       }
      }
@@ -2941,15 +2941,15 @@
    "breakdown_full": {
     "category": {
      "Climate and Weather": {
-      "fills": 234,
+      "fills": 222,
       "events": 5,
-      "contracts": 1415.91,
-      "spread_captured_cents_per_contract": 0.12129302003658424,
+      "contracts": 1579.08,
+      "spread_captured_cents_per_contract": -0.03457392912328698,
       "markout_30s_cents": {
-       "value": -1.3098290598290598,
-       "lo": -2.1732522796352582,
-       "hi": -0.03333333333333333,
-       "n_rows": 234,
+       "value": -1.2297297297297298,
+       "lo": -2.1227436823104693,
+       "hi": 0.06060606060606061,
+       "n_rows": 222,
        "n_clusters": 5
       }
      },
@@ -2957,9 +2957,9 @@
       "fills": 2,
       "events": 1,
       "contracts": 20.0,
-      "spread_captured_cents_per_contract": 2.7,
+      "spread_captured_cents_per_contract": 3.25,
       "markout_30s_cents": {
-       "value": 2.75,
+       "value": 3.25,
        "lo": null,
        "hi": null,
        "n_rows": 2,
@@ -2967,34 +2967,34 @@
       }
      },
      "Crypto": {
-      "fills": 128,
+      "fills": 110,
       "events": 5,
-      "contracts": 440.0,
-      "spread_captured_cents_per_contract": 1.1204545454545454,
+      "contracts": 477.0,
+      "spread_captured_cents_per_contract": 1.0377358490566038,
       "markout_30s_cents": {
-       "value": -1.109375,
-       "lo": -1.4598214285714286,
-       "hi": 1.34375,
-       "n_rows": 128,
+       "value": -1.240909090909091,
+       "lo": -1.625,
+       "hi": 1.1794871794871795,
+       "n_rows": 110,
        "n_clusters": 5
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.04804347826086956,
+       "value": -0.11171052631578948,
        "lo": null,
        "hi": null,
-       "n_rows": 92,
+       "n_rows": 76,
        "n_clusters": 1
       },
-      "settled_pnl_total_usd": -4.42,
-      "settled_fills": 92
+      "settled_pnl_total_usd": -8.49,
+      "settled_fills": 76
      },
      "Economics": {
       "fills": 3,
       "events": 1,
-      "contracts": 25.0,
-      "spread_captured_cents_per_contract": 1.8,
+      "contracts": 30.0,
+      "spread_captured_cents_per_contract": 1.5333333333333334,
       "markout_30s_cents": {
-       "value": 1.8333333333333333,
+       "value": 1.5,
        "lo": null,
        "hi": null,
        "n_rows": 3,
@@ -3002,45 +3002,45 @@
       }
      },
      "Entertainment": {
-      "fills": 20,
+      "fills": 23,
       "events": 3,
-      "contracts": 137.0,
-      "spread_captured_cents_per_contract": 0.0,
+      "contracts": 200.0,
+      "spread_captured_cents_per_contract": -0.7275,
       "markout_30s_cents": {
-       "value": 1.05,
-       "lo": -0.5,
+       "value": -0.6304347826086957,
+       "lo": -0.8333333333333334,
        "hi": 3.5,
-       "n_rows": 20,
+       "n_rows": 23,
        "n_clusters": 3
       }
      },
      "Politics": {
-      "fills": 14,
+      "fills": 16,
       "events": 1,
-      "contracts": 124.0,
-      "spread_captured_cents_per_contract": 0.20967741935483872,
+      "contracts": 172.0,
+      "spread_captured_cents_per_contract": 0.055232558139534885,
       "markout_30s_cents": {
-       "value": -0.17857142857142858,
+       "value": -0.28125,
        "lo": null,
        "hi": null,
-       "n_rows": 14,
+       "n_rows": 16,
        "n_clusters": 1
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.07428571428571427,
+       "value": -0.10437500000000001,
        "lo": null,
        "hi": null,
-       "n_rows": 14,
+       "n_rows": 16,
        "n_clusters": 1
       },
-      "settled_pnl_total_usd": -1.04,
-      "settled_fills": 14
+      "settled_pnl_total_usd": -1.67,
+      "settled_fills": 16
      },
      "Science and Technology": {
       "fills": 4,
       "events": 1,
-      "contracts": 36.0,
-      "spread_captured_cents_per_contract": -1.3333333333333335,
+      "contracts": 40.0,
+      "spread_captured_cents_per_contract": -1.35,
       "markout_30s_cents": {
        "value": -5.75,
        "lo": null,
@@ -3050,39 +3050,39 @@
       }
      },
      "Sports": {
-      "fills": 1980,
+      "fills": 1896,
       "events": 41,
-      "contracts": 6171.11,
-      "spread_captured_cents_per_contract": 0.8031772241946749,
+      "contracts": 7200.06,
+      "spread_captured_cents_per_contract": 0.7907253550664854,
       "markout_30s_cents": {
-       "value": -1.587878787878788,
-       "lo": -2.253398058252427,
-       "hi": -1.0311659192825111,
-       "n_rows": 1980,
+       "value": -1.3863396624472575,
+       "lo": -2.0495283018867925,
+       "hi": -0.8517476898352752,
+       "n_rows": 1896,
        "n_clusters": 41
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.0741022461928934,
-       "lo": -0.09943231932773107,
-       "hi": -0.053681642145230184,
-       "n_rows": 1970,
+       "value": -0.08010029056203606,
+       "lo": -0.10360480940279537,
+       "hi": -0.05552858739650413,
+       "n_rows": 1886,
        "n_clusters": 40
       },
-      "settled_pnl_total_usd": -145.981425,
-      "settled_fills": 1970
+      "settled_pnl_total_usd": -151.069148,
+      "settled_fills": 1886
      }
     },
     "liquidity_trailing_hour_volume": {
      "none": {
-      "fills": 3,
+      "fills": 4,
       "events": 3,
-      "contracts": 15.0,
-      "spread_captured_cents_per_contract": -1.1666666666666667,
+      "contracts": 23.0,
+      "spread_captured_cents_per_contract": -2.4565217391304346,
       "markout_30s_cents": {
-       "value": -1.6666666666666667,
-       "lo": -2.5,
+       "value": -2.875,
+       "lo": -4.25,
        "hi": -0.5,
-       "n_rows": 3,
+       "n_rows": 4,
        "n_clusters": 3
       },
       "settled_pnl_per_fill_usd": {
@@ -3096,285 +3096,285 @@
       "settled_fills": 1
      },
      "thin (0, 100]": {
-      "fills": 42,
+      "fills": 47,
       "events": 8,
-      "contracts": 253.24,
-      "spread_captured_cents_per_contract": 1.2897646501342601,
+      "contracts": 323.24,
+      "spread_captured_cents_per_contract": 0.9547704492018315,
       "markout_30s_cents": {
-       "value": 0.4523809523809524,
-       "lo": -0.6346153846153846,
-       "hi": 2.111111111111111,
-       "n_rows": 42,
+       "value": 0.2765957446808511,
+       "lo": -0.6388888888888888,
+       "hi": 1.8148148148148149,
+       "n_rows": 47,
        "n_clusters": 8
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.1839999999999999,
-       "lo": -0.21166666666666664,
-       "hi": -0.14249999999999985,
-       "n_rows": 10,
+       "value": -0.1564285714285714,
+       "lo": -0.1974999999999998,
+       "hi": -0.14,
+       "n_rows": 14,
        "n_clusters": 2
       },
-      "settled_pnl_total_usd": -1.84,
-      "settled_fills": 10
+      "settled_pnl_total_usd": -2.19,
+      "settled_fills": 14
      },
      "busy (> 100)": {
-      "fills": 2340,
+      "fills": 2225,
       "events": 56,
-      "contracts": 8100.78,
-      "spread_captured_cents_per_contract": 0.6652587775498162,
+      "contracts": 9371.9,
+      "spread_captured_cents_per_contract": 0.6191439302596059,
       "markout_30s_cents": {
-       "value": -1.5384615384615385,
-       "lo": -2.108883826879271,
-       "hi": -1.0492478510028653,
-       "n_rows": 2340,
+       "value": -1.38,
+       "lo": -1.9115927910375061,
+       "hi": -0.8795724465558195,
+       "n_rows": 2225,
        "n_clusters": 56
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.07236872881355931,
-       "lo": -0.09635639874608146,
-       "hi": -0.0497666267637688,
-       "n_rows": 2065,
+       "value": -0.08093690677534388,
+       "lo": -0.10403045162858532,
+       "hi": -0.05638122222222224,
+       "n_rows": 1963,
        "n_clusters": 42
       },
-      "settled_pnl_total_usd": -149.441425,
-      "settled_fills": 2065
+      "settled_pnl_total_usd": -158.879148,
+      "settled_fills": 1963
      }
     },
     "time_to_resolution": {
      "<0.5h": {
-      "fills": 157,
-      "events": 8,
-      "contracts": 438.01,
-      "spread_captured_cents_per_contract": 1.1815027054176845,
+      "fills": 125,
+      "events": 7,
+      "contracts": 375.01,
+      "spread_captured_cents_per_contract": 1.3106583824431348,
       "markout_30s_cents": {
-       "value": -1.1592356687898089,
-       "lo": -1.5106382978723405,
-       "hi": -0.7975460122699386,
-       "n_rows": 157,
-       "n_clusters": 8
+       "value": -1.132,
+       "lo": -1.7231404958677685,
+       "hi": -0.125,
+       "n_rows": 125,
+       "n_clusters": 7
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.019942675159235673,
-       "lo": -0.05521000000000001,
-       "hi": 0.030744680851063837,
-       "n_rows": 157,
-       "n_clusters": 8
+       "value": -0.007127999999999993,
+       "lo": -0.057015228426395934,
+       "hi": 0.12741379310344828,
+       "n_rows": 125,
+       "n_clusters": 7
       },
-      "settled_pnl_total_usd": -3.131,
-      "settled_fills": 157
+      "settled_pnl_total_usd": -0.891,
+      "settled_fills": 125
      },
      "0.5-1.5h": {
-      "fills": 975,
+      "fills": 943,
       "events": 30,
-      "contracts": 2816.54,
-      "spread_captured_cents_per_contract": 0.7337247118805342,
+      "contracts": 3379.93,
+      "spread_captured_cents_per_contract": 0.8746926711499943,
       "markout_30s_cents": {
-       "value": -1.4287179487179487,
-       "lo": -2.4851851851851854,
-       "hi": -0.6751824817518248,
-       "n_rows": 975,
+       "value": -1.3950159066808059,
+       "lo": -2.4398454746136866,
+       "hi": -0.5890243902439024,
+       "n_rows": 943,
        "n_clusters": 30
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.0709287761658031,
-       "lo": -0.1131933039832285,
-       "hi": -0.04432692357373521,
-       "n_rows": 965,
+       "value": -0.08459787459807074,
+       "lo": -0.12402306134259258,
+       "hi": -0.0524317210810811,
+       "n_rows": 933,
        "n_clusters": 29
       },
-      "settled_pnl_total_usd": -68.446269,
-      "settled_fills": 965
+      "settled_pnl_total_usd": -78.929817,
+      "settled_fills": 933
      },
      "1.5-4h": {
-      "fills": 944,
-      "events": 34,
-      "contracts": 3194.56,
-      "spread_captured_cents_per_contract": 0.8390576480016027,
+      "fills": 909,
+      "events": 35,
+      "contracts": 3748.12,
+      "spread_captured_cents_per_contract": 0.6737671152471105,
       "markout_30s_cents": {
-       "value": -1.8066737288135593,
-       "lo": -2.5484247374562425,
-       "hi": -1.1444600280504909,
-       "n_rows": 944,
-       "n_clusters": 34
+       "value": -1.4306930693069306,
+       "lo": -2.0791571753986333,
+       "hi": -0.8142726440988106,
+       "n_rows": 909,
+       "n_clusters": 35
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.08289635169491524,
-       "lo": -0.10713879324462638,
-       "hi": -0.04829880558789291,
-       "n_rows": 944,
+       "value": -0.0878836244493392,
+       "lo": -0.12114339421965319,
+       "hi": -0.044930782303370775,
+       "n_rows": 908,
        "n_clusters": 34
       },
-      "settled_pnl_total_usd": -78.254156,
-      "settled_fills": 944
+      "settled_pnl_total_usd": -79.798331,
+      "settled_fills": 908
      },
      "4-12h": {
-      "fills": 39,
+      "fills": 38,
       "events": 4,
-      "contracts": 224.0,
-      "spread_captured_cents_per_contract": 0.07142857142857144,
+      "contracts": 275.0,
+      "spread_captured_cents_per_contract": -0.04727272727272727,
       "markout_30s_cents": {
-       "value": -0.782051282051282,
-       "lo": -1.38,
-       "hi": 0.2857142857142857,
-       "n_rows": 39,
+       "value": -0.9342105263157895,
+       "lo": -1.6590909090909092,
+       "hi": 0.4583333333333333,
+       "n_rows": 38,
        "n_clusters": 4
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.16099999999999998,
+       "value": -0.13416666666666668,
        "lo": null,
        "hi": null,
-       "n_rows": 10,
+       "n_rows": 12,
        "n_clusters": 1
       },
       "settled_pnl_total_usd": -1.61,
-      "settled_fills": 10
+      "settled_fills": 12
      },
      ">=12h": {
-      "fills": 270,
+      "fills": 261,
       "events": 12,
-      "contracts": 1695.91,
-      "spread_captured_cents_per_contract": 0.24632203359848107,
+      "contracts": 1940.08,
+      "spread_captured_cents_per_contract": 0.04866036452105067,
       "markout_30s_cents": {
-       "value": -1.0185185185185186,
-       "lo": -1.994047619047619,
-       "hi": 0.4119496855345912,
-       "n_rows": 270,
+       "value": -1.0574712643678161,
+       "lo": -1.9728260869565217,
+       "hi": 0.25290697674418605,
+       "n_rows": 261,
        "n_clusters": 12
       }
      }
     },
     "probability_range": {
      "<5%": {
-      "fills": 34,
+      "fills": 29,
       "events": 15,
-      "contracts": 175.87,
-      "spread_captured_cents_per_contract": 2.069966452493319,
+      "contracts": 163.87,
+      "spread_captured_cents_per_contract": 2.224598767315555,
       "markout_30s_cents": {
-       "value": -0.45588235294117646,
-       "lo": -2.4310344827586206,
-       "hi": 1.3518518518518519,
-       "n_rows": 34,
+       "value": -0.41379310344827586,
+       "lo": -2.1346153846153846,
+       "hi": 1.2758620689655173,
+       "n_rows": 29,
        "n_clusters": 15
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.08270664705882352,
-       "lo": -0.6065226785714284,
-       "hi": 0.1750065714285714,
-       "n_rows": 34,
+       "value": -0.1620514827586207,
+       "lo": -0.9008596800000003,
+       "hi": 0.23764036363636362,
+       "n_rows": 29,
        "n_clusters": 15
       },
-      "settled_pnl_total_usd": -2.812026,
-      "settled_fills": 34
+      "settled_pnl_total_usd": -4.699493,
+      "settled_fills": 29
      },
      "5-20%": {
-      "fills": 626,
-      "events": 50,
-      "contracts": 2277.05,
-      "spread_captured_cents_per_contract": 1.2697327682747415,
+      "fills": 600,
+      "events": 48,
+      "contracts": 2746.76,
+      "spread_captured_cents_per_contract": 1.1626279689525112,
       "markout_30s_cents": {
-       "value": -0.5287539936102237,
-       "lo": -0.974907063197026,
-       "hi": -0.09057437407952872,
-       "n_rows": 626,
-       "n_clusters": 50
+       "value": -0.5158333333333334,
+       "lo": -1.014908256880734,
+       "hi": -0.08465286236297198,
+       "n_rows": 600,
+       "n_clusters": 48
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.038577698113207534,
-       "lo": -0.13459281670533643,
-       "hi": 0.027472808586762088,
-       "n_rows": 530,
-       "n_clusters": 41
+       "value": -0.04494550898203593,
+       "lo": -0.1576576385869565,
+       "hi": 0.04813965183752416,
+       "n_rows": 501,
+       "n_clusters": 39
       },
-      "settled_pnl_total_usd": -20.44618,
-      "settled_fills": 530
+      "settled_pnl_total_usd": -22.5177,
+      "settled_fills": 501
      },
      "20-50%": {
-      "fills": 918,
-      "events": 45,
-      "contracts": 3094.15,
-      "spread_captured_cents_per_contract": 0.4545432509736115,
+      "fills": 892,
+      "events": 42,
+      "contracts": 3546.7,
+      "spread_captured_cents_per_contract": 0.4195110948205374,
       "markout_30s_cents": {
-       "value": -1.6840958605664489,
-       "lo": -2.475382932166302,
-       "hi": -0.9772727272727273,
-       "n_rows": 918,
+       "value": -1.3693946188340806,
+       "lo": -2.2184249628528976,
+       "hi": -0.6617933723196882,
+       "n_rows": 892,
+       "n_clusters": 42
+      },
+      "settled_pnl_per_fill_usd": {
+       "value": -0.07621870259740259,
+       "lo": -0.15485531030150756,
+       "hi": 0.01950093118594438,
+       "n_rows": 770,
+       "n_clusters": 32
+      },
+      "settled_pnl_total_usd": -58.688401,
+      "settled_fills": 770
+     },
+     "50-80%": {
+      "fills": 545,
+      "events": 45,
+      "contracts": 2294.86,
+      "spread_captured_cents_per_contract": 0.20433926252581855,
+      "markout_30s_cents": {
+       "value": -2.644954128440367,
+       "lo": -3.611111111111111,
+       "hi": -1.8550156739811912,
+       "n_rows": 545,
        "n_clusters": 45
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.07681849936467597,
-       "lo": -0.17335896326062,
-       "hi": 0.021761935217903414,
-       "n_rows": 787,
-       "n_clusters": 35
+       "value": -0.11222206004140788,
+       "lo": -0.30296927676240204,
+       "hi": 0.04282554593639575,
+       "n_rows": 483,
+       "n_clusters": 32
       },
-      "settled_pnl_total_usd": -60.456159,
-      "settled_fills": 787
-     },
-     "50-80%": {
-      "fills": 574,
-      "events": 46,
-      "contracts": 1963.94,
-      "spread_captured_cents_per_contract": 0.2864191370408465,
-      "markout_30s_cents": {
-       "value": -2.741289198606272,
-       "lo": -3.851985559566787,
-       "hi": -1.8274410774410774,
-       "n_rows": 574,
-       "n_clusters": 46
-      },
-      "settled_pnl_per_fill_usd": {
-       "value": -0.10684002729044834,
-       "lo": -0.2690645878003697,
-       "hi": 0.059348835106382995,
-       "n_rows": 513,
-       "n_clusters": 33
-      },
-      "settled_pnl_total_usd": -54.808934,
-      "settled_fills": 513
+      "settled_pnl_total_usd": -54.203255,
+      "settled_fills": 483
      },
      "80-95%": {
-      "fills": 216,
-      "events": 38,
-      "contracts": 798.01,
-      "spread_captured_cents_per_contract": 0.43985664340045866,
+      "fills": 204,
+      "events": 36,
+      "contracts": 950.95,
+      "spread_captured_cents_per_contract": 0.4967243283032757,
       "markout_30s_cents": {
-       "value": -0.4791666666666667,
-       "lo": -1.2138364779874213,
-       "hi": 0.324468085106383,
-       "n_rows": 216,
-       "n_clusters": 38
+       "value": -0.36764705882352944,
+       "lo": -1.2426470588235294,
+       "hi": 0.5053191489361702,
+       "n_rows": 204,
+       "n_clusters": 36
       },
       "settled_pnl_per_fill_usd": {
-       "value": -0.07017167179487178,
-       "lo": -0.26368460089686097,
-       "hi": 0.043845264367816106,
-       "n_rows": 195,
-       "n_clusters": 33
+       "value": -0.1186788306878307,
+       "lo": -0.3983342384615386,
+       "hi": 0.06081965957446809,
+       "n_rows": 189,
+       "n_clusters": 31
       },
-      "settled_pnl_total_usd": -13.683476,
-      "settled_fills": 195
+      "settled_pnl_total_usd": -22.430299,
+      "settled_fills": 189
      },
      ">=95%": {
-      "fills": 17,
-      "events": 12,
-      "contracts": 60.0,
-      "spread_captured_cents_per_contract": 2.05,
+      "fills": 6,
+      "events": 3,
+      "contracts": 15.0,
+      "spread_captured_cents_per_contract": 4.5,
       "markout_30s_cents": {
-       "value": -0.9705882352941176,
-       "lo": -2.5277777777777777,
-       "hi": 1.125,
-       "n_rows": 17,
-       "n_clusters": 12
+       "value": -1.5833333333333333,
+       "lo": -3.8333333333333335,
+       "hi": 2.5,
+       "n_rows": 6,
+       "n_clusters": 3
       },
       "settled_pnl_per_fill_usd": {
-       "value": 0.045020588235294125,
-       "lo": -0.06515883333333333,
-       "hi": 0.1355987619047619,
-       "n_rows": 17,
-       "n_clusters": 12
+       "value": 0.21833333333333335,
+       "lo": 0.17333333333333334,
+       "hi": 0.265,
+       "n_rows": 6,
+       "n_clusters": 3
       },
-      "settled_pnl_total_usd": 0.76535,
-      "settled_fills": 17
+      "settled_pnl_total_usd": 1.31,
+      "settled_fills": 6
      }
     }
    },
@@ -3812,71 +3812,71 @@
    "inventory_risk_by_ttr_full": [
     {
      "bucket": "<0.5h",
-     "fills": 157,
-     "events": 8,
-     "mean_abs_inventory_contracts": 2.426496815286624,
-     "mean_remaining_std_usd": 0.877705566667242,
+     "fills": 125,
+     "events": 7,
+     "mean_abs_inventory_contracts": 2.8234399999999997,
+     "mean_remaining_std_usd": 1.0183501386554907,
      "markout_30s_cents": {
-      "value": -1.1592356687898089,
-      "lo": -1.5106382978723405,
-      "hi": -0.7975460122699386,
-      "n_rows": 157,
-      "n_clusters": 8
+      "value": -1.132,
+      "lo": -1.7231404958677685,
+      "hi": -0.125,
+      "n_rows": 125,
+      "n_clusters": 7
      }
     },
     {
      "bucket": "0.5-1.5h",
-     "fills": 975,
+     "fills": 943,
      "events": 30,
-     "mean_abs_inventory_contracts": 2.813671794871795,
-     "mean_remaining_std_usd": 1.1241223405512268,
+     "mean_abs_inventory_contracts": 3.1799045599151645,
+     "mean_remaining_std_usd": 1.2874663188554427,
      "markout_30s_cents": {
-      "value": -1.4287179487179487,
-      "lo": -2.4851851851851854,
-      "hi": -0.6751824817518248,
-      "n_rows": 975,
+      "value": -1.3950159066808059,
+      "lo": -2.4398454746136866,
+      "hi": -0.5890243902439024,
+      "n_rows": 943,
       "n_clusters": 30
      }
     },
     {
      "bucket": "1.5-4h",
-     "fills": 944,
-     "events": 34,
-     "mean_abs_inventory_contracts": 4.337521186440679,
-     "mean_remaining_std_usd": 1.8182527244888158,
+     "fills": 909,
+     "events": 35,
+     "mean_abs_inventory_contracts": 4.437293729372937,
+     "mean_remaining_std_usd": 1.8554073862238096,
      "markout_30s_cents": {
-      "value": -1.8066737288135593,
-      "lo": -2.5484247374562425,
-      "hi": -1.1444600280504909,
-      "n_rows": 944,
-      "n_clusters": 34
+      "value": -1.4306930693069306,
+      "lo": -2.0791571753986333,
+      "hi": -0.8142726440988106,
+      "n_rows": 909,
+      "n_clusters": 35
      }
     },
     {
      "bucket": "4-12h",
-     "fills": 39,
+     "fills": 38,
      "events": 4,
-     "mean_abs_inventory_contracts": 4.153846153846153,
-     "mean_remaining_std_usd": 1.4801100922084227,
+     "mean_abs_inventory_contracts": 4.2894736842105265,
+     "mean_remaining_std_usd": 1.6857612556666368,
      "markout_30s_cents": {
-      "value": -0.782051282051282,
-      "lo": -1.38,
-      "hi": 0.2857142857142857,
-      "n_rows": 39,
+      "value": -0.9342105263157895,
+      "lo": -1.6590909090909092,
+      "hi": 0.4583333333333333,
+      "n_rows": 38,
       "n_clusters": 4
      }
     },
     {
      "bucket": ">=12h",
-     "fills": 270,
+     "fills": 261,
      "events": 12,
-     "mean_abs_inventory_contracts": 5.177148148148148,
-     "mean_remaining_std_usd": 2.1249502317596956,
+     "mean_abs_inventory_contracts": 5.6672030651341,
+     "mean_remaining_std_usd": 2.2974667701236404,
      "markout_30s_cents": {
-      "value": -1.0185185185185186,
-      "lo": -1.994047619047619,
-      "hi": 0.4119496855345912,
-      "n_rows": 270,
+      "value": -1.0574712643678161,
+      "lo": -1.9728260869565217,
+      "hi": 0.25290697674418605,
+      "n_rows": 261,
       "n_clusters": 12
      }
     }
@@ -3885,7 +3885,7 @@
     {
      "latency_ms": 200.0,
      "maker": "queue(a=1,c=.5)",
-     "full_net_usd": -176.43305800000002
+     "full_net_usd": -198.42092300000002
     }
    ]
   }
@@ -3896,130 +3896,130 @@
     "features": "staleness (stale_dev, stale_out)",
     "alpha": 10000.0,
     "training_cv": {
-     "n": 367253,
+     "n": 270021,
      "events": 137,
-     "skill_vs_zero": 0.011702435837012137,
-     "lo": 0.007771915710755195,
-     "hi": 0.016271444530823742,
-     "corr": 0.1149770855210851,
-     "direction_accuracy": 0.6033146733585197,
-     "share_moved": 0.09874119476219391,
-     "rmse_zero": 0.01388933910104412
+     "skill_vs_zero": 0.056837594415467874,
+     "lo": 0.03857764614421466,
+     "hi": 0.08547504797279082,
+     "corr": 0.2408814669307004,
+     "direction_accuracy": 0.6032206386034692,
+     "share_moved": 0.13407846056417835,
+     "rmse_zero": 0.015649332261981876
     },
     "validation": {
-     "n": 109173,
+     "n": 102889,
      "events": 142,
-     "skill_vs_zero": 0.013594159050011267,
-     "lo": 0.008866213133078782,
-     "hi": 0.01955946856543933,
-     "corr": 0.12702431045222637,
-     "direction_accuracy": 0.5721278968893295,
-     "share_moved": 0.14782043179174337,
-     "rmse_zero": 0.016210302778472366
+     "skill_vs_zero": 0.05331590005665421,
+     "lo": 0.034126428777853546,
+     "hi": 0.07667942206172262,
+     "corr": 0.23420884832255404,
+     "direction_accuracy": 0.5711870773854245,
+     "share_moved": 0.15523525352564413,
+     "rmse_zero": 0.015795526926879126
     }
    },
    {
     "features": "order book (obi_top, obi_depth, micro_dev)",
     "alpha": 10000.0,
     "training_cv": {
-     "n": 367253,
+     "n": 270021,
      "events": 137,
-     "skill_vs_zero": 0.004722685713797192,
-     "lo": -0.0003755508688010334,
-     "hi": 0.009698740441805409,
-     "corr": 0.06891489865069661,
-     "direction_accuracy": 0.6113669580564212,
-     "share_moved": 0.09874119476219391,
-     "rmse_zero": 0.01388933910104412
+     "skill_vs_zero": 0.005639041086481833,
+     "lo": 0.00034305943286472296,
+     "hi": 0.011055529208197412,
+     "corr": 0.0751583002064619,
+     "direction_accuracy": 0.6122251684896697,
+     "share_moved": 0.13407846056417835,
+     "rmse_zero": 0.015649332261981876
     },
     "validation": {
-     "n": 109173,
+     "n": 102889,
      "events": 142,
-     "skill_vs_zero": -0.005007717568498604,
-     "lo": -0.013597756825668217,
-     "hi": 0.0014867010543304637,
-     "corr": 0.016702961271157567,
-     "direction_accuracy": 0.5698351716445657,
-     "share_moved": 0.14782043179174337,
-     "rmse_zero": 0.016210302778472366
+     "skill_vs_zero": -0.005675820876322124,
+     "lo": -0.015794048934819616,
+     "hi": 0.0016906131479412778,
+     "corr": 0.019411707478613566,
+     "direction_accuracy": 0.5786376158276985,
+     "share_moved": 0.15523525352564413,
+     "rmse_zero": 0.015795526926879126
     }
    },
    {
     "features": "order flow (flow_60)",
     "alpha": 10000.0,
     "training_cv": {
-     "n": 367253,
+     "n": 270021,
      "events": 137,
-     "skill_vs_zero": 0.0002847851485213715,
-     "lo": 6.204747644433795e-05,
-     "hi": 0.0004991739591135858,
-     "corr": 0.016850940196736816,
-     "direction_accuracy": 0.5467280699335411,
-     "share_moved": 0.09874119476219391,
-     "rmse_zero": 0.01388933910104412
+     "skill_vs_zero": 0.00043973732889002193,
+     "lo": 0.00012444102142328273,
+     "hi": 0.0007613674429839401,
+     "corr": 0.02095142849637226,
+     "direction_accuracy": 0.5492210805435863,
+     "share_moved": 0.13407846056417835,
+     "rmse_zero": 0.015649332261981876
     },
     "validation": {
-     "n": 109173,
+     "n": 102889,
      "events": 142,
-     "skill_vs_zero": 0.000617951393597771,
-     "lo": 0.00028900660672559475,
-     "hi": 0.001018426597554467,
-     "corr": 0.03420930748191094,
-     "direction_accuracy": 0.5493865410831578,
-     "share_moved": 0.14782043179174337,
-     "rmse_zero": 0.016210302778472366
+     "skill_vs_zero": 0.000960050638829868,
+     "lo": 0.0005186821770478689,
+     "hi": 0.0015867646244056566,
+     "corr": 0.03833315607876483,
+     "direction_accuracy": 0.5497746055597296,
+     "share_moved": 0.15523525352564413,
+     "rmse_zero": 0.015795526926879126
     }
    },
    {
     "features": "momentum (ret_60)",
     "alpha": 10000.0,
     "training_cv": {
-     "n": 367253,
+     "n": 270021,
      "events": 137,
-     "skill_vs_zero": 0.005823974119638642,
-     "lo": 0.000533016148249188,
-     "hi": 0.011620034653190725,
-     "corr": 0.07635099909305894,
-     "direction_accuracy": 0.5453768303780713,
-     "share_moved": 0.09874119476219391,
-     "rmse_zero": 0.01388933910104412
+     "skill_vs_zero": 0.006535640449255697,
+     "lo": 0.0005846810907673694,
+     "hi": 0.01247157757852213,
+     "corr": 0.08085820505795087,
+     "direction_accuracy": 0.5449674069163628,
+     "share_moved": 0.13407846056417835,
+     "rmse_zero": 0.015649332261981876
     },
     "validation": {
-     "n": 109173,
+     "n": 102889,
      "events": 142,
-     "skill_vs_zero": -0.01181503677980733,
-     "lo": -0.024095973901893553,
-     "hi": -0.000728755787825941,
-     "corr": -0.007199165619749318,
-     "direction_accuracy": 0.5239806667492874,
-     "share_moved": 0.14782043179174337,
-     "rmse_zero": 0.016210302778472366
+     "skill_vs_zero": -0.012552010587772555,
+     "lo": -0.027544876156161413,
+     "hi": 0.00024854642493610246,
+     "corr": -0.006438019189476898,
+     "direction_accuracy": 0.5242925118958177,
+     "share_moved": 0.15523525352564413,
+     "rmse_zero": 0.015795526926879126
     }
    },
    {
     "features": "all direction features",
     "alpha": 10000.0,
     "training_cv": {
-     "n": 367253,
+     "n": 270021,
      "events": 137,
-     "skill_vs_zero": 0.021486262706071124,
-     "lo": 0.013359316640878305,
-     "hi": 0.029170695438177296,
-     "corr": 0.1475629729284256,
-     "direction_accuracy": 0.6323249593249317,
-     "share_moved": 0.09874119476219391,
-     "rmse_zero": 0.01388933910104412
+     "skill_vs_zero": 0.06746262219354049,
+     "lo": 0.04979180701476893,
+     "hi": 0.0912249587754308,
+     "corr": 0.2613338408935658,
+     "direction_accuracy": 0.6468346039111701,
+     "share_moved": 0.13407846056417835,
+     "rmse_zero": 0.015649332261981876
     },
     "validation": {
-     "n": 109173,
+     "n": 102889,
      "events": 142,
-     "skill_vs_zero": 0.0003589571832278704,
-     "lo": -0.009439058372596065,
-     "hi": 0.010159012242035415,
-     "corr": 0.07453835652043654,
-     "direction_accuracy": 0.5882389391498327,
-     "share_moved": 0.14782043179174337,
-     "rmse_zero": 0.016210302778472366
+     "skill_vs_zero": 0.04073187624526575,
+     "lo": 0.023828619521874428,
+     "hi": 0.06013373442755088,
+     "corr": 0.20417392010681776,
+     "direction_accuracy": 0.5961056849486601,
+     "share_moved": 0.15523525352564413,
+     "rmse_zero": 0.015795526926879126
     }
    }
   ]
@@ -4028,61 +4028,61 @@
   [
    "S1",
    "consistent",
-   "skill 1.36% [0.90, 1.92]",
+   "skill 5.33% [3.41, 7.59]",
    "the frozen staleness fair-value model beats 'the mid does not move' at 5 s: interval > 0"
   ],
   [
    "S2",
    "consistent",
-   "all-features 0.04% vs staleness 1.36%",
+   "all-features 4.07% vs staleness 5.33%",
    "adding order-book imbalance, microprice, flow and momentum does not beat staleness alone (point comparison)"
   ],
   [
    "S3",
    "consistent",
-   "skill 10.2% [7.2, 13.3]",
+   "skill 11.2% [8.2, 14.2]",
    "realised movement predicts the size of the next move (10 s): interval above 0"
   ],
   [
    "T1",
    "consistent",
-   "net $-111.7; settled P&L $-98.5",
+   "net $-131.5; settled P&L $-113.1",
    "the adaptive maker still loses money (net and settled P&L both < 0)"
   ],
   [
    "T2",
    "consistent",
-   "-1.60 [-3.46, 0.07] (33 events) cents/contract (FULL - baseline)",
+   "-1.61 [-3.33, 0.02] (33 events) cents/contract (FULL - baseline)",
    "no significant improvement in settled P&L per contract: lower bound <= 0"
   ],
   [
    "T3",
    "consistent",
-   "contracts 3879 vs 13360; event P&L 5.35 [2.53, 8.35] (33 events) $; per contract -1.60c",
+   "contracts 4460 vs 13360; event P&L 4.91 [2.35, 7.81] (33 events) $; per contract -1.61c",
    "any loss reduction comes from trading less: fewer contracts, better total P&L per event, per-contract change <= 0"
   ],
   [
    "T4",
    "consistent",
-   "-0.09 [-0.56, 0.21] (33 events) cents/contract",
-   "the staleness correction moves settled P&L per contract by nothing detectable (CI has 0)"
+   "0.41 [0.10, 0.79] (33 events) cents/contract",
+   "the staleness fair value does not hurt fill quality: rung 2 vs 1, point estimate > 0"
   ],
   [
    "T5",
    "consistent",
-   "-0.13 [-0.48, 0.22] (33 events) cents/contract",
-   "order book, flow and momentum in the fair value do not improve on staleness alone (point)"
+   "0.19 [-0.14, 0.61] (33 events) cents/contract",
+   "book, flow, momentum add no significant gain on staleness: rung 3 vs 2, lower bound <= 0"
   ],
   [
    "T6",
    "consistent",
-   "-0.03 [-0.63, 0.60] (33 events) cents/contract",
+   "-0.21 [-0.76, 0.57] (33 events) cents/contract",
    "the time-to-resolution skew moves settled P&L per contract by nothing detectable"
   ],
   [
    "T7",
    "consistent",
-   "-1.86 [-3.12, -0.77] (46 events) cents/contract",
+   "-1.94 [-3.21, -1.04] (46 events) cents/contract",
    "the adaptive maker's fills are still adversely selected: 30 s markout interval below 0"
   ],
   [

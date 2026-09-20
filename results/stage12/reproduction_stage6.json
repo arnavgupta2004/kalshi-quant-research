@@ -1,0 +1,31 @@
+{
+ "check": "Stage 6 development and confirmatory analyses re-run from scratch on the committed code, 2026-09-20",
+ "stored_fingerprint": "663d74308d808b79",
+ "rerun_fingerprint": "1a0a35f0d9ce41a6",
+ "numbers_identical_except_provenance": true,
+ "note": "The stored fingerprint hashes whole packages (research, arbitrage, backtest, market) and cannot be reproduced from the committed tree; every reported number reproduces exactly.",
+ "runs": {
+  "confirmatory": {
+   "databases": [
+    "var/books_research_wide.duckdb",
+    "var/books_research_short.duckdb"
+   ],
+   "differing_fields": [
+    "code_fingerprint",
+    "git_commit"
+   ],
+   "numbers_identical_except_provenance": true
+  },
+  "development": {
+   "databases": [
+    "var/books_structural.duckdb",
+    "var/books_shortlived.duckdb"
+   ],
+   "differing_fields": [
+    "code_fingerprint",
+    "git_commit"
+   ],
+   "numbers_identical_except_provenance": true
+  }
+ }
+}

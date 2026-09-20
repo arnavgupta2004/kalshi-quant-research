@@ -481,3 +481,13 @@ def test_a_poll_that_finds_the_book_unchanged_clears_the_staleness_correction():
     assert not res_c.fills
     assert places(m_p, "yes")[-1].price > b0  # without the poll, the 52c print still drags it up
     assert places(m_c, "yes")[-1].price == b0  # the polled book already contained the print
+
+
+def test_a_return_is_not_measured_against_a_mid_from_before_an_outage():
+    tr = MarketTracker()
+    tr.on_book(ts(0), [(4000, c(100))], [(5800, c(100))])  # mid .41
+    tr.on_book(ts(3600), [(5000, c(100))], [(4800, c(100))])  # an hour later: mid .51
+    assert tr.snapshot(ts(3600)).x[IDX["ret_60"]] == 0.0  # the .41 is not "the mid 60 s ago"
+    tr.on_book(ts(3640), [(5100, c(100))], [(4700, c(100))])
+    tr.on_book(ts(3700), [(5300, c(100))], [(4500, c(100))])  # mid .54; 60 s earlier: .52 at t=3640
+    assert tr.snapshot(ts(3700)).x[IDX["ret_60"]] == pytest.approx(0.54 - 0.52)

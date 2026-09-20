@@ -86,8 +86,18 @@ def build_samples(
     name: str,
     horizons: tuple[float, ...] = (5.0, 10.0, 30.0),
     min_gap_s: float = 1.0,
+    max_book_age_s: float = 30.0,
+    outage_s: float = 30.0,
 ) -> Samples:
-    """Replay the recorded feed once and sample the features."""
+    """Replay the recorded feed once and sample the features.
+
+    RECORDING OUTAGES.  A recorder that stops (a laptop that sleeps) leaves a hole in the books but
+    not in the trade tape, which is fetched afterwards.  Sampled at a print inside the hole, the
+    features would describe a book that is hours old and the label ``mid(t+h) - mid(t)`` would be
+    exactly zero (no book was recorded to move), which teaches every model that nothing predicts
+    anything.  So (1) a sample needs a book observed within ``max_book_age_s`` (the strategy would
+    not quote otherwise), and (2) a label is dropped when an outage - two consecutive polls more
+    than ``outage_s`` apart - overlaps ``[t, t + h]``."""
     infos = feed.infos
     trackers: dict[str, MarketTracker] = defaultdict(MarketTracker)
     last_sample: dict[str, int] = {}
@@ -96,9 +106,14 @@ def build_samples(
     mid_v: dict[str, list[float]] = defaultdict(list)
     alive_until: dict[str, int] = {}
     end_ts = 0
+    observed: list[int] = []  # times at which the recorder demonstrably saw the market
+    max_age = int(max_book_age_s * SEC)
+    n_confirms = 0
     for ev in feed:
         end_ts = max(end_ts, ev.ts_ns)
         if isinstance(ev, BookConfirm):
+            observed.append(ev.ts_ns)
+            n_confirms += 1
             for tr in trackers.values():
                 tr.on_confirm(ev.ts_ns)
             continue
@@ -106,6 +121,7 @@ def build_samples(
             alive_until.setdefault(ev.ticker, ev.ts_ns)
             continue
         if isinstance(ev, BookUpdate):
+            observed.append(ev.ts_ns)
             tr = trackers[ev.ticker]
             tr.on_book(ev.ts_ns, ev.yes_bids, ev.no_bids)
             snap = tr.snapshot(ev.ts_ns)
@@ -126,10 +142,21 @@ def build_samples(
             snap = tr.snapshot(ev.ts_ns)
             if (
                 snap is not None
+                and tr.book_ts is not None
+                and ev.ts_ns - tr.book_ts <= max_age
                 and ev.ts_ns - last_sample.get(ev.ticker, -(10**18)) >= min_gap_s * SEC
             ):
                 last_sample[ev.ticker] = ev.ts_ns
                 rows.append((ev.ticker, ev.ts_ns, snap))
+    # outages: consecutive observations more than ``outage_s`` apart.  Only meaningful when the feed
+    # carries poll confirmations (a feed of book changes alone is legitimately silent for a while).
+    outages: list[tuple[int, int]] = []
+    if n_confirms:
+        observed.sort()
+        outages = [
+            (a, b) for a, b in zip(observed, observed[1:], strict=False) if b - a > outage_s * SEC
+        ]
+    out_end = [b for _, b in outages]
     n = len(rows)
     x = np.zeros((n, len(FEATURES)))
     ys = {h: np.full(n, np.nan) for h in horizons}
@@ -154,6 +181,9 @@ def build_samples(
             t1 = ts + int(h * SEC)
             if t1 > horizon_end or t1 > times[-1] + 40 * SEC:
                 continue  # not observed alive until t + h (a heartbeat every 30 s bounds staleness)
+            k = bisect.bisect_right(out_end, ts)  # first outage that ends after t
+            if k < len(outages) and outages[k][0] < t1:
+                continue  # an outage overlaps [t, t + h]: the label would be a frozen book
             j = bisect.bisect_right(times, t1) - 1
             ys[h][i] = vals[j] - snap.mid
     return Samples(tickers, events, cats, ts_arr, x, mids, spreads, ttr, ys, name)

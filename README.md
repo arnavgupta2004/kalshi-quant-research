@@ -7,13 +7,31 @@ calibration, execution and market making in **Kalshi binary prediction markets**
 > implemented is `GET`, the WebSocket client only sends `subscribe`, order-entry channels are
 > rejected, and there is no order code anywhere. Credentials live in a gitignored `.env`.
 
-Status: **Stage 8 of 12 complete** (API client, normalised data model, historical storage, a
-resumable collector, validated contract-relationship logic, a fee-exact same-event arbitrage detector, a
-causal event-driven backtest engine, an arbitrage research study with a frozen-code confirmatory run, three fair-probability models, and a calibration study confirmed on a sealed holdout). See [`docs/contract_semantics.md`](docs/contract_semantics.md) for price/contract
-semantics and verified API behaviour, [`docs/relationships.md`](docs/relationships.md) for the
-relationship model and its verification against 14k real settled events, and [`docs/data_architecture.md`](docs/data_architecture.md) for
-the storage design, resume guarantees and the known biases of the dataset. The full technical report
-is written at Stage 12.
+Status: **all 12 stages built**; the two last out-of-sample runs are armed and pending (see the report).
+
+## What this found
+
+The framework's answers, with the numbers rendered from the result files in
+[`docs/research_report.md`](docs/research_report.md) (read that first):
+
+* **Structure holds, and pays nothing.** Every proven, lattice or declared relation held across ~28.5k real
+  settled instances (0 violations). Standing violations of them are rare (~13 per 1,000 relation-hours), last
+  seconds, and 1 of 24 was executable at 100 contracts after fees (profit $0.14).
+* **Prices are calibrated**, and no model built from microstructure or an independent base rate beats them.
+* **A market maker loses**, under every fill model, latency and spread setting tried. The loss is adverse
+  selection, not fees. Information helps a little (a staleness correction, ~+0.4 cents per contract against a
+  ~3 cent loss); it does not make a fill profitable.
+* **Paper trading matches the backtest exactly**: a live session's orders, fills and equity are identical to a
+  backtest of its own tape.
+* **Nothing was found that a real trader could use**, and the report lists what failed, the errors found
+  along the way (including a recording outage that biased one study) and how each was fixed.
+
+Every experiment records its seed, dataset fingerprint and frozen-code fingerprint; see
+`python -m scripts.stage12_manifest --check`. See [`docs/contract_semantics.md`](docs/contract_semantics.md) for
+price/contract semantics and verified API behaviour, [`docs/relationships.md`](docs/relationships.md) for the
+relationship model and its verification against 14k real settled events, and
+[`docs/data_architecture.md`](docs/data_architecture.md) for the storage design, resume guarantees and the known
+biases of the dataset.
 
 ## Quick start
 
@@ -156,7 +174,7 @@ jump, no YES/NO symmetry), so quoting uses the *bounded-support* form: the CARA 
 claim gives reservation prices that stay inside (0, $1) by construction, skew against inventory, and carry the claim's
 own remaining variance `p(1-p)`. Inventory risk is in settlement terms (worst / best / expected value, event-level
 worst case over the admissible outcomes, position / event / portfolio limits, a drawdown kill-switch). On the
-frozen confirmatory data (2,410 fills, 81 events, ~12 h): **net -$426**, 30 s markout **-1.42¢ [-1.85, -1.04]**,
+frozen confirmatory data (2,410 fills, 81 events, ~1.8 h of observed data per database): **net -$426**, 30 s markout **-1.42¢ [-1.85, -1.04]**,
 hold-to-settlement P&L **-$0.18 per fill [-0.23, -0.13]**, negative under all 10 fill-model x latency cells and all
 9 (gamma, k) settings. Skew cut mean inventory 9x (52 -> 6 contracts) without making money; the kill-switch capped the
 drawdown at $300 (vs $600) without creating edge. All 8 pre-registered hypotheses held (one, "adverse selection
@@ -175,14 +193,15 @@ quote for quote): a fair-value shift from a frozen ridge forecast of the next 5 
 widening by the forecast size of the next move, size inversely to it, and a time-to-resolution skew. Models are
 fitted on the Stage 9 confirmatory databases (now training data) and admitted or rejected on databases they never
 saw. Findings: of the microstructure features only a **staleness correction** (prints newer than the polled book,
-what a live feed would show for free) transfers out of sample (skill 1.4% [0.9, 2.0]); order-book imbalance, flow
-and momentum look useful in-sample and lose it out of sample (momentum significantly). The *size* of the next move
-is forecastable (10%), its direction is not, and fill toxicity barely depends on it (-1.66¢ in every volatility
-state). Consequently **no adaptation improves fill quality per contract**; sizing by expected volatility cuts the
-loss (-$317 to -$112 on validation) only by trading 71% fewer contracts, at a *worse* per-contract result, and
-widening is monotonically worse. All 11 pre-registered hypotheses hold on the validation data (by construction);
-the confirmatory run on a fresh recording is pending (frozen fingerprint `dabbe4d46dbefeee`) and its data are
-thin. See [`docs/adaptive_market_maker.md`](docs/adaptive_market_maker.md).
+what a live feed would show for free) transfers out of sample (skill 5.3% [3.4, 7.7]); order-book imbalance, flow
+and momentum look marginally useful in-sample and lose it out of sample. The *size* of the next move is
+forecastable (11%), its direction is not, and fill toxicity barely depends on it. The staleness fair value improves
+fill quality by **+0.41¢ per contract [0.10, 0.79]** (about an eighth of the baseline's loss); nothing else does.
+Sizing by expected volatility cuts the loss (-$317 to -$132 on validation) only by trading 67% fewer contracts, and
+widening is monotonically worse per contract. The adaptive maker still loses under every fill model and latency.
+A sampling flaw found in Stage 12 (trade prints inside a recording outage) had first hidden the staleness effect;
+it is corrected and documented. The confirmatory run on a fresh recording is pending (frozen fingerprint
+`6ccb2dba95a32994`). See [`docs/adaptive_market_maker.md`](docs/adaptive_market_maker.md).
 
 ## Paper trading (Stage 11)
 
@@ -201,3 +220,21 @@ orders, fills and equity were **identical**, with a strategy reaction of ~20 ms 
 The WebSocket path could not be run live here (no key) and is tested against an in-process mock exchange, including
 gaps, reconnects and malformed frames. Live P&L over minutes is noise and is not reported as a result. See
 [`docs/paper_trading.md`](docs/paper_trading.md).
+
+## Final research (Stage 12)
+
+```bash
+python -m scripts.stage12_report              # render docs/research_report.md from the result files
+python -m scripts.stage12_manifest --check    # every frozen fingerprint still matches its results
+python -m scripts.stage12_final_oos --db var/books_stage12_us.duckdb --out results/stage12/final \
+    --expect-fingerprint <frozen>              # the last out-of-sample run, ONCE
+```
+
+The final report is generated from the results files (a number in it cannot drift from the analysis that
+produced it) and answers the spec's Experiments A-H in one place. Two runs on fresh data are armed: the Stage 10
+confirmatory recording and a US-afternoon sports recording (`configs/books_stage12_us.yaml`) evaluated once by
+everything frozen; the report fills them in when they exist. Writing the report found and fixed two things:
+the confirmatory recordings hold ~1.8 h of observed data, not the ~6 h their wall-clock suggested (a 4.4 h
+outage), and the Stage 10 signal study had sampled trade prints inside that outage, which had hidden a real
+(small) staleness effect. Stage 6's stored fingerprint cannot be reproduced from the committed tree, so its
+analyses were re-run from scratch and every number reproduced. See [`docs/research_report.md`](docs/research_report.md).

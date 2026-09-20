@@ -139,7 +139,7 @@ the pessimistic and optimistic bounds):
 * **P&L** — gross, net, realised, mark-to-market, fees, and the split *gross = spread captured +
   inventory contribution*. *Spread captured* is `(mid at the fill − fill price)` on the side bought;
   the rest is what the inventory earned afterwards and at settlement.
-* **Risk** — volatility per minute, annualised Sharpe/Sortino (**not meaningful over a 1–6 h
+* **Risk** — volatility per minute, annualised Sharpe/Sortino (**not meaningful over a 1–2 h
   window**; shown for completeness), maximum drawdown, worst settled market and event, inventory
   distribution, event concentration of settled P&L, kill-switch state, peak worst-case exposure.
 * **Execution** — order and quantity fill rates, cancellation rate, quote lifetime, spread captured,
@@ -167,7 +167,7 @@ re-estimated over all fills with events (prefixed by database) as the clusters.
 | role | databases | notes |
 |---|---|---|
 | development | `books_shortlived`, `books_structural` | ~1.1 h and ~0.7 h of polled books. `books_shortlived` is 176 live-sports markets with 116k trades and 107 settled; `books_structural` has **no trade tape**, so passive fills there come only from book changes and are rare |
-| confirmatory | `books_research_short`, `books_research_wide` | ~6 h each; never run with a market maker. They *were* used for the Stage 6 arbitrage scans and the Stage 8 calibration (so their calibration holdout is spent), but no market-making claim has touched them |
+| confirmatory | `books_research_short`, `books_research_wide` | recorded concurrently over ~6 h of wall-clock, but a **4.4 h outage** (the machine slept) leaves ~1.7 h and ~1.8 h of observed data respectively; never run with a market maker. They *were* used for the Stage 6 arbitrage scans and the Stage 8 calibration (so their calibration holdout is spent), but no market-making claim has touched them |
 
 **Caveats that shape every result.**
 
@@ -185,7 +185,7 @@ re-estimated over all fills with events (prefixed by database) as the clusters.
    left unpatched because Stage 7/8 results are frozen; a follow-up task exists). The market maker
    reads the engine's trade feed, not that loader, for its fills; the loader only supplies the
    trailing-hour volume used for the *liquidity breakdown*, which is insensitive to tie order.
-5. A 1–6 hour window is a handful of independent events. The tables show the number of events behind
+5. A window of under two observed hours is a handful of independent events. The tables show the number of events behind
    every row; rows resting on fewer than 20 are flagged, never headlined.
 
 ## 8. Pre-registered hypotheses
@@ -229,7 +229,7 @@ recording (`books_structural` has no trade tape and produced 19).
 
 ## 10. Confirmatory results (`results/stage9/confirm`)
 
-`books_research_short` + `books_research_wide`: ~6 h each, 2,410 fills, 22,415 contracts, 81 events.
+`books_research_short` + `books_research_wide`: 2,410 fills, 22,415 contracts, 81 events, from ~1.8 h of observed data per database (see the correction in §14).
 The frozen code (fingerprint `e036156024e9174a`) was run once, with `--expect-fingerprint`.
 
 | | |
@@ -299,15 +299,15 @@ the final minutes of a market.
    a maker with *this* information set earns; they over-state adverse selection for a live system and
    **do not** show that market making on Kalshi is unprofitable. They show that quoting around a
    stale mid is.
-2. **Small sample of independent events**: 81 confirmatory events, 60 of them Sports, from two ~6 h
-   windows. No claim is made about other periods, seasons or market types.
+2. **Small sample of independent events**: 81 confirmatory events, 60 of them Sports, from two ~1.8 h
+   windows (recorded concurrently). No claim is made about other periods, seasons or market types.
 3. **Fill realism.** Passive fills come from a queue model over recorded trades. The five models bracket
    the assumption (fills vary ~2×) and no P&L conclusion depends on it, but a live queue position
    is not observable here.
 4. **Partition evidence.** The `EMPIRICAL`-partition sensitivity is identical to `DECLARED`: the event
    loss limit never bound for the skewed baseline (mean inventory 6 contracts). The partition logic
    matters for the no-skew variants (B, C), where it does bind.
-5. **Sharpe ratios** are over 1–6 hours and are meaningless; they are printed only because the
+5. **Sharpe ratios** are over 1–2 hours and are meaningless; they are printed only because the
    spec asks for them.
 6. **Parameters were not tuned**: (γ, k) = (0.05, 50) was set from theory before any run; the grid is
    a sensitivity check, not a search. No configuration profits, so no selection effect arises.
@@ -330,3 +330,15 @@ volatility-conditioned width — and ablates each against this baseline on the s
 development / confirmatory split. The bar is the numbers above: a markout of −1.42¢ and −$0.177 per
 fill. Note Stage 8 found the microprice significantly *worse* than the mid as a forecast, so the
 prior for that component is not favourable.
+
+## 14. Correction (added in Stage 12): how much data the confirmatory recordings hold
+
+Earlier text described the confirmatory recordings as "~6 h each" (and the README, "~12 h"). That
+counted wall-clock, not data. The two recordings ran **concurrently** and both contain a **4.4 h
+outage** (the recording machine slept), so each holds ~1.7 h (`books_research_short`) and ~1.8 h
+(`books_research_wide`) of observed books; the two universes cover the *same* window, not different
+ones. The trade tape for the outage was fetched afterwards, but nothing was quoted during it: the
+strategy's 30 s book-age limit keeps it out of a market whose book is not being observed, so the
+fills, events and results in this document are unaffected. Only statements about *duration* were wrong,
+and they are corrected above. The same outage did affect the Stage 10 signal study, which sampled prints
+inside the outage; that is corrected there (`docs/adaptive_market_maker.md`).

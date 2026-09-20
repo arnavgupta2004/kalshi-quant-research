@@ -1,0 +1,51 @@
+# Stage 12 FINAL out-of-sample recording: US-afternoon sports, recorded fresh for 6 hours (scheduled to
+# start 2026-09-20 21:50 IST = 12:20 ET, so the 1 pm ET NFL / early MLB games are live).  Written
+# BEFORE the recording exists and before any strategy has seen it.  The selection is sports-only by
+# series (so it is not swamped by crypto strike ladders and golf-outright markets, which dominated the
+# Stage 10 recording) and uses only scheduled expiry: no look-ahead.
+job: books
+db_path: var/books_stage12_us.duckdb
+mode: rest
+interval_s: 3
+duration_s: 21600
+heartbeat_s: 30
+metadata_refresh_s: 600
+requests_per_second: 3
+selection:
+  top_events: 80
+  max_tickers: 400
+  min_event_markets: 1
+  include_siblings: true
+  max_hours_to_expiry: 8
+  include_series:
+    - KXNFLGAME
+    - KXNFLSPREAD
+    - KXNFLTOTAL
+    - KXMLBGAME
+    - KXMLBSPREAD
+    - KXMLBTOTAL
+    - KXMLBF5TOTAL
+    - KXNCAAFGAME
+    - KXNCAAFSPREAD
+    - KXNCAAFTOTAL
+    - KXNBAGAME
+    - KXWNBAGAME
+    - KXNHLGAME
+    - KXEPLGAME
+    - KXLALIGAGAME
+    - KXSERIEAGAME
+    - KXBUNDESLIGAGAME
+    - KXLIGUE1GAME
+    - KXMLSGAME
+    - KXUCLGAME
+    - KXATPMATCH
+    - KXWTAMATCH
+    - KXATPCHALLENGERMATCH
+    - KXWTACHALLENGERMATCH
+    - KXITFMATCH
+    - KXITFWMATCH
+    - KXKBOGAME
+    - KXNPBGAME
+    - KXKLEAGUEGAME
+    - KXBOXING
+    - KXUFCFIGHT
