@@ -1,0 +1,77 @@
+{
+ "mode": "PAPER: no order was ever sent to any exchange",
+ "wall_seconds": 480.0042733750015,
+ "events_from_source": 3586,
+ "events_to_engine": {
+  "Wake": 4554,
+  "BookUpdate": 2017,
+  "TradeTick": 1456,
+  "BookConfirm": 113
+ },
+ "markets": 100,
+ "orders": 0,
+ "fills": 0,
+ "net_pnl_usd": 0.0,
+ "fees_usd": 0.0,
+ "positions_held": {},
+ "reaction_ms": {
+  "n": 3473,
+  "p50": 22.45,
+  "p90": 94.909,
+  "p99": 105.806,
+  "max": 112.692
+ },
+ "incidents": [],
+ "n_incidents": 0,
+ "kill_switch": null,
+ "strategy_counters": {
+  "opportunities_seen": 0,
+  "orders_sent": 0
+ },
+ "decisions_logged": 0,
+ "metrics": {
+  "pnl": {
+   "net_micro": 0,
+   "gross_micro": 0,
+   "fees_micro": 0,
+   "realised_micro": 0,
+   "unrealised_micro": 0,
+   "settled_pnl_by_ticker": {},
+   "fees_by_liquidity": {},
+   "volume_centi_by_liquidity": {},
+   "return_on_initial_cash": 0.0
+  },
+  "execution": {
+   "orders": 0,
+   "status": {},
+   "order_fill_rate": null,
+   "quantity_fill_rate": null,
+   "rejection_rate": null,
+   "cancellation_rate": null,
+   "maker_fills": 0,
+   "taker_fills": 0,
+   "median_seconds_to_first_fill": null,
+   "turnover_contracts": 0.0
+  },
+  "risk": {
+   "periods": 8,
+   "period_seconds": 60.0,
+   "sharpe_annualised": null,
+   "sortino_annualised": null,
+   "max_drawdown_micro": 0,
+   "max_drawdown_pct_of_peak": 0.0,
+   "worst_settlement_micro": null,
+   "max_open_loss_micro": 0
+  }
+ },
+ "parity_with_backtest_of_the_tape": {
+  "identical": true,
+  "differs_in": [],
+  "orders": 0,
+  "fills": 0
+ },
+ "files": {
+  "tape": "results/stage11/rest_arbitrage/tape.jsonl",
+  "decisions": "results/stage11/rest_arbitrage/decisions.jsonl"
+ }
+}

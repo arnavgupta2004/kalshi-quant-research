@@ -1,0 +1,114 @@
+{
+ "mode": "PAPER: no order was ever sent to any exchange",
+ "wall_seconds": 900.0026590830093,
+ "events_from_source": 6920,
+ "events_to_engine": {
+  "Wake": 8521,
+  "BookUpdate": 4015,
+  "TradeTick": 2689,
+  "BookConfirm": 216
+ },
+ "markets": 100,
+ "orders": 1036,
+ "fills": 84,
+ "net_pnl_usd": -1.46,
+ "fees_usd": 0.0,
+ "positions_held": {
+  "KXITFWMATCH-26SEP20OKTLOM-LOM": {
+   "yes": 0.0,
+   "no": 2.0
+  },
+  "KXITFWMATCH-26SEP20OKTLOM-OKT": {
+   "yes": 0.0,
+   "no": 2.0
+  },
+  "KXATPCHALLENGERMATCH-26SEP20KAOBOU-BOU": {
+   "yes": 2.0,
+   "no": 0.0
+  },
+  "KXITFWMATCH-26SEP20FONGIO-FON": {
+   "yes": 0.0,
+   "no": 2.0
+  },
+  "KXITFWMATCH-26SEP20FONGIO-GIO": {
+   "yes": 1.0,
+   "no": 0.0
+  },
+  "KXATPCHALLENGERMATCH-26SEP20JADPEN-JAD": {
+   "yes": 1.0,
+   "no": 0.0
+  },
+  "KXATPCHALLENGERMATCH-26SEP20JADPEN-PEN": {
+   "yes": 0.0,
+   "no": 2.0
+  },
+  "KXWTACHALLENGERMATCH-26SEP20SNEPRI-PRI": {
+   "yes": 0.0,
+   "no": 1.0
+  }
+ },
+ "reaction_ms": {
+  "n": 6704,
+  "p50": 24.941,
+  "p90": 99.117,
+  "p99": 114.709,
+  "max": 136.509
+ },
+ "incidents": [],
+ "n_incidents": 0,
+ "kill_switch": false,
+ "decisions_logged": 2051,
+ "metrics": {
+  "pnl": {
+   "net_micro": -1460000,
+   "gross_micro": -1460000,
+   "fees_micro": 0,
+   "realised_micro": -730000,
+   "unrealised_micro": -730000,
+   "settled_pnl_by_ticker": {},
+   "fees_by_liquidity": {
+    "maker": 0
+   },
+   "volume_centi_by_liquidity": {
+    "maker": 26500
+   },
+   "return_on_initial_cash": -0.000146
+  },
+  "execution": {
+   "orders": 1036,
+   "status": {
+    "resting": 32,
+    "cancelled": 920,
+    "filled": 84
+   },
+   "order_fill_rate": 0.08108108108108109,
+   "quantity_fill_rate": 0.06525486333415415,
+   "rejection_rate": 0.0,
+   "cancellation_rate": 0.888030888030888,
+   "maker_fills": 84,
+   "taker_fills": 0,
+   "median_seconds_to_first_fill": 7.312794,
+   "turnover_contracts": 265.0
+  },
+  "risk": {
+   "periods": 15,
+   "period_seconds": 60.0,
+   "sharpe_annualised": null,
+   "sortino_annualised": null,
+   "max_drawdown_micro": 1520000,
+   "max_drawdown_pct_of_peak": 0.00015199908800547196,
+   "worst_settlement_micro": null,
+   "max_open_loss_micro": 6140000
+  }
+ },
+ "parity_with_backtest_of_the_tape": {
+  "identical": true,
+  "differs_in": [],
+  "orders": 1036,
+  "fills": 84
+ },
+ "files": {
+  "tape": "results/stage11/rest_adaptive/tape.jsonl",
+  "decisions": "results/stage11/rest_adaptive/decisions.jsonl"
+ }
+}

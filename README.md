@@ -183,3 +183,21 @@ loss (-$317 to -$112 on validation) only by trading 71% fewer contracts, at a *w
 widening is monotonically worse. All 11 pre-registered hypotheses hold on the validation data (by construction);
 the confirmatory run on a fresh recording is pending (frozen fingerprint `dabbe4d46dbefeee`) and its data are
 thin. See [`docs/adaptive_market_maker.md`](docs/adaptive_market_maker.md).
+
+## Paper trading (Stage 11)
+
+```bash
+python -m scripts.stage11_paper_trade --source rest --strategy baseline --duration 900 \
+    --top-events 15 --max-tickers 100 --max-hours 6 --out results/stage11/rest_baseline
+```
+
+The Stage 5 engine already is a simulated exchange, so paper trading only needs a real-time feed: `LiveFeed` hands
+live events to the engine in its own thread, and the Stage 9 / 10 / 4 strategies run unchanged. **No order is ever
+sent** (there is no order-entry code in `kalshi_client` or `paper/`; a test scans for it). Sources: the WebSocket (needs
+a read-only API key; fail-closed on sequence gaps, resync by reconnect), public REST polling (no credentials), or a
+tape. Every session writes its tape (each event the strategy saw), a decision log and a summary, and ends by replaying
+the tape through a fresh strategy and the plain backtest engine: on three 10-15 minute live sessions on public data the
+orders, fills and equity were **identical**, with a strategy reaction of ~20 ms median (p99 ~110 ms, one 100 ms tick).
+The WebSocket path could not be run live here (no key) and is tested against an in-process mock exchange, including
+gaps, reconnects and malformed frames. Live P&L over minutes is noise and is not reported as a result. See
+[`docs/paper_trading.md`](docs/paper_trading.md).
