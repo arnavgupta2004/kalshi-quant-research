@@ -1,0 +1,1420 @@
+{
+ "stage": 9,
+ "role": "development",
+ "git_commit": "27b70915fe2ff7ac946d6d0e3dcc283b78f4972a+dirty",
+ "code_fingerprint": "e036156024e9174a",
+ "seed": 20260922,
+ "n_boot": 1000,
+ "databases": [
+  "var/books_shortlived.duckdb",
+  "var/books_structural.duckdb"
+ ],
+ "central": {
+  "maker": "queue(a=1,c=.5)",
+  "latency_ms": 200.0,
+  "params": {
+   "gamma": 0.05,
+   "k": 50.0,
+   "size": 10.0,
+   "tick": 0.01,
+   "max_spread": 0.15,
+   "limits": {
+    "max_position_contracts": 50.0,
+    "max_event_loss_usd": 150.0,
+    "max_portfolio_loss_usd": 1000.0,
+    "max_drawdown_usd": 300.0,
+    "stop_hours_before_expiry": 0.25,
+    "max_book_age_s": 30.0,
+    "min_price": 0.03,
+    "max_price": 0.97
+   }
+  }
+ },
+ "pooled": {
+  "net": -317.404273,
+  "gross": -317.404273,
+  "fees": 0.0,
+  "spread_captured": -49.1577,
+  "inventory_contribution": -268.24657299999996,
+  "max_drawdown_worst_db": 334.6858,
+  "worst_event_settled": -16.95,
+  "killed": [
+   true,
+   false
+  ],
+  "mean_abs_inventory_contracts": 5.841134094151212,
+  "all_fills": {
+   "fills": 1402,
+   "events": 46,
+   "contracts": 13359.89,
+   "spread_captured_cents_per_contract": -0.3679498858149281,
+   "markout_30s_cents": {
+    "value": -2.070970042796006,
+    "lo": -2.856330553449583,
+    "hi": -1.3989285714285715,
+    "n_rows": 1402,
+    "n_clusters": 46
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.30084671772428884,
+    "lo": -0.41976274007682457,
+    "hi": -0.21111552547770698,
+    "n_rows": 914,
+    "n_clusters": 25
+   },
+   "settled_pnl_total_usd": -274.9739,
+   "settled_fills": 914
+  }
+ },
+ "per_database": {
+  "books_shortlived": {
+   "config": {
+    "strategy": "baseline",
+    "maker": "queue(a=1,c=.5)",
+    "latency_ms": 200.0,
+    "gamma": 0.05,
+    "k": 50.0,
+    "size": 10.0
+   },
+   "pnl": {
+    "net": -315.704273,
+    "gross": -315.704273,
+    "fees": 0.0,
+    "realised": -306.390073,
+    "mark_to_market": -9.3142,
+    "spread_captured": -47.1077,
+    "inventory_contribution": -268.596573
+   },
+   "risk": {
+    "sharpe_annualised": -310.6216201043289,
+    "sortino_annualised": -295.61735827458847,
+    "max_drawdown": 334.6858,
+    "pnl_volatility_per_minute": 1.6702156018897785,
+    "worst_event_settled": -16.95,
+    "worst_market_settled": -16.35,
+    "inventory_abs_contracts": {
+     "n": 1383,
+     "p50": 5.45,
+     "p90": 10.0,
+     "max": 40.0
+    },
+    "portfolio_worst_case_loss_max": 268.203882,
+    "portfolio_gross_inventory_max": 623.47,
+    "killed": true,
+    "kill_reason": "drawdown $300.20 >= $300.00",
+    "event_concentration_of_settled_pnl": {
+     "total": 43027807,
+     "clusters": 11,
+     "top1_share": 0.3939313012164436,
+     "hhi": 0.26878740137554363,
+     "effective_clusters": 3.7204124705339994
+    }
+   },
+   "execution": {
+    "orders": 12016,
+    "order_fill_rate": 0.11076897470039947,
+    "quantity_fill_rate": 0.10966683320842702,
+    "cancellation_rate": 0.8886484687083888,
+    "maker_fills": 1383,
+    "contracts_traded": 13169.89,
+    "spread_captured_cents_per_contract": -0.3576924332701336,
+    "inventory_turnover": 36.18140822235853,
+    "quote_lifetime_s": {
+     "n": 12005,
+     "p50": 5.223515,
+     "p90": 44.163808,
+     "max": 861.845689
+    },
+    "adverse_selection_markout_ticks": {
+     "5": -198.68852459016392,
+     "30": -229.67325227963525,
+     "300": -245.71114369501467
+    }
+   },
+   "fills": 1383
+  },
+  "books_structural": {
+   "config": {
+    "strategy": "baseline",
+    "maker": "queue(a=1,c=.5)",
+    "latency_ms": 200.0,
+    "gamma": 0.05,
+    "k": 50.0,
+    "size": 10.0
+   },
+   "pnl": {
+    "net": -1.7,
+    "gross": -1.7,
+    "fees": 0.0,
+    "realised": -1.5,
+    "mark_to_market": -0.2,
+    "spread_captured": -2.05,
+    "inventory_contribution": 0.35
+   },
+   "risk": {
+    "sharpe_annualised": -161.53266967021412,
+    "sortino_annualised": -164.385692808103,
+    "max_drawdown": 1.7,
+    "pnl_volatility_per_minute": 0.12737515518264328,
+    "worst_event_settled": 0.0,
+    "worst_market_settled": 0.0,
+    "inventory_abs_contracts": {
+     "n": 19,
+     "p50": 10.0,
+     "p90": 10.0,
+     "max": 10.0
+    },
+    "portfolio_worst_case_loss_max": 11.5,
+    "portfolio_gross_inventory_max": 50.0,
+    "killed": false,
+    "kill_reason": "",
+    "event_concentration_of_settled_pnl": {
+     "total": 0,
+     "clusters": 0,
+     "top1_share": null,
+     "hhi": null,
+     "effective_clusters": null
+    }
+   },
+   "execution": {
+    "orders": 5620,
+    "order_fill_rate": 0.0033807829181494663,
+    "quantity_fill_rate": 0.0033807829181494663,
+    "cancellation_rate": 0.8969750889679715,
+    "maker_fills": 19,
+    "contracts_traded": 190.0,
+    "spread_captured_cents_per_contract": -1.0789473684210527,
+    "inventory_turnover": 17.077759197324415,
+    "quote_lifetime_s": {
+     "n": 5060,
+     "p50": 18.96332,
+     "p90": 169.041372,
+     "max": 2551.508952
+    },
+    "adverse_selection_markout_ticks": {
+     "5": -208.33333333333334,
+     "30": -134.21052631578948,
+     "300": -121.05263157894737
+    }
+   },
+   "fills": 19
+  }
+ },
+ "breakdowns": {
+  "category": {
+   "Climate and Weather": {
+    "fills": 3,
+    "events": 1,
+    "contracts": 30.0,
+    "spread_captured_cents_per_contract": -1.1666666666666667,
+    "markout_30s_cents": {
+     "value": -2.0,
+     "lo": null,
+     "hi": null,
+     "n_rows": 3,
+     "n_clusters": 1
+    }
+   },
+   "Crypto": {
+    "fills": 16,
+    "events": 3,
+    "contracts": 160.0,
+    "spread_captured_cents_per_contract": -1.0625,
+    "markout_30s_cents": {
+     "value": -1.21875,
+     "lo": -1.375,
+     "hi": -0.25,
+     "n_rows": 16,
+     "n_clusters": 3
+    }
+   },
+   "Sports": {
+    "fills": 1383,
+    "events": 42,
+    "contracts": 13169.89,
+    "spread_captured_cents_per_contract": -0.3576924332701336,
+    "markout_30s_cents": {
+     "value": -2.0809833694866233,
+     "lo": -2.8486277873070325,
+     "hi": -1.3752039151712887,
+     "n_rows": 1383,
+     "n_clusters": 42
+    },
+    "settled_pnl_per_fill_usd": {
+     "value": -0.30084671772428884,
+     "lo": -0.41976274007682457,
+     "hi": -0.21111552547770698,
+     "n_rows": 914,
+     "n_clusters": 25
+    },
+    "settled_pnl_total_usd": -274.9739,
+    "settled_fills": 914
+   }
+  },
+  "liquidity_trailing_hour_volume": {
+   "none": {
+    "fills": 21,
+    "events": 5,
+    "contracts": 210.0,
+    "spread_captured_cents_per_contract": -1.0952380952380951,
+    "markout_30s_cents": {
+     "value": -1.3095238095238095,
+     "lo": -1.608695652173913,
+     "hi": -0.8636363636363636,
+     "n_rows": 21,
+     "n_clusters": 5
+    },
+    "settled_pnl_per_fill_usd": {
+     "value": -0.10000000000000009,
+     "lo": null,
+     "hi": null,
+     "n_rows": 2,
+     "n_clusters": 1
+    },
+    "settled_pnl_total_usd": -0.2,
+    "settled_fills": 2
+   },
+   "thin (0, 100]": {
+    "fills": 11,
+    "events": 5,
+    "contracts": 110.0,
+    "spread_captured_cents_per_contract": -1.5909090909090908,
+    "markout_30s_cents": {
+     "value": -4.409090909090909,
+     "lo": -7.5,
+     "hi": 0.5,
+     "n_rows": 11,
+     "n_clusters": 5
+    },
+    "settled_pnl_per_fill_usd": {
+     "value": -0.8875,
+     "lo": -2.3625,
+     "hi": -0.019999999999999928,
+     "n_rows": 8,
+     "n_clusters": 4
+    },
+    "settled_pnl_total_usd": -7.1,
+    "settled_fills": 8
+   },
+   "busy (> 100)": {
+    "fills": 1370,
+    "events": 40,
+    "contracts": 13039.89,
+    "spread_captured_cents_per_contract": -0.34592086282936435,
+    "markout_30s_cents": {
+     "value": -2.0638686131386863,
+     "lo": -2.877911079745942,
+     "hi": -1.375,
+     "n_rows": 1370,
+     "n_clusters": 40
+    },
+    "settled_pnl_per_fill_usd": {
+     "value": -0.2960994469026549,
+     "lo": -0.4169504105090312,
+     "hi": -0.20081829268292686,
+     "n_rows": 904,
+     "n_clusters": 24
+    },
+    "settled_pnl_total_usd": -267.6739,
+    "settled_fills": 904
+   }
+  },
+  "time_to_resolution": {
+   "<0.5h": {
+    "fills": 16,
+    "events": 2,
+    "contracts": 150.0,
+    "spread_captured_cents_per_contract": 1.8666666666666665,
+    "markout_30s_cents": {
+     "value": -11.6875,
+     "lo": -15.5,
+     "hi": -0.25,
+     "n_rows": 16,
+     "n_clusters": 2
+    },
+    "settled_pnl_per_fill_usd": {
+     "value": -1.6749999999999998,
+     "lo": null,
+     "hi": null,
+     "n_rows": 12,
+     "n_clusters": 1
+    },
+    "settled_pnl_total_usd": -20.1,
+    "settled_fills": 12
+   },
+   "0.5-1.5h": {
+    "fills": 415,
+    "events": 7,
+    "contracts": 3853.02,
+    "spread_captured_cents_per_contract": -0.26591997965232467,
+    "markout_30s_cents": {
+     "value": -2.3674698795180724,
+     "lo": -3.8205128205128207,
+     "hi": -0.6934426229508197,
+     "n_rows": 415,
+     "n_clusters": 7
+    },
+    "settled_pnl_per_fill_usd": {
+     "value": -0.3348350453172205,
+     "lo": -0.4367292553191489,
+     "hi": -0.15300399999999992,
+     "n_rows": 331,
+     "n_clusters": 6
+    },
+    "settled_pnl_total_usd": -110.8304,
+    "settled_fills": 331
+   },
+   "1.5-4h": {
+    "fills": 952,
+    "events": 37,
+    "contracts": 9166.87,
+    "spread_captured_cents_per_contract": -0.43266403908858747,
+    "markout_30s_cents": {
+     "value": -1.7946428571428572,
+     "lo": -2.5714285714285716,
+     "hi": -1.3043052837573386,
+     "n_rows": 952,
+     "n_clusters": 37
+    },
+    "settled_pnl_per_fill_usd": {
+     "value": -0.2522653239929948,
+     "lo": -0.42291454545454543,
+     "hi": -0.15436764705882355,
+     "n_rows": 571,
+     "n_clusters": 21
+    },
+    "settled_pnl_total_usd": -144.0435,
+    "settled_fills": 571
+   },
+   "4-12h": {
+    "fills": 11,
+    "events": 2,
+    "contracts": 110.0,
+    "spread_captured_cents_per_contract": -0.9090909090909091,
+    "markout_30s_cents": {
+     "value": -1.4545454545454546,
+     "lo": -2.5,
+     "hi": -1.35,
+     "n_rows": 11,
+     "n_clusters": 2
+    }
+   },
+   ">=12h": {
+    "fills": 8,
+    "events": 3,
+    "contracts": 80.0,
+    "spread_captured_cents_per_contract": -1.3125,
+    "markout_30s_cents": {
+     "value": -1.1875,
+     "lo": -2.0,
+     "hi": -0.25,
+     "n_rows": 8,
+     "n_clusters": 3
+    }
+   }
+  },
+  "probability_range": {
+   "<5%": {
+    "fills": 15,
+    "events": 5,
+    "contracts": 150.0,
+    "spread_captured_cents_per_contract": 1.0333333333333332,
+    "markout_30s_cents": {
+     "value": -1.2333333333333334,
+     "lo": -8.15,
+     "hi": 1.0384615384615385,
+     "n_rows": 15,
+     "n_clusters": 5
+    },
+    "settled_pnl_per_fill_usd": {
+     "value": -0.44000000000000006,
+     "lo": -2.5818181818181825,
+     "hi": 0.46470588235294114,
+     "n_rows": 15,
+     "n_clusters": 5
+    },
+    "settled_pnl_total_usd": -6.6,
+    "settled_fills": 15
+   },
+   "5-20%": {
+    "fills": 234,
+    "events": 31,
+    "contracts": 2225.25,
+    "spread_captured_cents_per_contract": 0.02005392652510954,
+    "markout_30s_cents": {
+     "value": -1.6987179487179487,
+     "lo": -2.3400503778337534,
+     "hi": -0.8863636363636364,
+     "n_rows": 234,
+     "n_clusters": 31
+    },
+    "settled_pnl_per_fill_usd": {
+     "value": -0.5016406250000002,
+     "lo": -0.890909090909091,
+     "hi": -0.09746153846153847,
+     "n_rows": 192,
+     "n_clusters": 21
+    },
+    "settled_pnl_total_usd": -96.315,
+    "settled_fills": 192
+   },
+   "20-50%": {
+    "fills": 549,
+    "events": 34,
+    "contracts": 5329.54,
+    "spread_captured_cents_per_contract": -0.5786193555166111,
+    "markout_30s_cents": {
+     "value": -2.9335154826958107,
+     "lo": -4.603139013452915,
+     "hi": -1.8381112984822934,
+     "n_rows": 549,
+     "n_clusters": 34
+    },
+    "settled_pnl_per_fill_usd": {
+     "value": -0.31827612903225805,
+     "lo": -0.6809490131578949,
+     "hi": -0.08110534591194962,
+     "n_rows": 310,
+     "n_clusters": 20
+    },
+    "settled_pnl_total_usd": -98.6656,
+    "settled_fills": 310
+   },
+   "50-80%": {
+    "fills": 450,
+    "events": 35,
+    "contracts": 4247.84,
+    "spread_captured_cents_per_contract": -0.666078524614863,
+    "markout_30s_cents": {
+     "value": -1.34,
+     "lo": -2.309941520467836,
+     "hi": -0.5538461538461539,
+     "n_rows": 450,
+     "n_clusters": 35
+    },
+    "settled_pnl_per_fill_usd": {
+     "value": -0.01551814814814813,
+     "lo": -0.3426168674698796,
+     "hi": 0.3815962765957447,
+     "n_rows": 270,
+     "n_clusters": 19
+    },
+    "settled_pnl_total_usd": -4.1899,
+    "settled_fills": 270
+   },
+   "80-95%": {
+    "fills": 148,
+    "events": 22,
+    "contracts": 1357.26,
+    "spread_captured_cents_per_contract": 0.5362089798564755,
+    "markout_30s_cents": {
+     "value": -1.8986486486486487,
+     "lo": -4.34453781512605,
+     "hi": -0.15566037735849056,
+     "n_rows": 148,
+     "n_clusters": 22
+    },
+    "settled_pnl_per_fill_usd": {
+     "value": -0.5760611570247934,
+     "lo": -1.5010118644067798,
+     "hi": -0.05699651162790691,
+     "n_rows": 121,
+     "n_clusters": 15
+    },
+    "settled_pnl_total_usd": -69.7034,
+    "settled_fills": 121
+   },
+   ">=95%": {
+    "fills": 6,
+    "events": 4,
+    "contracts": 50.0,
+    "spread_captured_cents_per_contract": 1.4,
+    "markout_30s_cents": {
+     "value": 1.1666666666666667,
+     "lo": -1.0,
+     "hi": 2.25,
+     "n_rows": 6,
+     "n_clusters": 4
+    },
+    "settled_pnl_per_fill_usd": {
+     "value": 0.08333333333333333,
+     "lo": -0.16666666666666666,
+     "hi": 0.43999999999999995,
+     "n_rows": 6,
+     "n_clusters": 4
+    },
+    "settled_pnl_total_usd": 0.5,
+    "settled_fills": 6
+   }
+  }
+ },
+ "inventory_risk_by_time_to_resolution": [
+  {
+   "bucket": "<0.5h",
+   "fills": 16,
+   "events": 2,
+   "mean_abs_inventory_contracts": 9.929375,
+   "mean_remaining_std_usd": 4.447284853301611,
+   "markout_30s_cents": {
+    "value": -11.6875,
+    "lo": -15.5,
+    "hi": -0.25,
+    "n_rows": 16,
+    "n_clusters": 2
+   }
+  },
+  {
+   "bucket": "0.5-1.5h",
+   "fills": 415,
+   "events": 7,
+   "mean_abs_inventory_contracts": 6.243204819277108,
+   "mean_remaining_std_usd": 2.4804139650930392,
+   "markout_30s_cents": {
+    "value": -2.3674698795180724,
+    "lo": -3.8205128205128207,
+    "hi": -0.6934426229508197,
+    "n_rows": 415,
+    "n_clusters": 7
+   }
+  },
+  {
+   "bucket": "1.5-4h",
+   "fills": 952,
+   "events": 37,
+   "mean_abs_inventory_contracts": 5.608686974789916,
+   "mean_remaining_std_usd": 2.426524574837406,
+   "markout_30s_cents": {
+    "value": -1.7946428571428572,
+    "lo": -2.5714285714285716,
+    "hi": -1.3043052837573386,
+    "n_rows": 952,
+    "n_clusters": 37
+   }
+  },
+  {
+   "bucket": "4-12h",
+   "fills": 11,
+   "events": 2,
+   "mean_abs_inventory_contracts": 4.545454545454546,
+   "mean_remaining_std_usd": 1.8083693743267082,
+   "markout_30s_cents": {
+    "value": -1.4545454545454546,
+    "lo": -2.5,
+    "hi": -1.35,
+    "n_rows": 11,
+    "n_clusters": 2
+   }
+  },
+  {
+   "bucket": ">=12h",
+   "fills": 8,
+   "events": 3,
+   "mean_abs_inventory_contracts": 6.25,
+   "mean_remaining_std_usd": 2.5921435024084483,
+   "markout_30s_cents": {
+    "value": -1.1875,
+    "lo": -2.0,
+    "hi": -0.25,
+    "n_rows": 8,
+    "n_clusters": 3
+   }
+  }
+ ],
+ "ablations": {
+  "A naive join (best bid, no model)": {
+   "net_usd": -253.807577,
+   "fills": 5268,
+   "contracts": 47900.79,
+   "spread_cents_per_contract": 0.23863500790521844,
+   "markout_30s_cents": {
+    "value": -0.6533434650455927,
+    "lo": -0.9451673209945783,
+    "hi": -0.3088029809035864,
+    "n_rows": 5264,
+    "n_clusters": 69
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.018818834692028958,
+    "lo": -0.10878686145346364,
+    "hi": 0.09657049366571323,
+    "n_rows": 2208,
+    "n_clusters": 30
+   },
+   "max_drawdown_usd": 190.360417,
+   "worst_event_settled_usd": -16.36559,
+   "mean_abs_inventory": 24.911902050113895,
+   "killed": [
+    false,
+    false
+   ]
+  },
+  "B fixed width, no skew, no limits": {
+   "net_usd": -93.297195,
+   "fills": 1344,
+   "contracts": 12620.6,
+   "spread_cents_per_contract": 1.568371551273315,
+   "markout_30s_cents": {
+    "value": -1.9743303571428572,
+    "lo": -3.512761780104712,
+    "hi": -0.495995995995996,
+    "n_rows": 1344,
+    "n_clusters": 46
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.3407582658959537,
+    "lo": -0.7312399727148705,
+    "hi": -0.009268827708703275,
+    "n_rows": 865,
+    "n_clusters": 26
+   },
+   "max_drawdown_usd": 299.564667,
+   "worst_event_settled_usd": -43.483334,
+   "mean_abs_inventory": 45.11688244047619,
+   "killed": [
+    false,
+    false
+   ]
+  },
+  "C fixed width, no skew, limits + kill": {
+   "net_usd": -135.17027099999999,
+   "fills": 1077,
+   "contracts": 9715.22,
+   "spread_cents_per_contract": 1.5331788677971268,
+   "markout_30s_cents": {
+    "value": -2.1764159702878367,
+    "lo": -3.6540256709451575,
+    "hi": -0.6343381389252949,
+    "n_rows": 1077,
+    "n_clusters": 46
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.2564885964912281,
+    "lo": -0.5649627450980392,
+    "hi": -0.011891643059490193,
+    "n_rows": 684,
+    "n_clusters": 26
+   },
+   "max_drawdown_usd": 199.939885,
+   "worst_event_settled_usd": -41.1,
+   "mean_abs_inventory": 22.8761095636026,
+   "killed": [
+    false,
+    false
+   ]
+  },
+  "D skew, no limits": {
+   "net_usd": -443.4069,
+   "fills": 2223,
+   "contracts": 21238.15,
+   "spread_cents_per_contract": -0.26949051588768325,
+   "markout_30s_cents": {
+    "value": -1.764957264957265,
+    "lo": -2.386416861826698,
+    "hi": -1.2492718446601943,
+    "n_rows": 2223,
+    "n_clusters": 47
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.24081917263325378,
+    "lo": -0.331419423076923,
+    "hi": -0.1609101748807631,
+    "n_rows": 1257,
+    "n_clusters": 26
+   },
+   "max_drawdown_usd": 441.7069,
+   "worst_event_settled_usd": -16.95,
+   "mean_abs_inventory": 5.842636077372919,
+   "killed": [
+    false,
+    false
+   ]
+  },
+  "E skew, limits, no kill-switch": {
+   "net_usd": -443.4069,
+   "fills": 2223,
+   "contracts": 21238.15,
+   "spread_cents_per_contract": -0.26949051588768325,
+   "markout_30s_cents": {
+    "value": -1.764957264957265,
+    "lo": -2.386416861826698,
+    "hi": -1.2492718446601943,
+    "n_rows": 2223,
+    "n_clusters": 47
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.24081917263325378,
+    "lo": -0.331419423076923,
+    "hi": -0.1609101748807631,
+    "n_rows": 1257,
+    "n_clusters": 26
+   },
+   "max_drawdown_usd": 441.7069,
+   "worst_event_settled_usd": -16.95,
+   "mean_abs_inventory": 5.842636077372919,
+   "killed": [
+    false,
+    false
+   ]
+  },
+  "F baseline: skew + limits + kill": {
+   "net_usd": -317.404273,
+   "fills": 1402,
+   "contracts": 13359.89,
+   "spread_cents_per_contract": -0.3679498858149281,
+   "markout_30s_cents": {
+    "value": -2.070970042796006,
+    "lo": -2.856330553449583,
+    "hi": -1.3989285714285715,
+    "n_rows": 1402,
+    "n_clusters": 46
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.30084671772428884,
+    "lo": -0.41976274007682457,
+    "hi": -0.21111552547770698,
+    "n_rows": 914,
+    "n_clusters": 25
+   },
+   "max_drawdown_usd": 334.6858,
+   "worst_event_settled_usd": -16.95,
+   "mean_abs_inventory": 5.841134094151212,
+   "killed": [
+    true,
+    false
+   ]
+  }
+ },
+ "fill_model_latency_sensitivity": [
+  {
+   "latency_ms": 200.0,
+   "maker": "pessimistic",
+   "net_usd": -323.9,
+   "fills": 1121,
+   "contracts": 11210.0,
+   "spread_cents_per_contract": -0.21855486173059765,
+   "markout_30s_cents": {
+    "value": -2.3479036574487067,
+    "lo": -3.2012448132780085,
+    "hi": -1.6746575342465753,
+    "n_rows": 1121,
+    "n_clusters": 46
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.3676510067114094,
+    "lo": -0.4811420982735723,
+    "hi": -0.2558219178082191,
+    "n_rows": 745,
+    "n_clusters": 25
+   },
+   "max_drawdown_usd": 345.3,
+   "worst_event_settled_usd": -16.95,
+   "mean_abs_inventory": 6.003568242640499,
+   "killed": [
+    true,
+    false
+   ]
+  },
+  {
+   "latency_ms": 200.0,
+   "maker": "queue(a=1,c=0)",
+   "net_usd": -323.929124,
+   "fills": 1379,
+   "contracts": 13247.11,
+   "spread_cents_per_contract": -0.3929638238076078,
+   "markout_30s_cents": {
+    "value": -2.140319071791153,
+    "lo": -2.8881964809384164,
+    "hi": -1.4804832713754648,
+    "n_rows": 1379,
+    "n_clusters": 46
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.3082389380530974,
+    "lo": -0.4228320376914017,
+    "hi": -0.21807982345523327,
+    "n_rows": 904,
+    "n_clusters": 25
+   },
+   "max_drawdown_usd": 341.3236,
+   "worst_event_settled_usd": -16.95,
+   "mean_abs_inventory": 5.892175489485135,
+   "killed": [
+    true,
+    false
+   ]
+  },
+  {
+   "latency_ms": 200.0,
+   "maker": "queue(a=1,c=.5)",
+   "net_usd": -317.404273,
+   "fills": 1402,
+   "contracts": 13359.89,
+   "spread_cents_per_contract": -0.3679498858149281,
+   "markout_30s_cents": {
+    "value": -2.070970042796006,
+    "lo": -2.8046309696092617,
+    "hi": -1.4296383647798743,
+    "n_rows": 1402,
+    "n_clusters": 46
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.30084671772428884,
+    "lo": -0.40992544802867376,
+    "hi": -0.21288888888888888,
+    "n_rows": 914,
+    "n_clusters": 25
+   },
+   "max_drawdown_usd": 334.6858,
+   "worst_event_settled_usd": -16.95,
+   "mean_abs_inventory": 5.841134094151212,
+   "killed": [
+    true,
+    false
+   ]
+  },
+  {
+   "latency_ms": 200.0,
+   "maker": "queue(a=.5,c=.5)",
+   "net_usd": -319.05289999999997,
+   "fills": 1459,
+   "contracts": 13518.42,
+   "spread_cents_per_contract": -0.3803702651641242,
+   "markout_30s_cents": {
+    "value": -1.9701850582590816,
+    "lo": -2.9521367521367523,
+    "hi": -1.3359057676685622,
+    "n_rows": 1459,
+    "n_clusters": 46
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.28702184265010355,
+    "lo": -0.40122831765935224,
+    "hi": -0.19463201094391247,
+    "n_rows": 966,
+    "n_clusters": 25
+   },
+   "max_drawdown_usd": 333.1211,
+   "worst_event_settled_usd": -16.95,
+   "mean_abs_inventory": 5.7472583961617545,
+   "killed": [
+    true,
+    false
+   ]
+  },
+  {
+   "latency_ms": 200.0,
+   "maker": "optimistic",
+   "net_usd": -326.0463,
+   "fills": 1657,
+   "contracts": 14877.79,
+   "spread_cents_per_contract": -0.20335748790646999,
+   "markout_30s_cents": {
+    "value": -1.763729631864816,
+    "lo": -2.4780801209372636,
+    "hi": -1.2283915283342874,
+    "n_rows": 1657,
+    "n_clusters": 46
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.24685276995305167,
+    "lo": -0.355220790960452,
+    "hi": -0.1640571628232006,
+    "n_rows": 1065,
+    "n_clusters": 25
+   },
+   "max_drawdown_usd": 335.0714,
+   "worst_event_settled_usd": -20.5,
+   "mean_abs_inventory": 5.75354858177429,
+   "killed": [
+    true,
+    false
+   ]
+  },
+  {
+   "latency_ms": 1000.0,
+   "maker": "pessimistic",
+   "net_usd": -311.4,
+   "fills": 1188,
+   "contracts": 11880.0,
+   "spread_cents_per_contract": -0.15951178451178452,
+   "markout_30s_cents": {
+    "value": -1.989057239057239,
+    "lo": -2.849375459221161,
+    "hi": -1.3878968253968254,
+    "n_rows": 1188,
+    "n_clusters": 46
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.36543046357615894,
+    "lo": -0.4676792223572297,
+    "hi": -0.2670912951167729,
+    "n_rows": 755,
+    "n_clusters": 25
+   },
+   "max_drawdown_usd": 331.0,
+   "worst_event_settled_usd": -17.95,
+   "mean_abs_inventory": 5.976430976430977,
+   "killed": [
+    true,
+    false
+   ]
+  },
+  {
+   "latency_ms": 1000.0,
+   "maker": "queue(a=1,c=0)",
+   "net_usd": -318.591324,
+   "fills": 1403,
+   "contracts": 13420.25,
+   "spread_cents_per_contract": -0.4602932136137553,
+   "markout_30s_cents": {
+    "value": -1.9985744832501782,
+    "lo": -2.674586776859504,
+    "hi": -1.474203821656051,
+    "n_rows": 1403,
+    "n_clusters": 46
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.31120562162162163,
+    "lo": -0.4233083892617451,
+    "hi": -0.23068364987613546,
+    "n_rows": 925,
+    "n_clusters": 25
+   },
+   "max_drawdown_usd": 339.877,
+   "worst_event_settled_usd": -17.95,
+   "mean_abs_inventory": 5.793435495367071,
+   "killed": [
+    true,
+    false
+   ]
+  },
+  {
+   "latency_ms": 1000.0,
+   "maker": "queue(a=1,c=.5)",
+   "net_usd": -315.19843099999997,
+   "fills": 1415,
+   "contracts": 13405.36,
+   "spread_cents_per_contract": -0.4428366713016286,
+   "markout_30s_cents": {
+    "value": -2.01660777385159,
+    "lo": -2.7483870967741937,
+    "hi": -1.5278956943602182,
+    "n_rows": 1415,
+    "n_clusters": 46
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.320555579631636,
+    "lo": -0.4502717622080681,
+    "hi": -0.22952027027027028,
+    "n_rows": 923,
+    "n_clusters": 25
+   },
+   "max_drawdown_usd": 347.8876,
+   "worst_event_settled_usd": -17.95,
+   "mean_abs_inventory": 5.758452296819788,
+   "killed": [
+    true,
+    false
+   ]
+  },
+  {
+   "latency_ms": 1000.0,
+   "maker": "queue(a=.5,c=.5)",
+   "net_usd": -325.5198,
+   "fills": 1514,
+   "contracts": 13906.38,
+   "spread_cents_per_contract": -0.5052533441485132,
+   "markout_30s_cents": {
+    "value": -1.891017173051519,
+    "lo": -2.6291230893000805,
+    "hi": -1.3296473401075912,
+    "n_rows": 1514,
+    "n_clusters": 46
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.3078467261904762,
+    "lo": -0.42520903010033445,
+    "hi": -0.2120409710391823,
+    "n_rows": 1008,
+    "n_clusters": 25
+   },
+   "max_drawdown_usd": 363.5496,
+   "worst_event_settled_usd": -17.95,
+   "mean_abs_inventory": 5.60275429326288,
+   "killed": [
+    true,
+    false
+   ]
+  },
+  {
+   "latency_ms": 1000.0,
+   "maker": "optimistic",
+   "net_usd": -324.0621,
+   "fills": 1666,
+   "contracts": 14779.75,
+   "spread_cents_per_contract": -0.2732275579762851,
+   "markout_30s_cents": {
+    "value": -1.7430972388955581,
+    "lo": -2.2934959349593496,
+    "hi": -1.271491957848031,
+    "n_rows": 1666,
+    "n_clusters": 46
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.2623705390334573,
+    "lo": -0.36396740088105733,
+    "hi": -0.1853525987525988,
+    "n_rows": 1076,
+    "n_clusters": 25
+   },
+   "max_drawdown_usd": 354.620726,
+   "worst_event_settled_usd": -18.909614,
+   "mean_abs_inventory": 5.659927971188475,
+   "killed": [
+    true,
+    false
+   ]
+  }
+ ],
+ "parameter_grid": [
+  {
+   "gamma": 0.02,
+   "k": 25.0,
+   "net_usd": -223.585712,
+   "fills": 915,
+   "contracts": 8580.2,
+   "spread_cents_per_contract": 1.8199383464254912,
+   "markout_30s_cents": {
+    "value": -1.5688524590163935,
+    "lo": -2.7636674259681095,
+    "hi": -0.36912065439672803,
+    "n_rows": 915,
+    "n_clusters": 44
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.3427652684563759,
+    "lo": -0.544611403508772,
+    "hi": -0.14053419972640233,
+    "n_rows": 596,
+    "n_clusters": 26
+   },
+   "max_drawdown_usd": 235.075007,
+   "worst_event_settled_usd": -25.349075,
+   "mean_abs_inventory": 7.9728196721311475,
+   "killed": [
+    false,
+    false
+   ]
+  },
+  {
+   "gamma": 0.02,
+   "k": 50.0,
+   "net_usd": -331.202621,
+   "fills": 1360,
+   "contracts": 12884.91,
+   "spread_cents_per_contract": -0.12446613907276032,
+   "markout_30s_cents": {
+    "value": -2.0915441176470586,
+    "lo": -2.914446417998816,
+    "hi": -1.2017884914463453,
+    "n_rows": 1360,
+    "n_clusters": 46
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.37675934195064625,
+    "lo": -0.49459586666666655,
+    "hi": -0.26582523076923076,
+    "n_rows": 851,
+    "n_clusters": 25
+   },
+   "max_drawdown_usd": 373.048867,
+   "worst_event_settled_usd": -27.33,
+   "mean_abs_inventory": 7.183992647058824,
+   "killed": [
+    true,
+    false
+   ]
+  },
+  {
+   "gamma": 0.02,
+   "k": 100.0,
+   "net_usd": -347.24383,
+   "fills": 1374,
+   "contracts": 13078.5,
+   "spread_cents_per_contract": -0.6538272737699278,
+   "markout_30s_cents": {
+    "value": -2.099344978165939,
+    "lo": -3.0016823687752354,
+    "hi": -1.2845096814490944,
+    "n_rows": 1374,
+    "n_clusters": 47
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.3690493317132442,
+    "lo": -0.4983431788079469,
+    "hi": -0.26461080645161283,
+    "n_rows": 823,
+    "n_clusters": 25
+   },
+   "max_drawdown_usd": 347.71573,
+   "worst_event_settled_usd": -29.48,
+   "mean_abs_inventory": 7.203136826783115,
+   "killed": [
+    true,
+    false
+   ]
+  },
+  {
+   "gamma": 0.05,
+   "k": 25.0,
+   "net_usd": -242.234191,
+   "fills": 1001,
+   "contracts": 9383.47,
+   "spread_cents_per_contract": 0.9857808465311872,
+   "markout_30s_cents": {
+    "value": -1.7752247752247752,
+    "lo": -3.0045126353790614,
+    "hi": -0.7824897400820794,
+    "n_rows": 1001,
+    "n_clusters": 44
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.29928637037037037,
+    "lo": -0.4734393092105262,
+    "hi": -0.16107592356687897,
+    "n_rows": 675,
+    "n_clusters": 26
+   },
+   "max_drawdown_usd": 243.8598,
+   "worst_event_settled_usd": -15.995,
+   "mean_abs_inventory": 6.176263736263736,
+   "killed": [
+    false,
+    false
+   ]
+  },
+  {
+   "gamma": 0.05,
+   "k": 50.0,
+   "net_usd": -317.404273,
+   "fills": 1402,
+   "contracts": 13359.89,
+   "spread_cents_per_contract": -0.3679498858149281,
+   "markout_30s_cents": {
+    "value": -2.070970042796006,
+    "lo": -2.8046309696092617,
+    "hi": -1.4296383647798743,
+    "n_rows": 1402,
+    "n_clusters": 46
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.30084671772428884,
+    "lo": -0.40992544802867376,
+    "hi": -0.21288888888888888,
+    "n_rows": 914,
+    "n_clusters": 25
+   },
+   "max_drawdown_usd": 334.6858,
+   "worst_event_settled_usd": -16.95,
+   "mean_abs_inventory": 5.841134094151212,
+   "killed": [
+    true,
+    false
+   ]
+  },
+  {
+   "gamma": 0.05,
+   "k": 100.0,
+   "net_usd": -311.4686,
+   "fills": 1437,
+   "contracts": 13678.84,
+   "spread_cents_per_contract": -0.5363839331405295,
+   "markout_30s_cents": {
+    "value": -2.000347947112039,
+    "lo": -2.5682492581602374,
+    "hi": -1.3424218123496392,
+    "n_rows": 1437,
+    "n_clusters": 47
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.3085672316384181,
+    "lo": -0.42321077586206896,
+    "hi": -0.22494339622641504,
+    "n_rows": 885,
+    "n_clusters": 25
+   },
+   "max_drawdown_usd": 318.8723,
+   "worst_event_settled_usd": -19.05,
+   "mean_abs_inventory": 5.841934585942937,
+   "killed": [
+    true,
+    false
+   ]
+  },
+  {
+   "gamma": 0.1,
+   "k": 25.0,
+   "net_usd": -246.727,
+   "fills": 1004,
+   "contracts": 9548.77,
+   "spread_cents_per_contract": 0.511987931429912,
+   "markout_30s_cents": {
+    "value": -1.9357569721115537,
+    "lo": -3.027651858567543,
+    "hi": -1.0679190751445087,
+    "n_rows": 1004,
+    "n_clusters": 44
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.3084354892205638,
+    "lo": -0.4217690677966103,
+    "hi": -0.18193974358974357,
+    "n_rows": 603,
+    "n_clusters": 26
+   },
+   "max_drawdown_usd": 246.827,
+   "worst_event_settled_usd": -9.6,
+   "mean_abs_inventory": 5.515029880478088,
+   "killed": [
+    false,
+    false
+   ]
+  },
+  {
+   "gamma": 0.1,
+   "k": 50.0,
+   "net_usd": -293.2855,
+   "fills": 1446,
+   "contracts": 13634.51,
+   "spread_cents_per_contract": -0.20592782578911895,
+   "markout_30s_cents": {
+    "value": -1.6867219917012448,
+    "lo": -2.3055555555555554,
+    "hi": -1.1782086795937212,
+    "n_rows": 1446,
+    "n_clusters": 45
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.24722453222453225,
+    "lo": -0.3331004010695187,
+    "hi": -0.16795444191343967,
+    "n_rows": 962,
+    "n_clusters": 25
+   },
+   "max_drawdown_usd": 311.826474,
+   "worst_event_settled_usd": -10.2,
+   "mean_abs_inventory": 5.50210235131397,
+   "killed": [
+    true,
+    false
+   ]
+  },
+  {
+   "gamma": 0.1,
+   "k": 100.0,
+   "net_usd": -301.16459999999995,
+   "fills": 1363,
+   "contracts": 12987.43,
+   "spread_cents_per_contract": -0.5673589771032452,
+   "markout_30s_cents": {
+    "value": -1.9897285399853264,
+    "lo": -2.456537102473498,
+    "hi": -1.3726513569937369,
+    "n_rows": 1363,
+    "n_clusters": 46
+   },
+   "settled_pnl_per_fill_usd": {
+    "value": -0.2765187788018433,
+    "lo": -0.3612079772079771,
+    "hi": -0.21334707692307686,
+    "n_rows": 868,
+    "n_clusters": 25
+   },
+   "max_drawdown_usd": 310.1426,
+   "worst_event_settled_usd": -11.8,
+   "mean_abs_inventory": 5.4368305209097585,
+   "killed": [
+    true,
+    false
+   ]
+  }
+ ],
+ "partition_evidence_sensitivity": {
+  "partition_level": "EMPIRICAL",
+  "net_usd": -317.404273,
+  "fills": 1402,
+  "contracts": 13359.89,
+  "spread_cents_per_contract": -0.3679498858149281,
+  "markout_30s_cents": {
+   "value": -2.070970042796006,
+   "lo": -2.86121157323689,
+   "hi": -1.3796693202694428,
+   "n_rows": 1402,
+   "n_clusters": 46
+  },
+  "settled_pnl_per_fill_usd": {
+   "value": -0.30084671772428884,
+   "lo": -0.41744947245017594,
+   "hi": -0.2047341346153846,
+   "n_rows": 914,
+   "n_clusters": 25
+  },
+  "max_drawdown_usd": 334.6858,
+  "worst_event_settled_usd": -16.95,
+  "mean_abs_inventory": 5.841134094151212,
+  "killed": [
+   true,
+   false
+  ]
+ },
+ "hypotheses": [
+  [
+   "M1",
+   "consistent",
+   "-2.07 [-2.86, -1.40] (46 events)",
+   "30 s markout of the baseline's fills (cents, bought side): 95% interval entirely below 0"
+  ],
+  [
+   "M2",
+   "consistent",
+   "settled P&L/fill -0.301 [-0.420, -0.211] (25 events); net < 0 in 10/10 fill-model x latency cells",
+   "point estimate of hold-to-settlement P&L per fill < 0 AND net P&L < 0 in every cell"
+  ],
+  [
+   "M3a",
+   "consistent",
+   "|inventory| 5.8 vs 45.1 contracts; worst event -16.9 vs -43.5 USD",
+   "skew (D) has lower mean |inventory| AND a no-worse worst-event loss than no skew (B)"
+  ],
+  [
+   "M3b",
+   "consistent",
+   "net -443.4 (skew) vs -93.3 (no skew) USD",
+   "skew does not raise net P&L: net(D) <= net(B)  [from development data, not derived]"
+  ],
+  [
+   "M4",
+   "consistent",
+   "max drawdown 334.7 (kill) vs 441.7 (none)",
+   "max drawdown with the kill-switch <= without it"
+  ],
+  [
+   "M5",
+   "consistent",
+   "0/9 grid cells have settled P&L/fill with lower bound > 0",
+   "no (gamma, k) cell has a settled P&L per fill whose 95% interval lies above 0"
+  ],
+  [
+   "M6",
+   "consistent",
+   "-2.71c (< 1.5 h) vs -1.79c (>= 1.5 h)",
+   "fill-weighted 30 s markout is more negative within 1.5 h of resolution than beyond (point comparison)"
+  ],
+  [
+   "M7",
+   "consistent",
+   "200 ms: 1121 <= 1657; 1000 ms: 1188 <= 1666",
+   "at each latency, fills under the optimistic queue model >= under the pessimistic one"
+  ]
+ ]
+}

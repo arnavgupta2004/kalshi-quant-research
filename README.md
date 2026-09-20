@@ -142,3 +142,24 @@ event-clustered intervals. Hypotheses were frozen on the research period; the se
 order-book features add nothing and the **microprice is significantly worse than the mid** (+0.016 nats). All 17
 pre-specified criteria held, and a tape nondeterminism found on the way was shown not to change any verdict. See
 [`docs/calibration.md`](docs/calibration.md).
+
+## Market making (Stage 9)
+
+```bash
+python -m scripts.stage9_baseline_mm --role confirmatory --out results/stage9/confirm \
+    --expect-fingerprint e036156024e9174a
+```
+
+A baseline market maker for binary contracts, **paper only** (simulated orders against recorded books and trades).
+Avellaneda-Stoikov cannot be used as derived (unbounded price, constant volatility, a `(T-t)` risk clock, no settlement
+jump, no YES/NO symmetry), so quoting uses the *bounded-support* form: the CARA certainty equivalent of a Bernoulli
+claim gives reservation prices that stay inside (0, $1) by construction, skew against inventory, and carry the claim's
+own remaining variance `p(1-p)`. Inventory risk is in settlement terms (worst / best / expected value, event-level
+worst case over the admissible outcomes, position / event / portfolio limits, a drawdown kill-switch). On the
+frozen confirmatory data (2,410 fills, 81 events, ~12 h): **net -$426**, 30 s markout **-1.42¢ [-1.85, -1.04]**,
+hold-to-settlement P&L **-$0.18 per fill [-0.23, -0.13]**, negative under all 10 fill-model x latency cells and all
+9 (gamma, k) settings. Skew cut mean inventory 9x (52 -> 6 contracts) without making money; the kill-switch capped the
+drawdown at $300 (vs $600) without creating edge. All 8 pre-registered hypotheses held (one, "adverse selection
+worsens near resolution", holds only by a 0.03¢ gap and is a null in substance). Caveat: the maker quotes around a
+polled, ~3 s stale mid while fills come from timely trades, so this measures that information set, not a live-feed
+system. See [`docs/market_making.md`](docs/market_making.md).

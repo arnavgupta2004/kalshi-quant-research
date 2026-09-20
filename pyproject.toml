@@ -29,7 +29,7 @@ dev = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["kalshi_client", "market", "data", "arbitrage", "backtest", "research", "pricing"]
+packages = ["kalshi_client", "market", "data", "arbitrage", "backtest", "research", "pricing", "market_making"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
@@ -51,3 +51,4 @@ select = ["E", "F", "I", "UP", "B"]
 "research/report.py" = ["E501"]  # markdown table rows
 "pricing/report.py" = ["E501"]  # markdown table rows
 "research/calibration_report.py" = ["E501"]  # markdown table rows
+"research/market_making_report.py" = ["E501"]  # markdown table rows
